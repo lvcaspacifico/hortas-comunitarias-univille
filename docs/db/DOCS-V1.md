@@ -29,8 +29,6 @@
   - [7. Recursos do Plano | `bd.recursos_do_plano`](#7-recursos-do-plano--bdrecursos_do_plano)
 - [📋 Índices Recomendados](#indices-recomendados)
 
-
-# 
 <h1 id="introducao">📗 Introdução</h1>
 
 ⚠️ **Importante:** Usamos o Claude Sonnet 4 para revisão e formatação dessa documentação. Qualquer erro aparente é decorrente desse robo maldito que tanto nos auxilia.
@@ -360,7 +358,7 @@ Armazena os cargos possíveis no sistema. Atualmente temos 5 cargos base.
 Utilizando um número como código podemos deixar a camada de aplicação 100% pronta sem depender do tratamento de UUIDs. Por exemplo:
 
 ```php
-if ($usuario['cargo']['codigo'] === 1) {
+if ($usuario['cargo']['slug'] === "admin_platafora") {
     echo "Usuário é Administração da Associação Geral";
 }
 ```
@@ -649,6 +647,7 @@ O usuário que criar a conta será o usuário responsável da conta por padrão,
 | UUID | uuid | CHAR(36) | Chave primária |
 | Código | codigo | INT UNIQUE NOT NULL | 0-2 inicialmente |
 | Slug | slug | VARCHAR(100) UNIQUE NOT NULL | Identificador amigável |
+| Valor em Centavos | valor_em_centavos | BIGINT NOT NULL | Valor da movimentação em centavos (R$ 1,00 = 100) |
 | Nome | nome | VARCHAR(100) NOT NULL | Nome do plano |
 | Descrição | descricao | TEXT | Descrição do plano |
 | Excluído | excluido | BOOLEAN DEFAULT FALSE | Exclusão lógica |

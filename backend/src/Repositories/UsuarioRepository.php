@@ -23,6 +23,15 @@ class UsuarioRepository
     {
         return $this->usuarioModel->find($uuid);
     }
+
+    public function findByCpf(string $cpf): ?UsuarioModel
+    {
+        return $this->usuarioModel->where('cpf', $cpf)->first();
+    }
+    public function findByEmail(string $email): ?UsuarioModel
+    {
+        return $this->usuarioModel->where('email', $email)->first();
+    }
     
     public function create(array $data): UsuarioModel
     {
