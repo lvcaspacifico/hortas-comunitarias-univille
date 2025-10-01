@@ -14,8 +14,8 @@ Repositório dedicado do nosso grupo.
 
 ## 🛣️ Roadmap do Projeto
 
-Atualmente, estamos registrando progresso na [Issue #1 - [Roadmap]🔗](https://github.com/lvcaspacifico/hortas-comunitarias-univille/issues/1) e sub-issues relacionadas.
 
+Atualmente, estamos registrando progresso na [Issue #1 - [Roadmap]🔗](https://github.com/lvcaspacifico/hortas-comunitarias-univille/issues/1) e sub-issues relacionadas.
 
 ## 🚀 Stack Tecnológica
 
