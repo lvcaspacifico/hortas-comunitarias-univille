@@ -1,16 +1,18 @@
 # 🐳 Guia do Backend
 
-🥑 [Documentação do Banco de Dados aqui 🔗](https://github.com/lvcaspacifico/hortas-comunitarias-univille/blob/main/docs/db/DOCS-V1.md)
+🥑 [Documentação do Banco de Dados🔗](../docs/db/README.md)   
 
-🥑 [Documentação da API REST aqui 🔗](https://github.com/lvcaspacifico/hortas-comunitarias-univille/blob/main/docs/api/DOCS-V1.md)
+🥑 [Documentação da API REST🔗](../docs/api/README.md)
 
 ## 💾 Setup Local Híbrido
 
-> Utilizar parte do setup com containers (apenas para o banco e o PhpMyAdmin) e a parte do código da API REST rodando localmente 
+> Parte do setup com containers (banco MySQL e PhpMyAdmin) e API REST rodando localmente 
 
 Observei que um setup híbrido docker e código local é mais performático no Windows 11/10, por conta da emulação do WSL utilizada pelo Docker Desktop. 
 
 A lógica é que quanto menos coisas pra ele emular, mais rápido o retorno das requisições.
+
+O foco do tutorial é para Windows 10/11.
 
 ### Requisitos
 
@@ -21,15 +23,13 @@ A lógica é que quanto menos coisas pra ele emular, mais rápido o retorno das 
 
 Atualmente utilizamos apenas dois containers: do MySQL e do PhpMyAdmin. 
 
-Porém, siga o processo descrito no `README.md` geral do projeto que vai criar todas as imagens na sua máquina pois atualmente não criamos um dockerfile só com as duas relevantes.
+Porém, seguiremos o processo descrito no `README.md` geral do projeto que vai criar todas as imagens na sua máquina pois atualmente não criamos um dockerfile só com as duas relevantes. Lá, temos:
 
 ```bash
 # Se já rodou no README.md geral, ignore! Se não, rode e espere finalizar:
 ./setup.sh
 ```
-
-Não esqueça de deixar o Docker Desktop rodando, ele será necessário para executar os containers.
-
+Não esqueça de deixar o Docker Desktop aberto rodando, ele será necessário para executar os containers.
 
 1. Remover containers com configuração base
 
@@ -85,9 +85,9 @@ API_VERSION=v1
 
 2. Entrar na pasta backend e rodar o comando `php -S localhost:8000 -t public public/index.php `. Isto inicia a API REST do projeto
 
-3. Baixar e exportar os templates da API REST para o Postman disponíveis [aqui 🔗](../docs/api/DOCS-V1.md)
+3. Baixar e exportar os templates da API REST para o Postman disponíveis [aqui 🔗](../docs/api/README.md)
 
-4. Utilizar a API REST conforme documentado na [documentação da API🔗](../docs/api/DOCS-V1.md)
+4. Utilizar a API REST conforme documentado na [documentação da API🔗](../docs/api/README.md)
 
 ---
 

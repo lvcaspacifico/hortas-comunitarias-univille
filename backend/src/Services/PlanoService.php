@@ -35,7 +35,9 @@ class PlanoService
     }
 
     public function findByUuid(string $uuid, array $payloadUsuarioLogado): ?PlanoModel {
-        if(!$this->isCargoAdminPlataforma($payloadUsuarioLogado)){
+        if(!$this->isCargoAdminPlataforma($payloadUsuarioLogado) &&
+            $payloadUsuarioLogado['usuario_uuid'] !== "NEW_ACCOUNT"
+        ){
             throw new Exception("Permissão de cargo 0 necessária | findByUuid");
         }
 

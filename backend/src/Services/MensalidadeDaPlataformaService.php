@@ -41,7 +41,9 @@ class MensalidadeDaPlataformaService
     public function findByUuid(string $uuid, array $payloadUsuarioLogado): ?MensalidadeDaPlataformaModel {
         if (!$this->isCargoAdminPlataforma($payloadUsuarioLogado) &&
             !$this->isCargoAdminASsociacao($payloadUsuarioLogado)) {
-            throw new Exception("Permissão de cargo 0 necessária | findByUuid");
+
+                
+                throw new Exception("Permissão de cargo 0 necessária | findByUuid");
         } else { 
             $mensalidadeDaPlataforma = $this->mensalidadeDaPlataformaRepository->findByUuid($uuid);
             if(!$mensalidadeDaPlataforma || $mensalidadeDaPlataforma->excluido){

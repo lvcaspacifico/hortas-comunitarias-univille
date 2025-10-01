@@ -33,6 +33,7 @@ class AssociacaoService
 
     public function findByUuid(string $uuid, array $payloadUsuarioLogado): ?AssociacaoModel
     {
+        
         if (
             !$this->isCargoAdminPlataforma($payloadUsuarioLogado)
             && $payloadUsuarioLogado['usuario_uuid'] !== "NEW_ACCOUNT"

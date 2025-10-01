@@ -32,6 +32,7 @@ class RecursoDoPlanoService
 
     public function findByUuid(string $uuid,array $payloadUsuarioLogado): ?RecursoDoPlanoModel {
         if (!$this->isCargoAdminPlataforma($payloadUsuarioLogado)) {
+           echo "AQUI rdp ---------";
             throw new Exception("Permissão de cargo 0 necessária | findByUuid");
         } else {
             $recursoDoPlano = $this->recursoDoPlanoRepository->findByUuid($uuid);

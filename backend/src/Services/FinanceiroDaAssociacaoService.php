@@ -143,7 +143,7 @@ class FinanceiroDaAssociacaoService
             $this->associacaoService->findByUuid($data['associacao_uuid'], $payloadUsuarioLogado);
         }
         if (!empty($data['categoria_uuid'])) {
-            $this->categoriaFinanceiraService->findByUuid($data['categoria_uuid']);
+            $this->categoriaFinanceiraService->findByUuid($data['categoria_uuid'], $payloadUsuarioLogado);
         }
         if (!empty($data['mensalidade_uuid'])) {
             $this->mensalidadeDaAssociacaoService->findByUuid($data['mensalidade_uuid'], $payloadUsuarioLogado);
@@ -196,7 +196,7 @@ class FinanceiroDaAssociacaoService
             $this->associacaoService->findByUuid($data['associacao_uuid'], $payloadUsuarioLogado);
         }
         if (!empty($data['categoria_uuid'])) {
-            $this->categoriaFinanceiraService->findByUuid($data['categoria_uuid']);
+            $this->categoriaFinanceiraService->findByUuid($data['categoria_uuid'], $payloadUsuarioLogado);
         }
         if (!empty($data['mensalidade_uuid'])) {
             $this->mensalidadeDaAssociacaoService->findByUuid($data['mensalidade_uuid'], $payloadUsuarioLogado);

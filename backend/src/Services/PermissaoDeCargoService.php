@@ -36,7 +36,8 @@ class PermissaoDeCargoService
     {
         if (isset($payloadUsuarioLogado['interno']) && $payloadUsuarioLogado['interno'] === false
             && !$this->isCargoAdminPlataforma($payloadUsuarioLogado)) {
-            throw new Exception("Permissão de cargo 0 necessária | findByUuid");
+                        
+                throw new Exception("Permissão de cargo 0 necessária | findByUuid");
         }  
         $permissaoDeCargo= $this->permissaoDeCargoRepository->findByUuid($uuid);
         if (!$permissaoDeCargo|| $permissaoDeCargo->excluido) {
