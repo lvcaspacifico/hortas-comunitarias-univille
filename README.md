@@ -7,9 +7,7 @@ https://discord.gg/fjJJtgED
 
 ## 🛣️ Roadmap do Projeto
 
-Atualmente, estamos registrando progresso na [Issue #9 - Roadmap até MVP 🔗](https://github.com/thiagohome2/hortas-comunitarias-univille/issues/9).
-
-Contribuições são bem-vindas!
+Atualmente, o progresso está sendo registrado na [Issue #1 - [ROADMAP]](https://github.com/lvcaspacifico/hortas-comunitarias-univille/issues/1)🔗 e suas sub-issues.
 
 ## 🚀 Stack Tecnológica
 
