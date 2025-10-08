@@ -22,6 +22,15 @@
           <li class="nav-item">
             <router-link to="/associacoes" class="nav-link">Associações</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/hortas" class="nav-link">Hortas</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/canteiros" class="nav-link">Canteiros</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/carteiristas" class="nav-link">Carteiristas</router-link>
+          </li>
         </ul>
         
         <div v-if="isAuthenticated" class="d-flex align-items-center">

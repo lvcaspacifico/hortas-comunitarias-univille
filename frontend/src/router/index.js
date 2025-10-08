@@ -21,15 +21,69 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/hortas',
+    name: 'HortasList',
+    component: () => import('@/views/Hortas/List.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/canteiros',
+    name: 'CanteirosList',
+    component: () => import('@/views/Canteiros/List.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/associacoes/criar',
     name: 'AssociacoesCreate',
     component: () => import('@/views/Associacoes/Create.vue'),
     meta: { requiresAuth: true }
   },
   {
+    path: '/hortas/criar',
+    name: 'HortasCreate',
+    component: () => import('@/views/Hortas/Create.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/canteiros/criar',
+    name: 'CanteirosCreate',
+    component: () => import('@/views/Canteiros/Create.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/associacoes/:id/editar',
     name: 'AssociacoesEdit',
     component: () => import('@/views/Associacoes/Edit.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/hortas/:id/editar',
+    name: 'HortasEdit',
+    component: () => import('@/views/Hortas/Edit.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/carteiristas',
+    name: 'CarteiristasList',
+    component: () => import('@/views/Carteiristas/List.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/carteiristas/criar',
+    name: 'CarteiristasCreate',
+    component: () => import('@/views/Carteiristas/Create.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/carteiristas/:id/editar',
+    name: 'CarteiristasEdit',
+    component: () => import('@/views/Carteiristas/Edit.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/canteiros/:id/editar',
+    name: 'CanteirosEdit',
+    component: () => import('@/views/Canteiros/Edit.vue'),
     meta: { requiresAuth: true }
   },
   {
@@ -45,14 +99,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = store.getters['auth/isAuthenticated']
-  
+
   if (to.meta.requiresAuth && !isAuthenticated) {
     next('/login')
-  }
-  else if (to.meta.guest && isAuthenticated) {
+  } else if (to.meta.guest && isAuthenticated) {
     next('/')
-  }
-  else {
+  } else {
     next()
   }
 })

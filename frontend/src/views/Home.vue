@@ -35,9 +35,9 @@
             <p class="card-text text-muted">
               Cadastre hortas
             </p>
-            <button class="btn btn-secondary" disabled>
-              Em breve
-            </button>
+            <router-link to="/hortas" class="btn btn-success">
+              Acessar
+            </router-link>
           </div>
         </div>
       </div>
@@ -50,9 +50,9 @@
             <p class="card-text text-muted">
               Organize canteiros
             </p>
-            <button class="btn btn-secondary" disabled>
-              Em breve
-            </button>
+            <router-link to="/canteiros" class="btn btn-success">
+              Acessar
+            </router-link>
           </div>
         </div>
       </div>
@@ -65,9 +65,9 @@
             <p class="card-text text-muted">
               Gerencie responsáveis
             </p>
-            <button class="btn btn-secondary" disabled>
-              Em breve
-            </button>
+            <router-link to="/carteiristas" class="btn btn-success">
+              Acessar
+            </router-link>
           </div>
         </div>
       </div>
