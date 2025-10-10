@@ -71,6 +71,17 @@
           </div>
         </div>
       </div>
+      
+      <div class="col-md-6 col-lg-3">
+        <div class="card text-center shadow-sm h-100">
+          <div class="card-body">
+            <div class="fs-1 text-success mb-3">💳</div>
+            <h5 class="card-title">Pagamentos</h5>
+            <p class="card-text text-muted">Acompanhe pagamentos e mensalidades</p>
+            <router-link to="/pagamentos" class="btn btn-success">Acessar</router-link>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

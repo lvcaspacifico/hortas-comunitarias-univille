@@ -31,6 +31,9 @@
           <li class="nav-item">
             <router-link to="/carteiristas" class="nav-link">Carteiristas</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/pagamentos" class="nav-link">Pagamentos</router-link>
+          </li>
         </ul>
         
         <div v-if="isAuthenticated" class="d-flex align-items-center">

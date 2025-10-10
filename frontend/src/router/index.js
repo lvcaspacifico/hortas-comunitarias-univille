@@ -81,6 +81,12 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/pagamentos',
+    name: 'PagamentosList',
+    component: () => import('@/views/Pagamentos/List.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/canteiros/:id/editar',
     name: 'CanteirosEdit',
     component: () => import('@/views/Canteiros/Edit.vue'),

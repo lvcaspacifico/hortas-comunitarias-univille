@@ -4,6 +4,7 @@ import associacoes from './modules/associacoes'
 import hortas from './modules/hortas'
 import canteiros from './modules/canteiros'
 import carteiristas from './modules/carteiristas'
+import pagamentos from './modules/pagamentos'
 
 export default createStore({
   modules: {
@@ -11,6 +12,7 @@ export default createStore({
     associacoes,
     hortas,
     canteiros,
-    carteiristas
+    carteiristas,
+    pagamentos
   }
 })
