@@ -34,6 +34,12 @@
           <li class="nav-item">
             <router-link to="/pagamentos" class="nav-link">Pagamentos</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/dependentes" class="nav-link">Dependentes</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/notificacoes" class="nav-link">Notificações</router-link>
+          </li>
         </ul>
         
         <div v-if="isAuthenticated" class="d-flex align-items-center">

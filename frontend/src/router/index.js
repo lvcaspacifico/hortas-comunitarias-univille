@@ -87,6 +87,30 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/dependentes',
+    name: 'DependentesList',
+    component: () => import('@/views/Dependentes/List.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/dependentes/criar',
+    name: 'DependentesCreate',
+    component: () => import('@/views/Dependentes/Create.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/dependentes/:id/editar',
+    name: 'DependentesEdit',
+    component: () => import('@/views/Dependentes/Edit.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/notificacoes',
+    name: 'NotificacoesList',
+    component: () => import('@/views/Notificacoes/List.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/canteiros/:id/editar',
     name: 'CanteirosEdit',
     component: () => import('@/views/Canteiros/Edit.vue'),
