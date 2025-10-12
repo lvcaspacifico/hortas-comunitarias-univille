@@ -37,6 +37,12 @@ Quanto ao frontend desktop e frontend mobile, atualmente estão em desenvolvimen
 
 - ⛓️‍💥
 
+## 🟩 Introdução: Integração com Gateway de Pagamentos
+
+#### 🟢 Integração com Gateway de Pagamentos | Membros do grupo
+
+- ⛓️‍💥
+
 ## 🟩 Introdução: Mobile
 
 #### 🟢 Frontend Mobile MVP | Membros do grupo
