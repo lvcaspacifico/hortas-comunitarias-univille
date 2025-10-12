@@ -1,4 +1,4 @@
-# 🌱 Hortas Comunitárias - Guia de Desenvolvimento
+# 🌱 Hortas Comunitárias + Univille | Guia de Desenvolvimento
 
 ## 📋 Estrutura do Projeto
 
@@ -10,12 +10,9 @@ hortas-comunitarias-univille/
 │   ├── src/                # Código fonte
 │   └── composer.json       # Dependências PHP
 ├── frontend/               # Aplicação Vue.js
-│   ├── src/                # Código fonte Vue
-│   ├── public/             # Arquivos públicos
-│   └── package.json        # Dependências Node.js
+│   ├── src/                # Código fonte, precisa atualizar após finalizar desenvolvimento ⚠️
 ├── mobile/                 # App Vue Native/React Native
-│   ├── screens/            # Telas do app
-│   └── package.json        # Dependências React Native
+│   ├── src                 # Código fonte, precisa atualizar após finalizar desenvolvimento ⚠️
 ├── docker/                 # Configurações Docker
 │   ├── nginx/              # Configurações Nginx
 │   ├── php/                # Dockerfile e config PHP
@@ -23,6 +20,12 @@ hortas-comunitarias-univille/
 │   └── node/               # Dockerfile Node.js
 └── docker-compose.yml      # Orquestração dos containers
 ```
+> [!WARNING]  
+> A partir desse ponto, seguem informações padrão do repositório fork'ado. Por garantia, refira-se ao README.md de cada pasta para informações atualizadas. Deixamos aqui apenas à título de informação caso seja útil.
+
+Você foi avisado.
+
+---
 
 ## 🚀 Instalação e Configuração
 
