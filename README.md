@@ -31,9 +31,13 @@ Quanto ao frontend desktop e frontend mobile, atualmente estão em desenvolvimen
 - Felipe Mourão | [@thekogami](https://github.com/thekogami)
 - Marcos Will | [@Marcoswill0101](https://github.com/Marcoswill0101)
 
+## 🟩 Introdução: Frontend 
+
 #### 🟢 Frontend Desktop MVP | Membros do grupo
 
 - ⛓️‍💥
+
+## 🟩 Introdução: Mobile
 
 #### 🟢 Frontend Mobile MVP | Membros do grupo
 
