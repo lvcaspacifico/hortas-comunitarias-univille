@@ -2,6 +2,9 @@
 
 Sistema de gestão de hortas comunitárias desenvolvido na disciplina de Vivências de Extensão V pelos graduandos dos cursos de Engenharia de Software e Sistemas de Informação da Univille.
 
+> [!CAUTION]
+> Cabe a cada grupo atualizar esse e outros `README.md` relevantes a sua contribuição no projeto. O mesmo vale para as Issues. Não nos responsabilizamos por informações faltantes decorrentes do não preenchimento. A manutenção do repositório é da responsabilidade de todos.
+
 ## 🟩 Introdução: Backend MVP
 
 Esse fork do [repositório original](https://github.com/thiagohome2/hortas-comunitarias-univille)🔗 constrói e entrega o MVP do backend da aplicação, disponibilizando todo o esquema de banco de dados, regras de negócio mínimas, e uma API REST.
