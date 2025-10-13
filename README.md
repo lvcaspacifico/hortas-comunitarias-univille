@@ -30,6 +30,7 @@ Quanto ao frontend desktop e frontend mobile, atualmente estão em desenvolvimen
 - Marcelo Fiedler | [@MarceloAFiedler](https://github.com/MarceloAFiedler)
 - Felipe Mourão | [@thekogami](https://github.com/thekogami)
 - Marcos Will | [@Marcoswill0101](https://github.com/Marcoswill0101)
+- Nathan Bergmann | [@NathanBergmann](https://github.com/NathanBergmann)
 
 ## 🟩 Introdução: Frontend 
 
