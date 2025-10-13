@@ -11,6 +11,7 @@ Repositório dedicado do nosso grupo.
 - Marcelo Fiedler | [@MarceloAFiedler](https://github.com/MarceloAFiedler)
 - Felipe Mourão | [@thekogami](https://github.com/thekogami)
 - Marcos Will | [@Marcoswill0101](https://github.com/Marcoswill0101)
+- Nathan Bergmann | [@NathanBergmann](https://github.com/NathanBergmann)
 
 ## 🛣️ Roadmap do Projeto
 
