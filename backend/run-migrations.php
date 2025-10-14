@@ -36,7 +36,7 @@ if (!$capsule->schema()->hasTable('migrations')) {
 }
 
 // Lista todas as migrations
-$migrationsDir = __DIR__ . '/src/Utils/Migrations';
+$migrationsDir = __DIR__ . '/src/Utils/SQL';
 $files = scandir($migrationsDir);
 sort($files);
 
@@ -45,22 +45,36 @@ foreach ($files as $file) {
     if (in_array($file, ['.', '..'])) continue;
 
     $migrationName = pathinfo($file, PATHINFO_FILENAME);
+    $extension = pathinfo($file, PATHINFO_EXTENSION);
 
     // Verifica se já rodou
     $executed = $capsule::table('migrations')->where('migration', $migrationName)->exists();
-    if ($executed) continue;
+    if ($executed) {
+        echo "Migration {$migrationName} já foi executada.\n";
+        continue;
+    }
 
-    require $migrationsDir . '/' . $file;
+    // Se for arquivo SQL, executa diretamente
+    if ($extension === 'sql') {
+        $sqlContent = file_get_contents($migrationsDir . '/' . $file);
 
-    $migration = new $migrationName($capsule);
-    $migration->up();
+        // Executa o SQL
+        try {
+            $capsule::connection()->unprepared($sqlContent);
 
-    $capsule::table('migrations')->insert([
-        'migration' => $migrationName,
-        'executed_at' => date('Y-m-d H:i:s'),
-    ]);
+            $capsule::table('migrations')->insert([
+                'migration' => $migrationName,
+                'executed_at' => date('Y-m-d H:i:s'),
+            ]);
 
-    echo "Migration {$migrationName} executada.\n";
+            echo "Migration {$migrationName} executada com sucesso.\n";
+        } catch (Exception $e) {
+            echo "Erro ao executar migration {$migrationName}: " . $e->getMessage() . "\n";
+            break;
+        }
+    } else {
+        echo "Arquivo {$file} ignorado (não é .sql).\n";
+    }
 }
 
 echo "Todas as migrations pendentes foram executadas.\n";

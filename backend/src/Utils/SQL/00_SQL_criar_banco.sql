@@ -1,12 +1,17 @@
--- Script de criação completa do banco hortas_dev_db
+-- Script de criação completa do banco hortas_db
 -- MySQL 8.0+
 
--- Criar o banco se não existir
-CREATE DATABASE IF NOT EXISTS hortas_dev_db;
-USE hortas_dev_db;
+-- Usar o banco existente
+USE hortas_db;
 
 -- Desabilitar verificação de foreign keys temporariamente
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- Dropar tabelas existentes do init.sql
+DROP TABLE IF EXISTS produtos;
+DROP TABLE IF EXISTS hortas;
+DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS migrations;
 
 -- ========================================
 -- 1. TABELAS BASE (sem dependências)
