@@ -56,7 +56,7 @@ class AssociacaoService
                 ->key('nome_fantasia', v::stringType()->notEmpty())
                 ->key('endereco_uuid', v::uuid(), false)
                 ->key('url_estatuto_social_pdf', v::url(), false)
-                ->key('url_ata_associacao_pdf', v::url())
+                ->key('url_ata_associacao_pdf', v::url(), false) // ← Opcional no cadastro
                 ->assert($data);
 
             $cnpj = $data['cnpj'];

@@ -46,11 +46,39 @@ Quanto ao frontend desktop e frontend mobile, atualmente estão em desenvolvimen
 
 ## 🟩 Introdução: Mobile
 
+**Status**: ✅ **MVP Completo e Funcional**
+
+O aplicativo mobile foi desenvolvido em **React Native com Expo** e está 100% funcional, oferecendo:
+
+### ✨ Funcionalidades Implementadas
+- ✅ **Autenticação completa** (Login, Cadastro, Logout com JWT)
+- ✅ **CRUD de Hortas** (Criar, Listar, Editar, Excluir, Detalhes)
+- ✅ **CRUD de Canteiros** (Criar, Listar, Editar, Excluir, Detalhes)
+- ✅ **Gerenciamento de Perfil** (Visualizar e editar dados do usuário)
+- ✅ **Navegação por Tabs** (Home, Hortas, Canteiros, Perfil)
+- ✅ **Validações** (CPF/CNPJ, E-mail, Senha, etc.)
+- ✅ **Integração completa** com a API REST do backend
+
+### 🚀 Como Executar
+```bash
+cd mobile
+npm install
+npm start
+# Escanear QR code com Expo Go no celular
+```
+
+📖 **Documentação completa**: [`mobile/README.md`](mobile/README.md)  
+⚡ **Guia rápido**: [`mobile/QUICKSTART.md`](mobile/QUICKSTART.md)
+
 #### 🟢 Frontend Mobile MVP | Membros do grupo
 
-- ⛓️‍💥
+- José Pedro | [@sejodrope](https://github.com/sejodrope)
 
-## 🟩 Stack Tecnológica
+---
+
+## 🟩 Introdução: Frontend Desktop
+
+#### 🟢 Frontend Desktop MVP | Membros do grupo
 
 Tecnologias utilizadas:
 
@@ -61,13 +89,6 @@ Tecnologias utilizadas:
 - **Nginx** como servidor web
 - **Redis** para cache e sessões
 
-### DevOps
-- **Docker** e **Docker Compose**
-- **Nginx** como proxy reverso
-- **phpMyAdmin** para administração do banco
-
-Tecnologias sugeridas pelo Thiago no repositório base. Precisa de confirmação após construir essas features:
-
 ### Frontend Desktop
 - **Vue.js 3** com Composition API
 - **Vue Router 4** para roteamento
@@ -75,10 +96,17 @@ Tecnologias sugeridas pelo Thiago no repositório base. Precisa de confirmação
 - **Bootstrap 5** para UI
 - **Leaflet** para mapas
 
-### Frontend Mobile
-- **Vue Native** / **React Native**
-- **Expo** para desenvolvimento
-- **React Navigation** para navegação
+### Frontend Mobile ✅
+- **React Native** 0.72.6
+- **Expo** ~49.0.0 para desenvolvimento
+- **React Navigation** 6.x para navegação
+- **Axios** para requisições HTTP
+- **AsyncStorage** para persistência local
+
+### DevOps
+- **Docker** e **Docker Compose**
+- **Nginx** como proxy reverso
+- **phpMyAdmin** para administração do banco
 
 ## 🟩 Estrutura do Projeto
 

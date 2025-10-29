@@ -3,6 +3,7 @@
     "name": "Hortas Comunitárias",
     "slug": "hortas-comunitarias",
     "version": "1.0.0",
+    "sdkVersion": "52.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -33,7 +34,7 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "apiUrl": "http://localhost/api",
+      "apiUrl": "http://192.168.0.22:8181/api/v1",
       "mapDefaultLat": -26.2843,
       "mapDefaultLng": -48.8449
     }
