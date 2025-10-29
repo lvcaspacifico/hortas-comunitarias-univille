@@ -24,16 +24,34 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}sessoes/login",
+							"raw": "{{BASE_URL}}/v1/sessoes/login",
 							"host": [
-								"{{BASE_URL}}sessoes"
+								"{{BASE_URL}}/v1/sessoes"
 							],
 							"path": [
 								"login"
 							]
 						}
 					},
-					"response": []
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Salvar token JWT para var de ambiente",
+									"var dadosJson = pm.response.json();",
+									"if (dadosJson.token) {",
+									"    pm.environment.set(\"JWT_ADM_PLT\", dadosJson.token);",
+									"    console.log(\"Token salvo em JWT_ADM_PLT:\", dadosJson.token);",
+									"} else {",
+									"    console.log(\"Token não presente na resposta\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
 				},
 				{
 					"name": "login as dummy",
@@ -50,16 +68,33 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}sessoes/login",
+							"raw": "{{BASE_URL}}/v1/sessoes/login",
 							"host": [
-								"{{BASE_URL}}sessoes"
+								"{{BASE_URL}}/v1/sessoes"
 							],
 							"path": [
 								"login"
 							]
 						}
 					},
-					"response": []
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var dadosJson = pm.response.json();",
+									"if (dadosJson.token) {",
+									"    pm.environment.set(\"JWT_TOKEN\", dadosJson.token);",
+									"    console.log(\"Token salvo em JWT_TOKEN:\", dadosJson.token);",
+									"} else {",
+									"    console.log(\"Token não presente na resposta\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
 				},
 				{
 					"name": "cadastro",
@@ -76,16 +111,33 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}sessoes/cadastro",
+							"raw": "{{BASE_URL}}/v1/sessoes/cadastro",
 							"host": [
-								"{{BASE_URL}}sessoes"
+								"{{BASE_URL}}/v1/sessoes"
 							],
 							"path": [
 								"cadastro"
 							]
 						}
 					},
-					"response": []
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var dadosJson = pm.response.json();",
+									"if (dadosJson.token) {",
+									"    pm.environment.set(\"JWT_ADM_PLT\", dadosJson.token);",
+									"    console.log(\"Token salvo em JWT_ADM_PLT:\", dadosJson.token);",
+									"} else {",
+									"    console.log(\"Token não presente na resposta\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
 				}
 			]
 		},
@@ -108,9 +160,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}usuarios",
+							"raw": "{{BASE_URL}}/v1/usuarios",
 							"host": [
-								"{{BASE_URL}}usuarios"
+								"{{BASE_URL}}/v1/usuarios"
 							]
 						}
 					},
@@ -132,9 +184,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}usuarios/0131c14b-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/usuarios/0131c14b-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}usuarios"
+								"{{BASE_URL}}/v1/usuarios"
 							],
 							"path": [
 								"0131c14b-98d7-11f0-afc7-706979a5bbda"
@@ -159,9 +211,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}usuarios/be1b7de8-988f-11f0-a858-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/usuarios/be1b7de8-988f-11f0-a858-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}usuarios"
+								"{{BASE_URL}}/v1/usuarios"
 							],
 							"path": [
 								"be1b7de8-988f-11f0-a858-706979a5bbda"
@@ -195,9 +247,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}usuarios",
+							"raw": "{{BASE_URL}}/v1/usuarios",
 							"host": [
-								"{{BASE_URL}}usuarios"
+								"{{BASE_URL}}/v1/usuarios"
 							]
 						}
 					},
@@ -228,9 +280,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}usuarios/be1b7de8-988f-11f0-a858-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/usuarios/be1b7de8-988f-11f0-a858-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}usuarios"
+								"{{BASE_URL}}/v1/usuarios"
 							],
 							"path": [
 								"be1b7de8-988f-11f0-a858-706979a5bbda"
@@ -264,9 +316,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}usuarios/e8c9c11e-1427-40c5-acc5-1b09a527e85e",
+							"raw": "{{BASE_URL}}/v1/usuarios/e8c9c11e-1427-40c5-acc5-1b09a527e85e",
 							"host": [
-								"{{BASE_URL}}usuarios"
+								"{{BASE_URL}}/v1/usuarios"
 							],
 							"path": [
 								"e8c9c11e-1427-40c5-acc5-1b09a527e85e"
@@ -296,9 +348,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}permissoes",
+							"raw": "{{BASE_URL}}/v1/permissoes",
 							"host": [
-								"{{BASE_URL}}permissoes"
+								"{{BASE_URL}}/v1/permissoes"
 							]
 						}
 					},
@@ -320,9 +372,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}permissoes/0131c14b-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/permissoes/0131c14b-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}permissoes"
+								"{{BASE_URL}}/v1/permissoes"
 							],
 							"path": [
 								"0131c14b-98d7-11f0-afc7-706979a5bbda"
@@ -356,9 +408,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}permissoes",
+							"raw": "{{BASE_URL}}/v1/permissoes",
 							"host": [
-								"{{BASE_URL}}permissoes"
+								"{{BASE_URL}}/v1/permissoes"
 							]
 						}
 					},
@@ -389,9 +441,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}permissoes/7ee1a640-98e2-11f0-b959-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/permissoes/7ee1a640-98e2-11f0-b959-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}permissoes"
+								"{{BASE_URL}}/v1/permissoes"
 							],
 							"path": [
 								"7ee1a640-98e2-11f0-b959-a2e70b1bdc53"
@@ -425,9 +477,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}permissoes/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/permissoes/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}permissoes"
+								"{{BASE_URL}}/v1/permissoes"
 							],
 							"path": [
 								"5caa67be-98c0-11f0-840a-a2e70b1bdc53"
@@ -457,9 +509,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-do-usuario/c03fbb65-9eec-11f0-be4f-f640637f2981",
+							"raw": "{{BASE_URL}}/v1/permissoes-do-usuario/c03fbb65-9eec-11f0-be4f-f640637f2981",
 							"host": [
-								"{{BASE_URL}}permissoes-do-usuario"
+								"{{BASE_URL}}/v1/permissoes-do-usuario"
 							],
 							"path": [
 								"c03fbb65-9eec-11f0-be4f-f640637f2981"
@@ -489,9 +541,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}cargos",
+							"raw": "{{BASE_URL}}/v1/cargos",
 							"host": [
-								"{{BASE_URL}}cargos"
+								"{{BASE_URL}}/v1/cargos"
 							]
 						}
 					},
@@ -513,9 +565,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}cargos/ee3d87c2-98b3-11f0-9746-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/cargos/ee3d87c2-98b3-11f0-9746-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}cargos"
+								"{{BASE_URL}}/v1/cargos"
 							],
 							"path": [
 								"ee3d87c2-98b3-11f0-9746-a2e70b1bdc53"
@@ -549,9 +601,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}cargos",
+							"raw": "{{BASE_URL}}/v1/cargos",
 							"host": [
-								"{{BASE_URL}}cargos"
+								"{{BASE_URL}}/v1/cargos"
 							]
 						}
 					},
@@ -582,9 +634,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}cargos/ee3d87c2-98b3-11f0-9746-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/cargos/ee3d87c2-98b3-11f0-9746-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}cargos"
+								"{{BASE_URL}}/v1/cargos"
 							],
 							"path": [
 								"ee3d87c2-98b3-11f0-9746-a2e70b1bdc53"
@@ -618,9 +670,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}cargos/7e41e97e-8036-434f-9990-04fd2d92755f",
+							"raw": "{{BASE_URL}}/v1/cargos/7e41e97e-8036-434f-9990-04fd2d92755f",
 							"host": [
-								"{{BASE_URL}}cargos"
+								"{{BASE_URL}}/v1/cargos"
 							],
 							"path": [
 								"7e41e97e-8036-434f-9990-04fd2d92755f"
@@ -650,9 +702,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}associacoes",
+							"raw": "{{BASE_URL}}/v1/associacoes",
 							"host": [
-								"{{BASE_URL}}associacoes"
+								"{{BASE_URL}}/v1/associacoes"
 							]
 						}
 					},
@@ -674,9 +726,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}associacoes/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
+							"raw": "{{BASE_URL}}/v1/associacoes/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
 							"host": [
-								"{{BASE_URL}}associacoes"
+								"{{BASE_URL}}/v1/associacoes"
 							],
 							"path": [
 								"7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a"
@@ -710,9 +762,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}associacoes",
+							"raw": "{{BASE_URL}}/v1/associacoes",
 							"host": [
-								"{{BASE_URL}}associacoes"
+								"{{BASE_URL}}/v1/associacoes"
 							]
 						}
 					},
@@ -743,9 +795,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}associacoes/c3324c2a-98b8-11f0-a3fb-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/associacoes/c3324c2a-98b8-11f0-a3fb-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}associacoes"
+								"{{BASE_URL}}/v1/associacoes"
 							],
 							"path": [
 								"c3324c2a-98b8-11f0-a3fb-a2e70b1bdc53"
@@ -779,9 +831,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}cargos/7e41e97e-8036-434f-9990-04fd2d92755f",
+							"raw": "{{BASE_URL}}/v1/cargos/7e41e97e-8036-434f-9990-04fd2d92755f",
 							"host": [
-								"{{BASE_URL}}cargos"
+								"{{BASE_URL}}/v1/cargos"
 							],
 							"path": [
 								"7e41e97e-8036-434f-9990-04fd2d92755f"
@@ -811,9 +863,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}enderecos",
+							"raw": "{{BASE_URL}}/v1/enderecos",
 							"host": [
-								"{{BASE_URL}}enderecos"
+								"{{BASE_URL}}/v1/enderecos"
 							]
 						}
 					},
@@ -835,9 +887,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}enderecos/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
+							"raw": "{{BASE_URL}}/v1/enderecos/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
 							"host": [
-								"{{BASE_URL}}enderecos"
+								"{{BASE_URL}}/v1/enderecos"
 							],
 							"path": [
 								"7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a"
@@ -871,9 +923,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}enderecos",
+							"raw": "{{BASE_URL}}/v1/enderecos",
 							"host": [
-								"{{BASE_URL}}enderecos"
+								"{{BASE_URL}}/v1/enderecos"
 							]
 						}
 					},
@@ -904,9 +956,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}enderecos/7d70589a-98bc-11f0-9ffa-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/enderecos/7d70589a-98bc-11f0-9ffa-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}enderecos"
+								"{{BASE_URL}}/v1/enderecos"
 							],
 							"path": [
 								"7d70589a-98bc-11f0-9ffa-a2e70b1bdc53"
@@ -940,9 +992,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}enderecos/432c6b60-98bc-11f0-8e1c-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/enderecos/432c6b60-98bc-11f0-8e1c-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}enderecos"
+								"{{BASE_URL}}/v1/enderecos"
 							],
 							"path": [
 								"432c6b60-98bc-11f0-8e1c-a2e70b1bdc53"
@@ -972,9 +1024,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}hortas",
+							"raw": "{{BASE_URL}}/v1/hortas",
 							"host": [
-								"{{BASE_URL}}hortas"
+								"{{BASE_URL}}/v1/hortas"
 							]
 						}
 					},
@@ -996,9 +1048,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}hortas/1a2b3c4d-0000-0000-0000-000000000001",
+							"raw": "{{BASE_URL}}/v1/hortas/1a2b3c4d-0000-0000-0000-000000000001",
 							"host": [
-								"{{BASE_URL}}hortas"
+								"{{BASE_URL}}/v1/hortas"
 							],
 							"path": [
 								"1a2b3c4d-0000-0000-0000-000000000001"
@@ -1032,9 +1084,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}hortas",
+							"raw": "{{BASE_URL}}/v1/hortas",
 							"host": [
-								"{{BASE_URL}}hortas"
+								"{{BASE_URL}}/v1/hortas"
 							]
 						}
 					},
@@ -1065,9 +1117,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}enderecos/7d70589a-98bc-11f0-9ffa-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/enderecos/7d70589a-98bc-11f0-9ffa-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}enderecos"
+								"{{BASE_URL}}/v1/enderecos"
 							],
 							"path": [
 								"7d70589a-98bc-11f0-9ffa-a2e70b1bdc53"
@@ -1101,9 +1153,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}hortas/1a2b3c4d-0000-0000-0000-000000000001",
+							"raw": "{{BASE_URL}}/v1/hortas/1a2b3c4d-0000-0000-0000-000000000001",
 							"host": [
-								"{{BASE_URL}}hortas"
+								"{{BASE_URL}}/v1/hortas"
 							],
 							"path": [
 								"1a2b3c4d-0000-0000-0000-000000000001"
@@ -1133,9 +1185,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}chaves",
+							"raw": "{{BASE_URL}}/v1/chaves",
 							"host": [
-								"{{BASE_URL}}chaves"
+								"{{BASE_URL}}/v1/chaves"
 							]
 						}
 					},
@@ -1157,9 +1209,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}chaves/d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/chaves/d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}chaves"
+								"{{BASE_URL}}/v1/chaves"
 							],
 							"path": [
 								"d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53"
@@ -1193,9 +1245,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}chaves",
+							"raw": "{{BASE_URL}}/v1/chaves",
 							"host": [
-								"{{BASE_URL}}chaves"
+								"{{BASE_URL}}/v1/chaves"
 							]
 						}
 					},
@@ -1226,9 +1278,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}chaves/d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/chaves/d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}chaves"
+								"{{BASE_URL}}/v1/chaves"
 							],
 							"path": [
 								"d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53"
@@ -1262,9 +1314,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}chaves/d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/chaves/d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}chaves"
+								"{{BASE_URL}}/v1/chaves"
 							],
 							"path": [
 								"d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53"
@@ -1294,9 +1346,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}fila-de-usuarios",
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios",
 							"host": [
-								"{{BASE_URL}}fila-de-usuarios"
+								"{{BASE_URL}}/v1/fila-de-usuarios"
 							]
 						}
 					},
@@ -1318,9 +1370,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}fila-de-usuarios/adad",
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/adad",
 							"host": [
-								"{{BASE_URL}}fila-de-usuarios"
+								"{{BASE_URL}}/v1/fila-de-usuarios"
 							],
 							"path": [
 								"adad"
@@ -1345,9 +1397,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}fila-de-usuarios/adad",
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/adad",
 							"host": [
-								"{{BASE_URL}}fila-de-usuarios"
+								"{{BASE_URL}}/v1/fila-de-usuarios"
 							],
 							"path": [
 								"adad"
@@ -1372,9 +1424,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}fila-de-usuarios/usuario/a0s9da0d9",
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/usuario/a0s9da0d9",
 							"host": [
-								"{{BASE_URL}}fila-de-usuarios"
+								"{{BASE_URL}}/v1/fila-de-usuarios"
 							],
 							"path": [
 								"usuario",
@@ -1400,9 +1452,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}fila-de-usuarios/horta/aoisdaoid",
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/horta/aoisdaoid",
 							"host": [
-								"{{BASE_URL}}fila-de-usuarios"
+								"{{BASE_URL}}/v1/fila-de-usuarios"
 							],
 							"path": [
 								"horta",
@@ -1437,9 +1489,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}fila-de-usuarios",
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios",
 							"host": [
-								"{{BASE_URL}}fila-de-usuarios"
+								"{{BASE_URL}}/v1/fila-de-usuarios"
 							]
 						}
 					},
@@ -1470,9 +1522,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}fila-de-usuarios/8ed0d3fa-9bb7-11f0-8c0e-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/8ed0d3fa-9bb7-11f0-8c0e-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}fila-de-usuarios"
+								"{{BASE_URL}}/v1/fila-de-usuarios"
 							],
 							"path": [
 								"8ed0d3fa-9bb7-11f0-8c0e-a2e70b1bdc53"
@@ -1506,22 +1558,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}fila-de-usuarios/8ed0d3fa-9bb7-11f0-8c0e-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/8ed0d3fa-9bb7-11f0-8c0e-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}fila-de-usuarios"
+								"{{BASE_URL}}/v1/fila-de-usuarios"
 							],
 							"path": [
 								"8ed0d3fa-9bb7-11f0-8c0e-a2e70b1bdc53"
 							]
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": []
 					},
 					"response": []
 				}
@@ -1546,9 +1590,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}canteiros",
+							"raw": "{{BASE_URL}}/v1/canteiros",
 							"host": [
-								"{{BASE_URL}}canteiros"
+								"{{BASE_URL}}/v1/canteiros"
 							]
 						}
 					},
@@ -1570,9 +1614,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}canteiros/0131c14b-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/canteiros/0131c14b-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}canteiros"
+								"{{BASE_URL}}/v1/canteiros"
 							],
 							"path": [
 								"0131c14b-98d7-11f0-afc7-706979a5bbda"
@@ -1606,9 +1650,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}canteiros",
+							"raw": "{{BASE_URL}}/v1/canteiros",
 							"host": [
-								"{{BASE_URL}}canteiros"
+								"{{BASE_URL}}/v1/canteiros"
 							]
 						}
 					},
@@ -1639,9 +1683,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}canteiros/d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/canteiros/d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}canteiros"
+								"{{BASE_URL}}/v1/canteiros"
 							],
 							"path": [
 								"d1ef843e-9bb6-11f0-8f6f-a2e70b1bdc53"
@@ -1675,9 +1719,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}canteiros/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/canteiros/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}canteiros"
+								"{{BASE_URL}}/v1/canteiros"
 							],
 							"path": [
 								"5caa67be-98c0-11f0-840a-a2e70b1bdc53"
@@ -1707,9 +1751,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}canteiros-e-usuarios",
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios",
 							"host": [
-								"{{BASE_URL}}canteiros-e-usuarios"
+								"{{BASE_URL}}/v1/canteiros-e-usuarios"
 							]
 						}
 					},
@@ -1731,9 +1775,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}canteiros-e-usuarios/0131c14b-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/0131c14b-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}canteiros-e-usuarios"
+								"{{BASE_URL}}/v1/canteiros-e-usuarios"
 							],
 							"path": [
 								"0131c14b-98d7-11f0-afc7-706979a5bbda"
@@ -1767,9 +1811,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}canteiros-e-usuarios",
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios",
 							"host": [
-								"{{BASE_URL}}canteiros-e-usuarios"
+								"{{BASE_URL}}/v1/canteiros-e-usuarios"
 							]
 						}
 					},
@@ -1800,9 +1844,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}canteiros-e-usuarios/7ee1a640-98e2-11f0-b959-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/7ee1a640-98e2-11f0-b959-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}canteiros-e-usuarios"
+								"{{BASE_URL}}/v1/canteiros-e-usuarios"
 							],
 							"path": [
 								"7ee1a640-98e2-11f0-b959-a2e70b1bdc53"
@@ -1836,9 +1880,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}canteiros-e-usuarios/7ee1a640-98e2-11f0-b959-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/7ee1a640-98e2-11f0-b959-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}canteiros-e-usuarios"
+								"{{BASE_URL}}/v1/canteiros-e-usuarios"
 							],
 							"path": [
 								"7ee1a640-98e2-11f0-b959-a2e70b1bdc53"
@@ -1868,9 +1912,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-cargo",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo",
 							"host": [
-								"{{BASE_URL}}permissoes-de-cargo"
+								"{{BASE_URL}}/v1/permissoes-de-cargo"
 							]
 						}
 					},
@@ -1892,9 +1936,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-cargo/0131c14b-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/0131c14b-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}permissoes-de-cargo"
+								"{{BASE_URL}}/v1/permissoes-de-cargo"
 							],
 							"path": [
 								"0131c14b-98d7-11f0-afc7-706979a5bbda"
@@ -1919,9 +1963,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-cargo/cargo/7e41e97e-8036-434f-9990-04fd2d92755f",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/cargo/7e41e97e-8036-434f-9990-04fd2d92755f",
 							"host": [
-								"{{BASE_URL}}permissoes-de-cargo"
+								"{{BASE_URL}}/v1/permissoes-de-cargo"
 							],
 							"path": [
 								"cargo",
@@ -1956,9 +2000,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-cargo",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo",
 							"host": [
-								"{{BASE_URL}}permissoes-de-cargo"
+								"{{BASE_URL}}/v1/permissoes-de-cargo"
 							]
 						}
 					},
@@ -1989,9 +2033,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}canteiros-e-usuarios/7ee1a640-98e2-11f0-b959-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/7ee1a640-98e2-11f0-b959-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}canteiros-e-usuarios"
+								"{{BASE_URL}}/v1/canteiros-e-usuarios"
 							],
 							"path": [
 								"7ee1a640-98e2-11f0-b959-a2e70b1bdc53"
@@ -2025,9 +2069,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-cargo/cdaf26a0-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/cdaf26a0-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}permissoes-de-cargo"
+								"{{BASE_URL}}/v1/permissoes-de-cargo"
 							],
 							"path": [
 								"cdaf26a0-98d7-11f0-afc7-706979a5bbda"
@@ -2057,9 +2101,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-excecao",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-excecao",
 							"host": [
-								"{{BASE_URL}}permissoes-de-excecao"
+								"{{BASE_URL}}/v1/permissoes-de-excecao"
 							]
 						}
 					},
@@ -2081,9 +2125,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-excecao/0131c14b-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-excecao/0131c14b-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}permissoes-de-excecao"
+								"{{BASE_URL}}/v1/permissoes-de-excecao"
 							],
 							"path": [
 								"0131c14b-98d7-11f0-afc7-706979a5bbda"
@@ -2117,9 +2161,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-excecao",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-excecao",
 							"host": [
-								"{{BASE_URL}}permissoes-de-excecao"
+								"{{BASE_URL}}/v1/permissoes-de-excecao"
 							]
 						}
 					},
@@ -2150,9 +2194,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-excecao/55bced6e-9db6-11f0-951e-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-excecao/55bced6e-9db6-11f0-951e-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}permissoes-de-excecao"
+								"{{BASE_URL}}/v1/permissoes-de-excecao"
 							],
 							"path": [
 								"55bced6e-9db6-11f0-951e-a2e70b1bdc53"
@@ -2186,9 +2230,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}permissoes-de-cargo/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}permissoes-de-cargo"
+								"{{BASE_URL}}/v1/permissoes-de-cargo"
 							],
 							"path": [
 								"5caa67be-98c0-11f0-840a-a2e70b1bdc53"
@@ -2218,9 +2262,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}categorias-financeiras",
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras",
 							"host": [
-								"{{BASE_URL}}categorias-financeiras"
+								"{{BASE_URL}}/v1/categorias-financeiras"
 							]
 						}
 					},
@@ -2242,9 +2286,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}categorias-financeiras/8b2304de-9951-11f0-916a-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/8b2304de-9951-11f0-916a-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}categorias-financeiras"
+								"{{BASE_URL}}/v1/categorias-financeiras"
 							],
 							"path": [
 								"8b2304de-9951-11f0-916a-706979a5bbda"
@@ -2269,9 +2313,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}categorias-financeiras/associacao/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/associacao/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
 							"host": [
-								"{{BASE_URL}}categorias-financeiras"
+								"{{BASE_URL}}/v1/categorias-financeiras"
 							],
 							"path": [
 								"associacao",
@@ -2297,9 +2341,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}categorias-financeiras/horta/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/horta/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}categorias-financeiras"
+								"{{BASE_URL}}/v1/categorias-financeiras"
 							],
 							"path": [
 								"horta",
@@ -2334,9 +2378,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}categorias-financeiras",
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras",
 							"host": [
-								"{{BASE_URL}}categorias-financeiras"
+								"{{BASE_URL}}/v1/categorias-financeiras"
 							]
 						}
 					},
@@ -2367,9 +2411,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}categorias-financeiras/8b2304de-9951-11f0-916a-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/8b2304de-9951-11f0-916a-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}categorias-financeiras"
+								"{{BASE_URL}}/v1/categorias-financeiras"
 							],
 							"path": [
 								"8b2304de-9951-11f0-916a-706979a5bbda"
@@ -2403,9 +2447,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}categorias-financeiras/8b2304de-9951-11f0-916a-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/8b2304de-9951-11f0-916a-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}categorias-financeiras"
+								"{{BASE_URL}}/v1/categorias-financeiras"
 							],
 							"path": [
 								"8b2304de-9951-11f0-916a-706979a5bbda"
@@ -2435,9 +2479,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-horta",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta",
 							"host": [
-								"{{BASE_URL}}financeiro-da-horta"
+								"{{BASE_URL}}/v1/financeiro-da-horta"
 							]
 						}
 					},
@@ -2459,9 +2503,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-horta/e50ec453-9952-11f0-a7ac-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta/e50ec453-9952-11f0-a7ac-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}financeiro-da-horta"
+								"{{BASE_URL}}/v1/financeiro-da-horta"
 							],
 							"path": [
 								"e50ec453-9952-11f0-a7ac-706979a5bbda"
@@ -2486,9 +2530,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-horta/horta/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta/horta/5caa67be-98c0-11f0-840a-a2e70b1bdc53",
 							"host": [
-								"{{BASE_URL}}financeiro-da-horta"
+								"{{BASE_URL}}/v1/financeiro-da-horta"
 							],
 							"path": [
 								"horta",
@@ -2523,9 +2567,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-horta",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta",
 							"host": [
-								"{{BASE_URL}}financeiro-da-horta"
+								"{{BASE_URL}}/v1/financeiro-da-horta"
 							]
 						}
 					},
@@ -2556,9 +2600,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-horta/a176c718-9954-11f0-9a4c-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta/a176c718-9954-11f0-9a4c-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}financeiro-da-horta"
+								"{{BASE_URL}}/v1/financeiro-da-horta"
 							],
 							"path": [
 								"a176c718-9954-11f0-9a4c-706979a5bbda"
@@ -2592,9 +2636,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-horta/d09174a8-9954-11f0-9489-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta/d09174a8-9954-11f0-9489-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}financeiro-da-horta"
+								"{{BASE_URL}}/v1/financeiro-da-horta"
 							],
 							"path": [
 								"d09174a8-9954-11f0-9489-706979a5bbda"
@@ -2624,9 +2668,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-associacao",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao",
 							"host": [
-								"{{BASE_URL}}financeiro-da-associacao"
+								"{{BASE_URL}}/v1/financeiro-da-associacao"
 							]
 						}
 					},
@@ -2648,9 +2692,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-associacao/e50ec453-9952-11f0-a7ac-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/e50ec453-9952-11f0-a7ac-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}financeiro-da-associacao"
+								"{{BASE_URL}}/v1/financeiro-da-associacao"
 							],
 							"path": [
 								"e50ec453-9952-11f0-a7ac-706979a5bbda"
@@ -2675,9 +2719,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-associacao/associacao/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/associacao/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
 							"host": [
-								"{{BASE_URL}}financeiro-da-associacao"
+								"{{BASE_URL}}/v1/financeiro-da-associacao"
 							],
 							"path": [
 								"associacao",
@@ -2712,9 +2756,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-associacao",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao",
 							"host": [
-								"{{BASE_URL}}financeiro-da-associacao"
+								"{{BASE_URL}}/v1/financeiro-da-associacao"
 							]
 						}
 					},
@@ -2745,9 +2789,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-associacao/08f5a1fa-9957-11f0-bc71-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/08f5a1fa-9957-11f0-bc71-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}financeiro-da-associacao"
+								"{{BASE_URL}}/v1/financeiro-da-associacao"
 							],
 							"path": [
 								"08f5a1fa-9957-11f0-bc71-706979a5bbda"
@@ -2781,9 +2825,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}financeiro-da-associacao/d09174a8-9954-11f0-9489-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/d09174a8-9954-11f0-9489-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}financeiro-da-associacao"
+								"{{BASE_URL}}/v1/financeiro-da-associacao"
 							],
 							"path": [
 								"d09174a8-9954-11f0-9489-706979a5bbda"
@@ -2813,9 +2857,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}planos",
+							"raw": "{{BASE_URL}}/v1/planos",
 							"host": [
-								"{{BASE_URL}}planos"
+								"{{BASE_URL}}/v1/planos"
 							]
 						}
 					},
@@ -2837,9 +2881,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}planos/9c9c33b0-9970-11f0-bb42-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/planos/9c9c33b0-9970-11f0-bb42-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}planos"
+								"{{BASE_URL}}/v1/planos"
 							],
 							"path": [
 								"9c9c33b0-9970-11f0-bb42-706979a5bbda"
@@ -2864,9 +2908,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}planos/usuario/e8c9c11e-1427-40c5-acc5-1b09a527e85e",
+							"raw": "{{BASE_URL}}/v1/planos/usuario/e8c9c11e-1427-40c5-acc5-1b09a527e85e",
 							"host": [
-								"{{BASE_URL}}planos"
+								"{{BASE_URL}}/v1/planos"
 							],
 							"path": [
 								"usuario",
@@ -2901,9 +2945,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}planos",
+							"raw": "{{BASE_URL}}/v1/planos",
 							"host": [
-								"{{BASE_URL}}planos"
+								"{{BASE_URL}}/v1/planos"
 							]
 						}
 					},
@@ -2934,9 +2978,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}planos/9c9c33b0-9970-11f0-bb42-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/planos/9c9c33b0-9970-11f0-bb42-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}planos"
+								"{{BASE_URL}}/v1/planos"
 							],
 							"path": [
 								"9c9c33b0-9970-11f0-bb42-706979a5bbda"
@@ -2970,9 +3014,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}planos/cbee3744-9970-11f0-95d9-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/planos/cbee3744-9970-11f0-95d9-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}planos"
+								"{{BASE_URL}}/v1/planos"
 							],
 							"path": [
 								"cbee3744-9970-11f0-95d9-706979a5bbda"
@@ -3002,9 +3046,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}recursos-do-plano",
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano",
 							"host": [
-								"{{BASE_URL}}recursos-do-plano"
+								"{{BASE_URL}}/v1/recursos-do-plano"
 							]
 						}
 					},
@@ -3026,9 +3070,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}recursos-do-plano/0131c14b-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano/0131c14b-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}recursos-do-plano"
+								"{{BASE_URL}}/v1/recursos-do-plano"
 							],
 							"path": [
 								"0131c14b-98d7-11f0-afc7-706979a5bbda"
@@ -3053,9 +3097,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}recursos-do-plano/plano/9c9c33b0-9970-11f0-bb42-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano/plano/9c9c33b0-9970-11f0-bb42-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}recursos-do-plano"
+								"{{BASE_URL}}/v1/recursos-do-plano"
 							],
 							"path": [
 								"plano",
@@ -3090,9 +3134,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}recursos-do-plano",
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano",
 							"host": [
-								"{{BASE_URL}}recursos-do-plano"
+								"{{BASE_URL}}/v1/recursos-do-plano"
 							]
 						}
 					},
@@ -3123,9 +3167,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}recursos-do-plano/8bfbbe34-9972-11f0-b32e-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano/8bfbbe34-9972-11f0-b32e-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}recursos-do-plano"
+								"{{BASE_URL}}/v1/recursos-do-plano"
 							],
 							"path": [
 								"8bfbbe34-9972-11f0-b32e-706979a5bbda"
@@ -3159,9 +3203,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}recursos-do-plano/cbee3744-9970-11f0-95d9-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano/cbee3744-9970-11f0-95d9-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}recursos-do-plano"
+								"{{BASE_URL}}/v1/recursos-do-plano"
 							],
 							"path": [
 								"cbee3744-9970-11f0-95d9-706979a5bbda"
@@ -3191,9 +3235,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-plataforma",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-plataforma"
+								"{{BASE_URL}}/v1/mensalidades-da-plataforma"
 							]
 						}
 					},
@@ -3215,9 +3259,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-plataforma/0131c14b-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/0131c14b-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-plataforma"
+								"{{BASE_URL}}/v1/mensalidades-da-plataforma"
 							],
 							"path": [
 								"0131c14b-98d7-11f0-afc7-706979a5bbda"
@@ -3242,9 +3286,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-plataforma/usuario/e8c9c11e-1427-40c5-acc5-1b09a527e85e",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/usuario/e8c9c11e-1427-40c5-acc5-1b09a527e85e",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-plataforma"
+								"{{BASE_URL}}/v1/mensalidades-da-plataforma"
 							],
 							"path": [
 								"usuario",
@@ -3279,9 +3323,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-plataforma",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-plataforma"
+								"{{BASE_URL}}/v1/mensalidades-da-plataforma"
 							]
 						}
 					},
@@ -3312,9 +3356,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-plataforma/62adff54-9974-11f0-b52a-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/62adff54-9974-11f0-b52a-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-plataforma"
+								"{{BASE_URL}}/v1/mensalidades-da-plataforma"
 							],
 							"path": [
 								"62adff54-9974-11f0-b52a-706979a5bbda"
@@ -3348,9 +3392,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-plataforma/62adff54-9974-11f0-b52a-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/62adff54-9974-11f0-b52a-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-plataforma"
+								"{{BASE_URL}}/v1/mensalidades-da-plataforma"
 							],
 							"path": [
 								"62adff54-9974-11f0-b52a-706979a5bbda"
@@ -3380,9 +3424,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-associacao",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-associacao"
+								"{{BASE_URL}}/v1/mensalidades-da-associacao"
 							]
 						}
 					},
@@ -3404,9 +3448,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-associacao/0131c14b-98d7-11f0-afc7-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/0131c14b-98d7-11f0-afc7-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-associacao"
+								"{{BASE_URL}}/v1/mensalidades-da-associacao"
 							],
 							"path": [
 								"0131c14b-98d7-11f0-afc7-706979a5bbda"
@@ -3431,9 +3475,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-associacao/usuario/e8c9c11e-1427-40c5-acc5-1b09a527e85e",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/usuario/e8c9c11e-1427-40c5-acc5-1b09a527e85e",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-associacao"
+								"{{BASE_URL}}/v1/mensalidades-da-associacao"
 							],
 							"path": [
 								"usuario",
@@ -3459,9 +3503,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-associacao/associacao/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/associacao/7b3e1e4a-5c6b-41aa-b3e9-8a2f3e2d7f4a",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-associacao"
+								"{{BASE_URL}}/v1/mensalidades-da-associacao"
 							],
 							"path": [
 								"associacao",
@@ -3496,9 +3540,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-associacao",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-associacao"
+								"{{BASE_URL}}/v1/mensalidades-da-associacao"
 							]
 						}
 					},
@@ -3529,9 +3573,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-associacao/b667c582-9977-11f0-953b-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/b667c582-9977-11f0-953b-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-associacao"
+								"{{BASE_URL}}/v1/mensalidades-da-associacao"
 							],
 							"path": [
 								"b667c582-9977-11f0-953b-706979a5bbda"
@@ -3565,9 +3609,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}mensalidades-da-associacao/62adff54-9974-11f0-b52a-706979a5bbda",
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/62adff54-9974-11f0-b52a-706979a5bbda",
 							"host": [
-								"{{BASE_URL}}mensalidades-da-associacao"
+								"{{BASE_URL}}/v1/mensalidades-da-associacao"
 							],
 							"path": [
 								"62adff54-9974-11f0-b52a-706979a5bbda"
@@ -3606,7 +3650,7 @@
 	"variable": [
 		{
 			"key": "BASE_URL",
-			"value": ""
+			"value": "http://localhost:8181/api"
 		},
 		{
 			"key": "JWT_ADM_PLT",
@@ -3623,6 +3667,11 @@
 		{
 			"key": "JWT_ADM_HORTA",
 			"value": ""
+		},
+		{
+			"key": "JWT_TOKEN",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
