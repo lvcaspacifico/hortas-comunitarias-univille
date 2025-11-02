@@ -122,7 +122,7 @@ class HortaService
         }
 
         if (!empty($data['endereco_uuid'])) {
-            $this->enderecoService->findByUuid($data['endereco_uuid'], $payloadUsuarioLogado);
+            $this->enderecoService->findByUuid($data['endereco_uuid']);
         }
 
         return $this->hortaRepository->create($data);

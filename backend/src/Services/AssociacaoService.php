@@ -37,7 +37,6 @@ class AssociacaoService
         if (
             !$this->isCargoAdminPlataforma($payloadUsuarioLogado)
             && $payloadUsuarioLogado['usuario_uuid'] !== "NEW_ACCOUNT"
-            && $payloadUsuarioLogado['associacao_uuid'] !== $uuid
         ) {
             throw new Exception("Permissão de cargo 0 necessária | findByUuid");
         } else {
