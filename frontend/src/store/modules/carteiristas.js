@@ -56,8 +56,10 @@ const actions = {
       const res = await carteiristasService.getById(id)
       commit('SET_CURRENT_CARTEIRISTA', res.data)
       commit('SET_ERROR', null)
+      return res.data
     } catch (err) {
       commit('SET_ERROR', err.message)
+      return null
     } finally {
       commit('SET_LOADING', false)
     }

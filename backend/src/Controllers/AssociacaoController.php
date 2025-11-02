@@ -25,7 +25,18 @@ class AssociacaoController
         ];
         
         $associacoes = $this->associacaoService->findAllWhere($payloadUsuarioLogado);
-        $response->getBody()->write(json_encode($associacoes));
+        
+        // Formatar resposta para o frontend
+        $associacoesFormatadas = $associacoes->map(function($associacao) {
+            return [
+                'id' => $associacao->uuid,
+                'nome' => $associacao->razao_social ?? $associacao->nome_fantasia ?? '-',
+                'telefone' => $associacao->telefone_de_contato ?? '-',
+                'email' => $associacao->email ?? '-',
+            ];
+        });
+        
+        $response->getBody()->write(json_encode($associacoesFormatadas));
         return $response->withStatus(200);
     }
 
@@ -41,7 +52,17 @@ class AssociacaoController
         $associacao = $this->associacaoService->findByUuid($args['uuid'], $payloadUsuarioLogado);
         if (!$associacao) return $response->withStatus(404);
 
-        $response->getBody()->write(json_encode($associacao));
+        // Formatar resposta para o frontend
+        $associacaoFormatada = [
+            'id' => $associacao->uuid,
+            'nome' => $associacao->razao_social ?? $associacao->nome_fantasia ?? '',
+            'descricao' => $associacao->descricao ?? '',
+            'endereco' => $associacao->endereco ?? '',
+            'telefone' => $associacao->telefone_de_contato ?? '',
+            'email' => $associacao->email ?? '',
+        ];
+
+        $response->getBody()->write(json_encode($associacaoFormatada));
         return $response->withStatus(200);
     }
 
@@ -58,7 +79,15 @@ class AssociacaoController
         $uuidUsuarioLogado = $request->getAttribute('usuario_uuid');
         $associacao = $this->associacaoService->create($data, $payloadUsuarioLogado);
 
-        $response->getBody()->write(json_encode($associacao));
+        // Formatar resposta
+        $associacaoFormatada = [
+            'id' => $associacao->uuid,
+            'nome' => $associacao->razao_social ?? $associacao->nome_fantasia,
+            'telefone' => $associacao->telefone_de_contato ?? null,
+            'email' => $associacao->email ?? null,
+        ];
+
+        $response->getBody()->write(json_encode($associacaoFormatada));
         return $response->withStatus(201);
     }
 
@@ -75,7 +104,15 @@ class AssociacaoController
         $uuidUsuarioLogado = $request->getAttribute('usuario_uuid');
         $associacao = $this->associacaoService->update($args['uuid'], $data, $payloadUsuarioLogado);
 
-        $response->getBody()->write(json_encode($associacao));
+        // Formatar resposta
+        $associacaoFormatada = [
+            'id' => $associacao->uuid,
+            'nome' => $associacao->razao_social ?? $associacao->nome_fantasia,
+            'telefone' => $associacao->telefone_de_contato ?? null,
+            'email' => $associacao->email ?? null,
+        ];
+
+        $response->getBody()->write(json_encode($associacaoFormatada));
         return $response->withStatus(200);
     }
 

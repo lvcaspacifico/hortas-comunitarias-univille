@@ -29,10 +29,20 @@
         $canteiroBindings = require __DIR__ . '/canteiro_bindings.php';
         $canteiroBindings($containerBuilder);
 
-        $canteiroEUsuarioBindings = require __DIR__ . '/canteiro_e_usuario_bindings.php';
-        $canteiroEUsuarioBindings($containerBuilder);
+        $carteiristaBindings = require __DIR__ . '/carteirista_bindings.php';
+        $carteiristaBindings($containerBuilder);
 
-        $permissaoBindings = require __DIR__ . '/permissao_bindings.php';
+    $dependenteBindings = require __DIR__ . '/dependente_bindings.php';
+    $dependenteBindings($containerBuilder);
+
+    $pagamentoBindings = require __DIR__ . '/pagamento_bindings.php';
+    $pagamentoBindings($containerBuilder);
+
+    $notificacaoBindings = require __DIR__ . '/notificacao_bindings.php';
+    $notificacaoBindings($containerBuilder);
+
+    $canteiroEUsuarioBindings = require __DIR__ . '/canteiro_e_usuario_bindings.php';
+    $canteiroEUsuarioBindings($containerBuilder);        $permissaoBindings = require __DIR__ . '/permissao_bindings.php';
         $permissaoBindings($containerBuilder);
 
         $permissaoDeCargoBindings = require __DIR__ . '/permissao_de_cargo_bindings.php';

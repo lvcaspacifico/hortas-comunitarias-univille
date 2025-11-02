@@ -87,6 +87,18 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/pagamentos/criar',
+    name: 'PagamentosCreate',
+    component: () => import('@/views/Pagamentos/Create.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/pagamentos/:id/editar',
+    name: 'PagamentosEdit',
+    component: () => import('@/views/Pagamentos/Edit.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/dependentes',
     name: 'DependentesList',
     component: () => import('@/views/Dependentes/List.vue'),
@@ -108,6 +120,18 @@ const routes = [
     path: '/notificacoes',
     name: 'NotificacoesList',
     component: () => import('@/views/Notificacoes/List.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/notificacoes/criar',
+    name: 'NotificacoesCreate',
+    component: () => import('@/views/Notificacoes/Create.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/notificacoes/:id/editar',
+    name: 'NotificacoesEdit',
+    component: () => import('@/views/Notificacoes/Edit.vue'),
     meta: { requiresAuth: true }
   },
   {

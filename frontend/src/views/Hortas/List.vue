@@ -25,15 +25,21 @@
             <th>Nome</th>
             <th>Localização</th>
             <th>Telefone</th>
+            <th>Responsável</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="h in hortas" :key="h.id">
-            <td>{{ h.id }}</td>
+            <td>
+              <span class="font-monospace text-muted" :title="h.id">
+                {{ h.id.substring(0, 8) }}...
+              </span>
+            </td>
             <td>{{ h.nome }}</td>
             <td>{{ h.localizacao || '-' }}</td>
             <td>{{ h.telefone || '-' }}</td>
+            <td>{{ h.responsavel || '-' }}</td>
             <td>
               <router-link 
                 :to="`/hortas/${h.id}/editar`"

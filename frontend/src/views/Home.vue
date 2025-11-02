@@ -82,17 +82,6 @@
           </div>
         </div>
       </div>
-      
-      <div class="col-md-6 col-lg-3">
-        <div class="card text-center shadow-sm h-100">
-          <div class="card-body">
-            <div class="fs-1 text-success mb-3">🔔</div>
-            <h5 class="card-title">Notificações</h5>
-            <p class="card-text text-muted">Acompanhe avisos e alertas</p>
-            <router-link to="/notificacoes" class="btn btn-success">Acessar</router-link>
-          </div>
-        </div>
-      </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="card text-center shadow-sm h-100">
@@ -101,6 +90,17 @@
             <h5 class="card-title">Dependentes</h5>
             <p class="card-text text-muted">Gerencie dependentes dos carteiristas</p>
             <router-link to="/dependentes" class="btn btn-success">Acessar</router-link>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-3">
+        <div class="card text-center shadow-sm h-100">
+          <div class="card-body">
+            <div class="fs-1 text-success mb-3">🔔</div>
+            <h5 class="card-title">Notificações</h5>
+            <p class="card-text text-muted">Acompanhe avisos e alertas</p>
+            <router-link to="/notificacoes" class="btn btn-success">Acessar</router-link>
           </div>
         </div>
       </div>

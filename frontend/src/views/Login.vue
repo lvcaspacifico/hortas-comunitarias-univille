@@ -101,15 +101,26 @@ export default {
       
       loading.value = true
       
-      // Simulação de login (remover quando tiver backend real)
-      setTimeout(() => {
-        localStorage.setItem('token', 'fake-token')
-        localStorage.setItem('user', JSON.stringify({ nome: 'Usuário Teste' }))
-        store.commit('auth/SET_TOKEN', 'fake-token')
-        store.commit('auth/SET_USER', { nome: 'Usuário Teste' })
+      try {
+        // Chamar a action de login do Vuex
+        const result = await store.dispatch('auth/login', {
+          email: form.email,
+          senha: form.password
+        })
+        
+        if (result.success) {
+          // Login bem-sucedido, redirecionar para home
+          router.push('/')
+        } else {
+          // Login falhou, mostrar mensagem de erro
+          errorMessage.value = result.message || 'Erro ao fazer login'
+        }
+      } catch (error) {
+        console.error('Erro ao fazer login:', error)
+        errorMessage.value = 'Erro ao conectar com o servidor. Verifique se o backend está rodando.'
+      } finally {
         loading.value = false
-        router.push('/')
-      }, 1000)
+      }
     }
     
     return {

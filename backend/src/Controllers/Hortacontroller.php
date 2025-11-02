@@ -25,7 +25,28 @@ class HortaController
             'horta_uuid' => $request->getAttribute('horta_uuid'),
         ];
         $hortas = $this->hortaService->findAllWhere([], $payloadUsuarioLogado);
-        $response->getBody()->write(json_encode($hortas));
+        
+        // Transformar dados para o formato esperado pelo frontend
+        $hortasFormatadas = $hortas->map(function($horta) {
+            return [
+                'id' => $horta->uuid,
+                'uuid' => $horta->uuid,
+                'nome' => $horta->nome_da_horta,
+                'nome_da_horta' => $horta->nome_da_horta,
+                'localizacao' => $horta->endereco->logradouro ?? null,
+                'telefone' => $horta->telefone_de_contato ?? null,
+                'responsavel' => $horta->nome_do_responsavel ?? null,
+                'endereco_uuid' => $horta->endereco_uuid,
+                'associacao_vinculada_uuid' => $horta->associacao_vinculada_uuid,
+                'percentual_taxa_associado' => $horta->percentual_taxa_associado,
+                'tipo_de_liberacao' => $horta->tipo_de_liberacao,
+                'excluido' => $horta->excluido,
+                'data_de_criacao' => $horta->data_de_criacao,
+                'data_de_ultima_alteracao' => $horta->data_de_ultima_alteracao,
+            ];
+        });
+        
+        $response->getBody()->write(json_encode($hortasFormatadas));
         return $response->withStatus(200);
     }
 
@@ -40,7 +61,25 @@ class HortaController
         $horta = $this->hortaService->findByUuid($args['uuid'], $payloadUsuarioLogado );
         if (!$horta) return $response->withStatus(404);
 
-        $response->getBody()->write(json_encode($horta));
+        // Formatar resposta para o frontend
+        $hortaFormatada = [
+            'id' => $horta->uuid,
+            'uuid' => $horta->uuid,
+            'nome' => $horta->nome_da_horta,
+            'nome_da_horta' => $horta->nome_da_horta,
+            'localizacao' => $horta->endereco->logradouro ?? null,
+            'telefone' => $horta->telefone_de_contato ?? null,
+            'responsavel' => $horta->nome_do_responsavel ?? null,
+            'endereco_uuid' => $horta->endereco_uuid,
+            'associacao_vinculada_uuid' => $horta->associacao_vinculada_uuid,
+            'percentual_taxa_associado' => $horta->percentual_taxa_associado,
+            'tipo_de_liberacao' => $horta->tipo_de_liberacao,
+            'excluido' => $horta->excluido,
+            'data_de_criacao' => $horta->data_de_criacao,
+            'data_de_ultima_alteracao' => $horta->data_de_ultima_alteracao,
+        ];
+
+        $response->getBody()->write(json_encode($hortaFormatada));
         return $response->withStatus(200);
     }
 
@@ -56,7 +95,25 @@ class HortaController
         $uuidUsuarioLogado = $request->getAttribute('usuario_uuid');
         $horta = $this->hortaService->create($data, $payloadUsuarioLogado);
 
-        $response->getBody()->write(json_encode($horta));
+        // Formatar resposta para o frontend
+        $hortaFormatada = [
+            'id' => $horta->uuid,
+            'uuid' => $horta->uuid,
+            'nome' => $horta->nome_da_horta,
+            'nome_da_horta' => $horta->nome_da_horta,
+            'localizacao' => $horta->endereco->logradouro ?? null,
+            'telefone' => $horta->telefone_de_contato ?? null,
+            'responsavel' => $horta->nome_do_responsavel ?? null,
+            'endereco_uuid' => $horta->endereco_uuid,
+            'associacao_vinculada_uuid' => $horta->associacao_vinculada_uuid,
+            'percentual_taxa_associado' => $horta->percentual_taxa_associado,
+            'tipo_de_liberacao' => $horta->tipo_de_liberacao,
+            'excluido' => $horta->excluido,
+            'data_de_criacao' => $horta->data_de_criacao,
+            'data_de_ultima_alteracao' => $horta->data_de_ultima_alteracao,
+        ];
+
+        $response->getBody()->write(json_encode($hortaFormatada));
         return $response->withStatus(201);
     }
 
@@ -72,7 +129,25 @@ class HortaController
         $uuidUsuarioLogado = $request->getAttribute('usuario_uuid');
         $horta = $this->hortaService->update($args['uuid'], $data, $payloadUsuarioLogado);
 
-        $response->getBody()->write(json_encode($horta));
+        // Formatar resposta para o frontend (igual ao create e get)
+        $hortaFormatada = [
+            'id' => $horta->uuid,
+            'uuid' => $horta->uuid,
+            'nome' => $horta->nome_da_horta,
+            'nome_da_horta' => $horta->nome_da_horta,
+            'localizacao' => $horta->endereco->logradouro ?? null,
+            'telefone' => $horta->telefone_de_contato ?? null,
+            'responsavel' => $horta->nome_do_responsavel ?? null,
+            'endereco_uuid' => $horta->endereco_uuid,
+            'associacao_vinculada_uuid' => $horta->associacao_vinculada_uuid,
+            'percentual_taxa_associado' => $horta->percentual_taxa_associado,
+            'tipo_de_liberacao' => $horta->tipo_de_liberacao,
+            'excluido' => $horta->excluido,
+            'data_de_criacao' => $horta->data_de_criacao,
+            'data_de_ultima_alteracao' => $horta->data_de_ultima_alteracao,
+        ];
+
+        $response->getBody()->write(json_encode($hortaFormatada));
         return $response->withStatus(200);
     }
 

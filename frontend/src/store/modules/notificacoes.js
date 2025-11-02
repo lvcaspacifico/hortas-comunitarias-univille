@@ -32,6 +32,9 @@ const mutations = {
   },
   MARK_ALL_READ(state) {
     state.notificacoes = state.notificacoes.map(n => ({ ...n, lida: true }))
+  },
+  REMOVE_NOTIFICACAO(state, id) {
+    state.notificacoes = state.notificacoes.filter(n => n.id !== id)
   }
 }
 
@@ -68,6 +71,61 @@ const actions = {
       commit('MARK_ALL_READ')
       return { success: true }
     } catch (err) {
+      return { success: false, message: err.message }
+    }
+  },
+
+  async fetchNotificacaoById({ commit }, id) {
+    try {
+      commit('SET_LOADING', true)
+      commit('SET_ERROR', null)
+      console.log('🔍 Store: Buscando notificação ID:', id)
+      const response = await notificacoesService.getNotificacao(id)
+      console.log('📦 Store: Response do service:', response)
+      console.log('📊 Store: Response.data:', response.data)
+      return response.data
+    } catch (err) {
+      console.error('❌ Store: Erro ao buscar:', err)
+      commit('SET_ERROR', err.message)
+      throw err
+    } finally {
+      commit('SET_LOADING', false)
+    }
+  },
+
+  async createNotificacao({ dispatch }, data) {
+    try {
+      const response = await notificacoesService.createNotificacao(data)
+      console.log('Notificação criada:', response)
+      // Recarrega a lista após criar
+      await dispatch('fetchNotificacoes')
+      return { success: true, data: response }
+    } catch (err) {
+      console.error('Erro ao criar notificação:', err)
+      return { success: false, message: err.message }
+    }
+  },
+
+  async updateNotificacao({ dispatch }, { id, data }) {
+    try {
+      const response = await notificacoesService.updateNotificacao(id, data)
+      console.log('Notificação atualizada:', response)
+      // Recarrega a lista após atualizar
+      await dispatch('fetchNotificacoes')
+      return { success: true, data: response }
+    } catch (err) {
+      console.error('Erro ao atualizar notificação:', err)
+      return { success: false, message: err.message }
+    }
+  },
+
+  async deleteNotificacao({ commit }, id) {
+    try {
+      await notificacoesService.deleteNotificacao(id)
+      commit('REMOVE_NOTIFICACAO', id)
+      return { success: true }
+    } catch (err) {
+      console.error('Erro ao excluir notificação:', err)
       return { success: false, message: err.message }
     }
   }

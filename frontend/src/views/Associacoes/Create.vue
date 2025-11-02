@@ -40,13 +40,23 @@
               
               <div class="row">
                 <div class="col-md-6">
-                  <FormInput
-                    id="telefone"
-                    v-model="form.telefone"
-                    label="Telefone"
-                    type="tel"
-                    placeholder="(00) 00000-0000"
-                  />
+                  <div class="mb-3">
+                    <label for="telefone" class="form-label">Telefone <span class="text-danger">*</span></label>
+                    <input
+                      id="telefone"
+                      v-model="form.telefone"
+                      type="tel"
+                      class="form-control"
+                      :class="{ 'is-invalid': errors.telefone }"
+                      placeholder="(00) 00000-0000"
+                      @input="formatTelefone"
+                      maxlength="15"
+                      required
+                    />
+                    <div v-if="errors.telefone" class="invalid-feedback">
+                      {{ errors.telefone }}
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <FormInput
@@ -55,6 +65,8 @@
                     label="Email"
                     type="email"
                     placeholder="contato@associacao.org"
+                    :required="true"
+                    :error="errors.email"
                   />
                 </div>
               </div>
@@ -105,15 +117,83 @@ export default {
     })
     
     const errors = reactive({
-      nome: ''
+      nome: '',
+      telefone: '',
+      email: ''
     })
     
     const loading = ref(false)
     const errorMessage = ref('')
     
-    const handleSubmit = async () => {
-      if (!form.nome) {
+    const validateForm = () => {
+      let isValid = true
+      errorMessage.value = ''
+      
+      // Limpar erros
+      errors.nome = ''
+      errors.telefone = ''
+      errors.email = ''
+      
+      // Validar nome
+      if (!form.nome || form.nome.trim() === '') {
         errors.nome = 'Nome é obrigatório'
+        isValid = false
+      } else if (form.nome.length < 3) {
+        errors.nome = 'Nome deve ter no mínimo 3 caracteres'
+        isValid = false
+      }
+      
+      // Validar telefone
+      if (!form.telefone || form.telefone.trim() === '') {
+        errors.telefone = 'Telefone é obrigatório'
+        isValid = false
+      } else {
+        const phoneNumbers = form.telefone.replace(/\D/g, '')
+        if (phoneNumbers.length !== 11) {
+          errors.telefone = 'Telefone deve ter DDD (2 dígitos) + 9 dígitos'
+          isValid = false
+        } else if (phoneNumbers[0] === '0' || phoneNumbers[2] !== '9') {
+          errors.telefone = 'DDD inválido ou número não é celular'
+          isValid = false
+        }
+      }
+      
+      // Validar email
+      if (!form.email || form.email.trim() === '') {
+        errors.email = 'Email é obrigatório'
+        isValid = false
+      } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!emailRegex.test(form.email)) {
+          errors.email = 'Email inválido'
+          isValid = false
+        }
+      }
+      
+      return isValid
+    }
+    
+    const formatTelefone = (event) => {
+      let value = event.target.value
+      value = value.replace(/\D/g, '')
+      value = value.substring(0, 11)
+      
+      if (value.length > 0) {
+        if (value.length <= 2) {
+          value = `(${value}`
+        } else if (value.length <= 7) {
+          value = `(${value.substring(0, 2)}) ${value.substring(2)}`
+        } else {
+          value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7)}`
+        }
+      }
+      
+      form.telefone = value
+    }
+    
+    const handleSubmit = async () => {
+      if (!validateForm()) {
+        errorMessage.value = 'Por favor, corrija os erros no formulário'
         return
       }
       
@@ -133,7 +213,8 @@ export default {
       errors,
       loading,
       errorMessage,
-      handleSubmit
+      handleSubmit,
+      formatTelefone
     }
   }
 }

@@ -1,5 +1,22 @@
 <?php
 
+// ================= CORS Headers =================
+// Permitir requisições do frontend
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+if (in_array($origin, $allowedOrigins)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+}
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Access-Control-Allow-Credentials: true');
+
+// Responder requisições OPTIONS (preflight)
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+// ================================================
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -45,12 +62,16 @@ $app = AppFactory::create();
 $routes = require __DIR__ . '/../src/Routes/IndexRoutes.php';
 $routes($app);
 
-// TEMPORARIAMENTE: Middlewares comentados para debug
-$app->addBodyParsingMiddleware(); // ← Mantido para parsing do JSON
-$app->addErrorMiddleware(true, true, true); // ← Mantido para ver erros
-// $app->add(RoutePermissionMiddleware::class); // ← Desabilitado temporariamente
-// $app->add(FormatadorDeErrosMiddleware::class);
-// $app->add(ForcarJsonMiddleware::class); 
-// $app->add(JwtMiddleware::class);// --------------- Rodando app
+// --------------- Middlewares
+// Nota: Middlewares são executados em ordem INVERSA (LIFO - Last In, First Out)
+// Por isso, JwtMiddleware vem por último aqui (será executado primeiro)
+$app->addBodyParsingMiddleware();
+$app->addErrorMiddleware(true, true, true);
+$app->add(ForcarJsonMiddleware::class);
+$app->add(FormatadorDeErrosMiddleware::class);
+// $app->add(RoutePermissionMiddleware::class); // ← Desabilitado temporariamente (sistema de permissões)
+$app->add(JwtMiddleware::class); // JWT executado PRIMEIRO (adicionado por último)
+
+// --------------- Rodando app
 $app->run();
 ?>

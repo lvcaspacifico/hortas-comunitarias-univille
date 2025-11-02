@@ -26,6 +26,18 @@ return function (App $app) {
         $canteiroRoutes = require __DIR__ . '/CanteiroRoutes.php';
         $canteiroRoutes($group);
 
+        $carteiristaRoutes = require __DIR__ . '/CarteiristaRoutes.php';
+        $carteiristaRoutes($group);
+
+        $dependenteRoutes = require __DIR__ . '/DependenteRoutes.php';
+        $dependenteRoutes($group);
+
+        $pagamentoRoutes = require __DIR__ . '/PagamentoRoutes.php';
+        $pagamentoRoutes($group);
+
+        $notificacaoRoutes = require __DIR__ . '/NotificacaoRoutes.php';
+        $notificacaoRoutes($group);
+
         $canteiroEUsuarioRoutes = require __DIR__ . '/CanteiroEUsuarioRoutes.php';
         $canteiroEUsuarioRoutes($group);
 

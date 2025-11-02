@@ -42,7 +42,8 @@ const actions = {
     commit('SET_LOADING', true)
     try {
       const res = await pagamentosService.getAll(params)
-      commit('SET_PAGAMENTOS', res.data)
+      const data = res.data?.data || res.data || []
+      commit('SET_PAGAMENTOS', data)
       commit('SET_ERROR', null)
     } catch (err) {
       commit('SET_ERROR', err.message)
@@ -50,40 +51,40 @@ const actions = {
       commit('SET_LOADING', false)
     }
   },
-  async fetchPagamento({ commit }, id) {
+  async fetchPagamentoById({ commit }, id) {
     commit('SET_LOADING', true)
     try {
       const res = await pagamentosService.getById(id)
-      commit('SET_CURRENT_PAGAMENTO', res.data)
+      const data = res.data?.data || res.data
+      commit('SET_CURRENT_PAGAMENTO', data)
       commit('SET_ERROR', null)
+      return data
     } catch (err) {
       commit('SET_ERROR', err.message)
+      throw err
     } finally {
       commit('SET_LOADING', false)
     }
   },
-  async createPagamento({ commit }, data) {
+  async createPagamento({ dispatch }, data) {
     try {
       const res = await pagamentosService.create(data)
-      commit('ADD_PAGAMENTO', res.data)
+      await dispatch('fetchPagamentos')
       return { success: true, data: res.data }
     } catch (err) {
-      return {
-        success: false,
-        message: err.response?.data?.detail || 'Erro ao criar pagamento'
-      }
+      throw new Error(err.response?.data?.message || 'Erro ao criar pagamento')
     }
   },
-  async updatePagamento({ commit }, { id, data }) {
+  async updatePagamento({ dispatch }, payload) {
     try {
+      const { id, ...data } = payload
       const res = await pagamentosService.update(id, data)
-      commit('UPDATE_PAGAMENTO', res.data)
+      await dispatch('fetchPagamentos')
       return { success: true, data: res.data }
     } catch (err) {
-      return {
-        success: false,
-        message: err.response?.data?.detail || 'Erro ao atualizar pagamento'
-      }
+      throw new Error(
+        err.response?.data?.message || 'Erro ao atualizar pagamento'
+      )
     }
   },
   async deletePagamento({ commit }, id) {
@@ -92,10 +93,9 @@ const actions = {
       commit('DELETE_PAGAMENTO', id)
       return { success: true }
     } catch (err) {
-      return {
-        success: false,
-        message: err.response?.data?.detail || 'Erro ao deletar pagamento'
-      }
+      throw new Error(
+        err.response?.data?.message || 'Erro ao deletar pagamento'
+      )
     }
   }
 }

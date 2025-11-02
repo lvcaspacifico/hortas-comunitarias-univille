@@ -26,7 +26,20 @@ class CanteiroController
         ];
 
         $canteiros = $this->canteiroService->findAllWhere($payloadUsuarioLogado);
-        $response->getBody()->write(json_encode($canteiros));
+        
+        // Formatar resposta para o frontend
+        $canteirosFormatados = $canteiros->map(function($canteiro) {
+            return [
+                'id' => $canteiro->uuid,
+                'nome' => $canteiro->numero_identificador ?? '—',
+                'area' => $canteiro->tamanho_m2 ?? 0,
+                'horta_nome' => $canteiro->horta->nome_da_horta ?? '—',
+                'horta_uuid' => $canteiro->horta_uuid,
+                'ativo' => !$canteiro->excluido,
+            ];
+        });
+        
+        $response->getBody()->write(json_encode($canteirosFormatados));
         return $response->withStatus(200);
     }
 
@@ -41,7 +54,19 @@ class CanteiroController
         $canteiro = $this->canteiroService->findByUuid($args['uuid'],$payloadUsuarioLogado);
         if (!$canteiro) return $response->withStatus(404);
 
-        $response->getBody()->write(json_encode($canteiro));
+        // Formatar resposta para o frontend
+        $canteiroFormatado = [
+            'id' => $canteiro->uuid,
+            'nome' => $canteiro->numero_identificador ?? '',
+            'numero_identificador' => $canteiro->numero_identificador ?? '',
+            'area' => $canteiro->tamanho_m2 ?? 0,
+            'tamanho_m2' => $canteiro->tamanho_m2 ?? 0,
+            'horta_uuid' => $canteiro->horta_uuid,
+            'horta_nome' => $canteiro->horta->nome_da_horta ?? '',
+            'ativo' => !$canteiro->excluido,
+        ];
+
+        $response->getBody()->write(json_encode($canteiroFormatado));
         return $response->withStatus(200);
     }
 
@@ -57,7 +82,15 @@ class CanteiroController
         $uuidUsuarioLogado = $request->getAttribute('usuario_uuid');
         $canteiro = $this->canteiroService->create($data,$payloadUsuarioLogado);
 
-        $response->getBody()->write(json_encode($canteiro));
+        // Formatar resposta
+        $canteiroFormatado = [
+            'id' => $canteiro->uuid,
+            'numero_identificador' => $canteiro->numero_identificador,
+            'tamanho_m2' => $canteiro->tamanho_m2,
+            'horta_uuid' => $canteiro->horta_uuid,
+        ];
+
+        $response->getBody()->write(json_encode($canteiroFormatado));
         return $response->withStatus(201);
     }
 
@@ -73,7 +106,15 @@ class CanteiroController
         $uuidUsuarioLogado = $request->getAttribute('usuario_uuid');
         $canteiro = $this->canteiroService->update($args['uuid'], $data,$payloadUsuarioLogado);
 
-        $response->getBody()->write(json_encode($canteiro));
+        // Formatar resposta
+        $canteiroFormatado = [
+            'id' => $canteiro->uuid,
+            'numero_identificador' => $canteiro->numero_identificador,
+            'tamanho_m2' => $canteiro->tamanho_m2,
+            'horta_uuid' => $canteiro->horta_uuid,
+        ];
+
+        $response->getBody()->write(json_encode($canteiroFormatado));
         return $response->withStatus(200);
     }
 

@@ -21,25 +21,40 @@
               />
               
               <div class="mb-3">
-                <label for="localizacao" class="form-label">Localização</label>
+                <label for="localizacao" class="form-label">Localização <span class="text-danger">*</span></label>
                 <textarea
                   id="localizacao"
                   v-model="form.localizacao"
                   class="form-control"
+                  :class="{ 'is-invalid': errors.localizacao }"
                   rows="2"
                   placeholder="Rua, número, bairro"
+                  required
                 ></textarea>
+                <div v-if="errors.localizacao" class="invalid-feedback">
+                  {{ errors.localizacao }}
+                </div>
               </div>
               
               <div class="row">
                 <div class="col-md-6">
-                  <FormInput
-                    id="telefone"
-                    v-model="form.telefone"
-                    label="Telefone"
-                    type="tel"
-                    placeholder="(00) 00000-0000"
-                  />
+                  <div class="mb-3">
+                    <label for="telefone" class="form-label">Telefone <span class="text-danger">*</span></label>
+                    <input
+                      id="telefone"
+                      v-model="form.telefone"
+                      type="tel"
+                      class="form-control"
+                      :class="{ 'is-invalid': errors.telefone }"
+                      placeholder="(00) 00000-0000"
+                      @input="formatTelefone"
+                      maxlength="15"
+                      required
+                    />
+                    <div v-if="errors.telefone" class="invalid-feedback">
+                      {{ errors.telefone }}
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <FormInput
@@ -47,6 +62,8 @@
                     v-model="form.responsavel"
                     label="Responsável"
                     placeholder="Nome do responsável"
+                    :required="true"
+                    :error="errors.responsavel"
                   />
                 </div>
               </div>
@@ -95,13 +112,103 @@ export default {
       responsavel: ''
     })
     
-    const errors = reactive({ nome: '' })
+    const errors = reactive({ 
+      nome: '',
+      localizacao: '',
+      telefone: '',
+      responsavel: ''
+    })
     const loading = ref(false)
     const errorMessage = ref('')
     
-    const handleSubmit = async () => {
-      if (!form.nome) {
+    const validateForm = () => {
+      let isValid = true
+      errorMessage.value = ''
+      
+      // Limpar erros anteriores
+      errors.nome = ''
+      errors.localizacao = ''
+      errors.telefone = ''
+      errors.responsavel = ''
+      
+      // Validar nome (obrigatório)
+      if (!form.nome || form.nome.trim() === '') {
         errors.nome = 'Nome é obrigatório'
+        isValid = false
+      } else if (form.nome.length < 3) {
+        errors.nome = 'Nome deve ter no mínimo 3 caracteres'
+        isValid = false
+      } else if (form.nome.length > 100) {
+        errors.nome = 'Nome deve ter no máximo 100 caracteres'
+        isValid = false
+      }
+      
+      // Validar localização (obrigatório)
+      if (!form.localizacao || form.localizacao.trim() === '') {
+        errors.localizacao = 'Localização é obrigatória'
+        isValid = false
+      } else if (form.localizacao.length < 3) {
+        errors.localizacao = 'Localização deve ter no mínimo 3 caracteres'
+        isValid = false
+      }
+      
+      // Validar telefone (obrigatório - DDD + 9 dígitos)
+      if (!form.telefone || form.telefone.trim() === '') {
+        errors.telefone = 'Telefone é obrigatório'
+        isValid = false
+      } else {
+        // Remove caracteres não numéricos para validação
+        const phoneNumbers = form.telefone.replace(/\D/g, '')
+        
+        // Valida: deve ter exatamente 11 dígitos (2 DDD + 9 número)
+        if (phoneNumbers.length !== 11) {
+          errors.telefone = 'Telefone deve ter DDD (2 dígitos) + 9 dígitos. Ex: (47) 99999-9999'
+          isValid = false
+        } else if (phoneNumbers[0] === '0' || phoneNumbers[2] !== '9') {
+          // DDD não pode começar com 0 e celular deve começar com 9
+          errors.telefone = 'DDD inválido ou número não é celular (deve começar com 9)'
+          isValid = false
+        }
+      }
+      
+      // Validar responsável (obrigatório)
+      if (!form.responsavel || form.responsavel.trim() === '') {
+        errors.responsavel = 'Nome do responsável é obrigatório'
+        isValid = false
+      } else if (form.responsavel.length < 3) {
+        errors.responsavel = 'Nome do responsável deve ter no mínimo 3 caracteres'
+        isValid = false
+      }
+      
+      return isValid
+    }
+    
+    const formatTelefone = (event) => {
+      let value = event.target.value
+      
+      // Remove tudo que não é número
+      value = value.replace(/\D/g, '')
+      
+      // Limita a 11 dígitos
+      value = value.substring(0, 11)
+      
+      // Aplica a máscara (00) 00000-0000
+      if (value.length > 0) {
+        if (value.length <= 2) {
+          value = `(${value}`
+        } else if (value.length <= 7) {
+          value = `(${value.substring(0, 2)}) ${value.substring(2)}`
+        } else {
+          value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7)}`
+        }
+      }
+      
+      form.telefone = value
+    }
+    
+    const handleSubmit = async () => {
+      if (!validateForm()) {
+        errorMessage.value = 'Por favor, corrija os erros no formulário'
         return
       }
       
@@ -116,7 +223,7 @@ export default {
       }
     }
     
-    return { form, errors, loading, errorMessage, handleSubmit }
+    return { form, errors, loading, errorMessage, handleSubmit, formatTelefone }
   }
 }
 </script>
