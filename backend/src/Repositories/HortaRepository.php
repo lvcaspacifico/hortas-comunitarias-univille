@@ -16,12 +16,12 @@ class HortaRepository
 
     public function findAllWhere(array $conditions): Collection
     {
-        return $this->hortaModel->where($conditions)->get();
+        return $this->hortaModel->where($conditions)->with(['endereco', 'associacao'])->get();
     }
 
     public function findByUuid(string $uuid): ?HortaModel
     {
-        return $this->hortaModel->find($uuid);
+        return $this->hortaModel->with(['endereco', 'associacao'])->find($uuid);
     }
     
     public function create(array $data): HortaModel

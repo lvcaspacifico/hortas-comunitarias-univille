@@ -9,8 +9,8 @@ import { Card } from '../../components/common';
 import { COLORS } from '../../constants/colors';
 import { Ionicons } from '@expo/vector-icons';
 
-const CanteiroDetailScreen = ({ route }) => {
-  const { canteiro } = route.params;
+const AssociacaoDetailScreen = ({ route }) => {
+  const { associacao } = route.params;
 
   const InfoRow = ({ icon, label, value }) => (
     <View style={styles.infoRow}>
@@ -25,29 +25,31 @@ const CanteiroDetailScreen = ({ route }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>
-          Canteiro {canteiro.numero_identificador || 'S/N'}
-        </Text>
-        {canteiro.horta?.nome_da_horta && (
-          <Text style={styles.description}>
-            Horta: {canteiro.horta.nome_da_horta}
-          </Text>
+        <Text style={styles.title}>{associacao.nome}</Text>
+        {associacao.descricao && (
+          <Text style={styles.description}>{associacao.descricao}</Text>
         )}
       </View>
 
       <Card style={styles.card}>
-        <Text style={styles.sectionTitle}>Informações</Text>
+        <Text style={styles.sectionTitle}>Informações de Contato</Text>
         
         <InfoRow
-          icon="resize-outline"
-          label="Tamanho"
-          value={canteiro.tamanho_m2 ? `${canteiro.tamanho_m2}m²` : null}
+          icon="mail-outline"
+          label="Email"
+          value={associacao.email}
         />
         
         <InfoRow
-          icon="calendar-outline"
-          label="Data de Criação"
-          value={canteiro.data_de_criacao ? new Date(canteiro.data_de_criacao).toLocaleDateString('pt-BR') : null}
+          icon="call-outline"
+          label="Telefone"
+          value={associacao.telefone}
+        />
+
+        <InfoRow
+          icon="location-outline"
+          label="Endereço"
+          value={associacao.endereco}
         />
       </Card>
     </ScrollView>
@@ -102,11 +104,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.text,
   },
-  observacoes: {
-    fontSize: 14,
-    color: COLORS.text,
-    lineHeight: 20,
-  },
 });
 
-export default CanteiroDetailScreen;
+export default AssociacaoDetailScreen;

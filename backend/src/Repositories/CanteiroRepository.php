@@ -15,12 +15,12 @@ class CanteiroRepository
 
     public function findAllWhere(array $conditions): Collection
     {
-        return $this->canteiroModel->where($conditions)->get();
+        return $this->canteiroModel->where($conditions)->with('horta')->get();
     }
 
     public function findByUuid(string $uuid): ?CanteiroModel
     {
-        return $this->canteiroModel->find($uuid);
+        return $this->canteiroModel->with('horta')->find($uuid);
     }
 
     public function create(array $data): CanteiroModel

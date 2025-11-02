@@ -20,6 +20,7 @@ class HortaModel extends Model
         'endereco_uuid',
         'associacao_vinculada_uuid',
         'percentual_taxa_associado',
+        'tipo_de_liberacao',
         'excluido',
         'usuario_criador_uuid',
         'usuario_alterador_uuid',

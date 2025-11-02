@@ -31,7 +31,7 @@ class CanteiroService
     public function findAllWhere(array $payloadUsuarioLogado): Collection
     {
         $cargo = $this->getCargoSlug($payloadUsuarioLogado);
-        echo "CARGO ===========> " . $cargo;
+        
         switch ($cargo) {
             case 'admin_plataforma':
                 return $this->canteiroRepository->findAllWhere(['excluido' => 0]);

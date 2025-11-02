@@ -48,9 +48,9 @@ $routes($app);
 // TEMPORARIAMENTE: Middlewares comentados para debug
 $app->addBodyParsingMiddleware(); // ← Mantido para parsing do JSON
 $app->addErrorMiddleware(true, true, true); // ← Mantido para ver erros
-// $app->add(RoutePermissionMiddleware::class); // ← Desabilitado temporariamente
-// $app->add(FormatadorDeErrosMiddleware::class);
-// $app->add(ForcarJsonMiddleware::class); 
-// $app->add(JwtMiddleware::class);// --------------- Rodando app
+$app->add(RoutePermissionMiddleware::class); // ← Desabilitado temporariamente
+$app->add(FormatadorDeErrosMiddleware::class);
+$app->add(ForcarJsonMiddleware::class); 
+$app->add(JwtMiddleware::class);// --------------- Rodando app
 $app->run();
 ?>
