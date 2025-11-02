@@ -34,7 +34,7 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "apiUrl": "http://localhost:8181/api/v1",
+      "apiUrl": "http://192.168.0.22:8181/api/v1",
       "mapDefaultLat": -26.2843,
       "mapDefaultLng": -48.8449
     }

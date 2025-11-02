@@ -25,13 +25,9 @@ const CanteiroDetailScreen = ({ route }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>
-          Canteiro {canteiro.numero_identificador || 'S/N'}
-        </Text>
-        {canteiro.horta?.nome_da_horta && (
-          <Text style={styles.description}>
-            Horta: {canteiro.horta.nome_da_horta}
-          </Text>
+        <Text style={styles.title}>Canteiro #{canteiro.numero || 'S/N'}</Text>
+        {canteiro.descricao && (
+          <Text style={styles.description}>{canteiro.descricao}</Text>
         )}
       </View>
 
@@ -41,15 +37,22 @@ const CanteiroDetailScreen = ({ route }) => {
         <InfoRow
           icon="resize-outline"
           label="Tamanho"
-          value={canteiro.tamanho_m2 ? `${canteiro.tamanho_m2}m²` : null}
+          value={canteiro.tamanho ? `${canteiro.tamanho}m²` : null}
         />
         
         <InfoRow
           icon="calendar-outline"
           label="Data de Criação"
-          value={canteiro.data_de_criacao ? new Date(canteiro.data_de_criacao).toLocaleDateString('pt-BR') : null}
+          value={canteiro.created_at ? new Date(canteiro.created_at).toLocaleDateString('pt-BR') : null}
         />
       </Card>
+
+      {canteiro.observacoes && (
+        <Card style={styles.card}>
+          <Text style={styles.sectionTitle}>Observações</Text>
+          <Text style={styles.observacoes}>{canteiro.observacoes}</Text>
+        </Card>
+      )}
     </ScrollView>
   );
 };

@@ -17,7 +17,6 @@ export const COLORS = {
   
   // Neutras
   background: '#F5F5F5',
-  backgroundLight: '#FAFAFA',
   surface: '#FFFFFF',
   text: '#212121',
   textSecondary: '#757575',

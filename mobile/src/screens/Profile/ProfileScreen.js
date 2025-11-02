@@ -52,7 +52,7 @@ const ProfileScreen = ({ navigation }) => {
         <View style={styles.avatarContainer}>
           <Ionicons name="person" size={64} color="#fff" />
         </View>
-        <Text style={styles.userName}>{user?.nome_completo || 'Usuário'}</Text>
+        <Text style={styles.userName}>{user?.nome || 'Usuário'}</Text>
         <Text style={styles.userEmail}>{user?.email}</Text>
       </View>
 
@@ -70,13 +70,13 @@ const ProfileScreen = ({ navigation }) => {
         <InfoItem
           icon="person-outline"
           label="Nome"
-          value={user?.nome_completo}
+          value={user?.nome}
         />
 
         <InfoItem
           icon="card-outline"
           label="CPF/CNPJ"
-          value={user?.cpf ? formatCPForCNPJ(user.cpf) : null}
+          value={user?.cpf_cnpj ? formatCPForCNPJ(user.cpf_cnpj) : null}
         />
 
         <InfoItem

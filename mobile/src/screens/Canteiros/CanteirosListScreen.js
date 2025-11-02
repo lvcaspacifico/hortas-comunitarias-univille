@@ -50,7 +50,7 @@ const CanteirosListScreen = ({ navigation }) => {
   const handleDelete = (canteiro) => {
     Alert.alert(
       'Confirmar exclusão',
-      `Deseja realmente excluir o canteiro "${canteiro.numero_identificador}"?`,
+      `Deseja realmente excluir o canteiro "${canteiro.descricao || canteiro.numero}"?`,
       [
         { text: 'Cancelar', style: 'cancel' },
         {
@@ -77,13 +77,9 @@ const CanteirosListScreen = ({ navigation }) => {
     >
       <View style={styles.cardHeader}>
         <View style={styles.titleContainer}>
-          <Text style={styles.canteiroNumber}>
-            Canteiro {item.numero_identificador || 'S/N'}
-          </Text>
-          {item.horta?.nome_da_horta && (
-            <Text style={styles.canteiroDescription}>
-              Horta: {item.horta.nome_da_horta}
-            </Text>
+          <Text style={styles.canteiroNumber}>Canteiro #{item.numero || 'S/N'}</Text>
+          {item.descricao && (
+            <Text style={styles.canteiroDescription}>{item.descricao}</Text>
           )}
         </View>
         <View style={styles.actions}>
@@ -101,9 +97,9 @@ const CanteirosListScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      {item.tamanho_m2 && (
+      {item.tamanho && (
         <Text style={styles.info}>
-          <Ionicons name="resize-outline" size={14} /> Tamanho: {item.tamanho_m2}m²
+          <Ionicons name="resize-outline" size={14} /> Tamanho: {item.tamanho}m²
         </Text>
       )}
     </Card>

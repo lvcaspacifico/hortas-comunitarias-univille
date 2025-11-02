@@ -15,7 +15,7 @@ import { validateEmail } from '../../utils/validators';
 const EditProfileScreen = ({ navigation }) => {
   const { user, updateUser } = useAuth();
   const [formData, setFormData] = useState({
-    nome_completo: '',
+    nome: '',
     email: '',
   });
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ const EditProfileScreen = ({ navigation }) => {
   useEffect(() => {
     if (user) {
       setFormData({
-        nome_completo: user.nome_completo || '',
+        nome: user.nome || '',
         email: user.email || '',
       });
     }
@@ -38,8 +38,8 @@ const EditProfileScreen = ({ navigation }) => {
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.nome_completo.trim()) {
-      newErrors.nome_completo = 'Nome é obrigatório';
+    if (!formData.nome.trim()) {
+      newErrors.nome = 'Nome é obrigatório';
     }
 
     if (!formData.email.trim()) {
@@ -86,10 +86,10 @@ const EditProfileScreen = ({ navigation }) => {
       >
         <Input
           label="Nome Completo"
-          value={formData.nome_completo}
-          onChangeText={(text) => updateField('nome_completo', text)}
+          value={formData.nome}
+          onChangeText={(text) => updateField('nome', text)}
           placeholder="Digite seu nome completo"
-          error={errors.nome_completo}
+          error={errors.nome}
           leftIcon="person-outline"
         />
 

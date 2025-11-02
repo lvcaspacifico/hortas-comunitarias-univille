@@ -18,13 +18,9 @@ api.interceptors.request.use(
       const token = await AsyncStorage.getItem(CONFIG.tokenKey);
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
-        console.log(`🔑 Token adicionado à requisição ${config.method?.toUpperCase()} ${config.url}`);
-        console.log(`📋 Authorization header: Bearer ${token.substring(0, 20)}...`);
-      } else {
-        console.warn('⚠️ Nenhum token encontrado para a requisição');
       }
     } catch (error) {
-      console.error('❌ Erro ao recuperar token:', error);
+      console.error('Erro ao recuperar token:', error);
     }
     return config;
   },

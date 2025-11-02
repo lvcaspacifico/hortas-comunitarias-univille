@@ -3,33 +3,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CONFIG } from '../constants/config';
 
 /**
- * Decodifica JWT para extrair payload (sem validação)
- */
-const decodeJWT = (token) => {
-  try {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split('')
-        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-        .join('')
-    );
-    return JSON.parse(jsonPayload);
-  } catch (error) {
-    console.error('❌ Erro ao decodificar JWT:', error);
-    return null;
-  }
-};
-
-/**
  * Realiza login
  */
 export const login = async (email, senha) => {
   try {
     console.log('🔐 Tentando login com:', email);
     
-    const response = await api.post('/sessoes/login', {
+    const response = await api.post('/sessoes/login', { // ← /sessoes com S
       email: email,
       senha: senha,
     });
@@ -65,50 +45,20 @@ export const login = async (email, senha) => {
       return { token, usuario };
     }
     
-    // Se não veio, tenta buscar usando o UUID do token
+    // Se não veio, tenta buscar
     console.log('⏳ Buscando dados do usuário...');
-    
-    // Decodifica JWT para pegar o usuario_uuid
-    const payload = decodeJWT(token);
-    console.log('🔓 Payload completo do token:', JSON.stringify(payload, null, 2));
-    console.log('🆔 usuario_uuid:', payload?.usuario_uuid);
-    console.log('👔 cargo_uuid:', payload?.cargo_uuid);
-    console.log('🏢 associacao_uuid:', payload?.associacao_uuid);
-    
-    if (!payload?.usuario_uuid) {
-      console.warn('⚠️ UUID não encontrado no token');
-      const minimalUser = { email };
-      await AsyncStorage.setItem(CONFIG.userKey, JSON.stringify(minimalUser));
-      return { token, usuario: minimalUser };
-    }
-    
     try {
-      console.log('🔍 Tentando buscar usuário pelo UUID:', payload.usuario_uuid);
-      const userResponse = await api.get(`/usuarios/${payload.usuario_uuid}`);
+      const userResponse = await api.get('/usuarios/me');
       const fetchedUser = userResponse.data;
       
       await AsyncStorage.setItem(CONFIG.userKey, JSON.stringify(fetchedUser));
-      console.log('✅ Usuário buscado e salvo completo');
+      console.log('✅ Usuário buscado e salvo');
       return { token, usuario: fetchedUser };
     } catch (userError) {
-      console.warn('⚠️ Não foi possível buscar usuário da API:', userError.message);
-      console.log('💡 Criando usuário básico a partir do token JWT');
-      
-      // Fallback: cria usuário básico com dados do token
-      // Isso permite que o app funcione mesmo sem conseguir buscar o usuário completo
-      const basicUser = {
-        uuid: payload.usuario_uuid,
-        email: email,
-        cargo_uuid: payload.cargo_uuid,
-        associacao_uuid: payload.associacao_uuid,
-        horta_uuid: payload.horta_uuid,
-        // Nome será atualizado quando possível
-        nome_completo: email.split('@')[0], // Usa parte do email como fallback
-      };
-      
-      await AsyncStorage.setItem(CONFIG.userKey, JSON.stringify(basicUser));
-      console.log('✅ Usuário básico salvo:', basicUser);
-      return { token, usuario: basicUser };
+      console.warn('⚠️ Não foi possível buscar usuário, mas login OK:', userError.message);
+      // Login funcionou, mas não conseguimos buscar usuário
+      // Retorna apenas o token e deixa o app funcionar
+      return { token, usuario: { email } };
     }
     
   } catch (error) {
@@ -119,42 +69,6 @@ export const login = async (email, senha) => {
     await AsyncStorage.multiRemove([CONFIG.tokenKey, CONFIG.userKey]);
     throw error;
   }
-};
-
-/**
- * Gera um CNPJ único baseado no CPF do usuário
- * Formato: Usa os 8 primeiros dígitos do CPF + 0001 + dígitos verificadores gerados
- */
-const gerarCNPJdoCPF = (cpf) => {
-  // Remove formatação do CPF
-  const cpfLimpo = cpf.replace(/[^\d]/g, '');
-  
-  // Usa os primeiros 8 dígitos do CPF como base
-  const base = cpfLimpo.substring(0, 8);
-  
-  // Adiciona 0001 (filial)
-  const cnpjSemDV = base + '0001';
-  
-  // Calcula primeiro dígito verificador
-  let soma = 0;
-  let peso = 5;
-  for (let i = 0; i < 12; i++) {
-    soma += parseInt(cnpjSemDV[i]) * peso;
-    peso = peso === 2 ? 9 : peso - 1;
-  }
-  const dv1 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-  
-  // Calcula segundo dígito verificador
-  const cnpjComDV1 = cnpjSemDV + dv1;
-  soma = 0;
-  peso = 6;
-  for (let i = 0; i < 13; i++) {
-    soma += parseInt(cnpjComDV1[i]) * peso;
-    peso = peso === 2 ? 9 : peso - 1;
-  }
-  const dv2 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-  
-  return cnpjSemDV + dv1 + dv2;
 };
 
 /**
@@ -171,35 +85,31 @@ export const register = async (userData) => {
       dataFormatada = `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
     }
     
-    // Gera CNPJ único baseado no CPF do usuário
-    const cnpjGerado = gerarCNPJdoCPF(userData.cpf_cnpj);
-    console.log('🔢 CNPJ gerado a partir do CPF:', cnpjGerado);
-    
-    // Gera nome de associação baseado no nome do usuário
-    const primeiroNome = userData.nome.split(' ')[0];
-    const ultimoNome = userData.nome.split(' ').slice(-1)[0];
-    const nomeAssociacao = `Associação ${primeiroNome} ${ultimoNome}`;
+    // Garante CNPJ válido
+    const cnpjValido = userData.cnpj && userData.cnpj !== '00000000000000' 
+      ? userData.cnpj 
+      : '00000000000191'; // CNPJ válido como fallback
     
     // Monta estrutura esperada pela API
     const payload = {
       associacao: {
-        cnpj: cnpjGerado,
-        razao_social: nomeAssociacao,
-        nome_fantasia: nomeAssociacao,
+        cnpj: cnpjValido,
+        razao_social: userData.razao_social || userData.nome,
+        nome_fantasia: userData.nome_fantasia || userData.razao_social || userData.nome,
       },
       usuario: {
         nome_completo: userData.nome,
         cpf: userData.cpf_cnpj,
         email: userData.email,
         senha: userData.senha,
-        apelido: userData.apelido || primeiroNome,
-        data_de_nascimento: dataFormatada,
+        apelido: userData.apelido || userData.nome.split(' ')[0],
+        data_de_nascimento: dataFormatada, // ← Data formatada
       }
     };
     
     console.log('📦 Payload do cadastro:', JSON.stringify(payload, null, 2));
     
-    const response = await api.post('/sessoes/cadastro', payload);
+    const response = await api.post('/sessoes/cadastro', payload); // ← /sessoes com S
     
     console.log('✅ Cadastro realizado:', response.data);
     

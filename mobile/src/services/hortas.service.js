@@ -5,14 +5,9 @@ import api from './api';
  */
 export const getHortas = async (params = {}) => {
   try {
-    console.log('🌱 Buscando hortas...');
     const response = await api.get('/hortas', { params });
-    console.log('✅ Hortas recebidas:', response.data);
     return response.data;
   } catch (error) {
-    console.error('❌ Erro ao buscar hortas:', error.message);
-    console.error('❌ Detalhes:', error.response?.data);
-    console.error('❌ Status:', error.response?.status);
     throw error;
   }
 };
@@ -22,13 +17,9 @@ export const getHortas = async (params = {}) => {
  */
 export const getHorta = async (uuid) => {
   try {
-    console.log('🌱 Buscando horta:', uuid);
     const response = await api.get(`/hortas/${uuid}`);
-    console.log('✅ Horta recebida:', response.data);
     return response.data;
   } catch (error) {
-    console.error('❌ Erro ao buscar horta:', error.message);
-    console.error('❌ Detalhes:', error.response?.data);
     throw error;
   }
 };
@@ -38,14 +29,9 @@ export const getHorta = async (uuid) => {
  */
 export const createHorta = async (data) => {
   try {
-    console.log('🌱 Criando horta:', data);
     const response = await api.post('/hortas', data);
-    console.log('✅ Horta criada:', response.data);
     return response.data;
   } catch (error) {
-    console.error('❌ Erro ao criar horta:', error.message);
-    console.error('❌ Detalhes:', error.response?.data);
-    console.error('❌ Status:', error.response?.status);
     throw error;
   }
 };
