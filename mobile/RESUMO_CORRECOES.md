@@ -158,7 +158,3 @@ cd mobile && npx expo start
 - [x] Roadmap de melhorias definido
 
 ---
-
-**Status**: ✅ **PRONTO PARA USO**  
-**Data**: 29/10/2025  
-**Versão**: 1.0.0 MVP (corrigido)

@@ -183,7 +183,3 @@ npm install
 - **Expo Docs**: https://docs.expo.dev/
 
 ---
-
-**Status**: ✅ MVP Completo e Funcional  
-**Versão**: 1.0.0  
-**Última atualização**: Outubro 2025

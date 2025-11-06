@@ -145,4 +145,3 @@ No console do Expo, procure por:
 ❌ Token não encontrado na resposta
 ```
 
-**Os logs vão te dizer exatamente o problema!** 🔍

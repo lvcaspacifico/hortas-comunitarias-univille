@@ -1,4 +1,5 @@
-version: '3.8'
+# Docker Compose para Hortas Comunitárias
+# Versão do compose file não é mais necessária a partir do Docker Compose v2
 
 services:
   # Nginx - Servidor Web

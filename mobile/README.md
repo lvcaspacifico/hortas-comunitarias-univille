@@ -279,7 +279,3 @@ export const API_URL = 'http://SEU_IP:8181/api';
 - **Grupo do Guidini**: Módulo de pagamentos
 
 ---
-
-**Status**: ✅ **MVP Funcional**  
-**Última atualização**: 29 de outubro de 2025  
-**Versão**: 1.0.0 MVP (corrigido)
