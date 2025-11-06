@@ -353,5 +353,3 @@ cd mobile && npx expo start
 ```
 
 ---
-
-**Parabéns! Você tem um sistema totalmente funcional! 🌱🚀**

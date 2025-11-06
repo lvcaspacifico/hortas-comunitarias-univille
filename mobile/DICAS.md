@@ -321,4 +321,3 @@ Se tiver problemas:
 
 ---
 
-**Dica Final**: O app está funcional e bem estruturado. Não tenha medo de explorar o código e fazer modificações! 🚀

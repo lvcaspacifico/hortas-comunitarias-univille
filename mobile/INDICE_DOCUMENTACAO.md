@@ -251,7 +251,3 @@ hortas-comunitarias-univille\mobile\
 - [ ] **Estou preparado!** ✅
 
 ---
-
-**🎉 BOA SORTE NA SUA APRESENTAÇÃO! 🌱**
-
-Você tem toda a documentação necessária para uma apresentação perfeita!
