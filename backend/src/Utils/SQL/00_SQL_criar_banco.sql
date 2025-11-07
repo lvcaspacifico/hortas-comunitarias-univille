@@ -1,8 +1,8 @@
 -- Script de criação completa do banco hortas_db
 -- MySQL 8.0+
 
--- Usar o banco existente
-USE hortas_db;
+-- Usar o banco existente (verificar nome ao fazer deploy)
+USE railway;
 
 -- Desabilitar verificação de foreign keys temporariamente
 SET FOREIGN_KEY_CHECKS = 0;
