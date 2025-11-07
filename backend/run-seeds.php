@@ -9,8 +9,10 @@ use DI\ContainerBuilder;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 // Carrega .env
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}
 foreach ($_SERVER as $key => $value) {
     if (getenv($key) !== false && !isset($_ENV[$key])) {
         $_ENV[$key] = $value;
