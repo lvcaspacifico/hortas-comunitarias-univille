@@ -1,18 +1,16 @@
 <?php
-declare(strict_types=1);
-
 require __DIR__ . '/vendor/autoload.php';
-require __DIR__ . '/config/dependencies.php';
 
-use Dotenv\Dotenv;
 use DI\ContainerBuilder;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Dotenv\Dotenv;
 
-// Carrega .env
+// Carrega .env se existir
 if (file_exists(__DIR__ . '/.env')) {
     $dotenv = Dotenv::createImmutable(__DIR__);
     $dotenv->load();
 }
+
 foreach ($_SERVER as $key => $value) {
     if (getenv($key) !== false && !isset($_ENV[$key])) {
         $_ENV[$key] = $value;
@@ -25,22 +23,31 @@ $dependencies = require __DIR__ . '/config/dependencies.php';
 $dependencies($containerBuilder);
 $container = $containerBuilder->build();
 
-/** @var Capsule $capsule */
 $capsule = $container->get(Capsule::class);
 
-// Executa seeds
-$seedsDir = __DIR__ . '/src/Utils/Seeds';
-echo "Procurando seeds em: $seedsDir\n";
-$files = scandir($seedsDir);
-sort($files);
+// Executar seeds SQL
+$seeds = [
+    'src/Utils/SQL/01_SQL_seed_dados_iniciais.sql',
+    'src/Utils/SQL/02_SQL_seed_dados_teste.sql'
+];
 
-foreach ($files as $file) {
-    if (in_array($file, ['.', '..'])) continue;
-
-    $seedName = pathinfo($file, PATHINFO_FILENAME);
-
-    require $seedsDir . '/' . $file;
-
-    $seed = new $seedName($capsule);
-    $seed->up();
+foreach ($seeds as $seedFile) {
+    $fullPath = __DIR__ . '/' . $seedFile;
+    
+    if (!file_exists($fullPath)) {
+        echo "❌ Arquivo não encontrado: $seedFile\n";
+        continue;
+    }
+    
+    echo "Executando $seedFile...\n";
+    $sql = file_get_contents($fullPath);
+    
+    try {
+        $capsule::connection()->unprepared($sql);
+        echo "✓ $seedFile executado com sucesso!\n";
+    } catch (Exception $e) {
+        echo "❌ Erro ao executar $seedFile: " . $e->getMessage() . "\n";
+    }
 }
+
+echo "\n✅ Processo de seeds finalizado!\n";
