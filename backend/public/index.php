@@ -32,8 +32,10 @@ use App\Middlewares\JwtMiddleware;
 use App\Middlewares\RoutePermissionMiddleware;
 
 // --------------- Carregando .env
-$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+if (file_exists(__DIR__ . '/../.env')) { // Se existir o .env (em dev) carrega, se não puxa da config do env de deploy
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
+}
 foreach ($_SERVER as $key => $value) {
     if (getenv($key) !== false && !isset($_ENV[$key])) {
         $_ENV[$key] = $value;
