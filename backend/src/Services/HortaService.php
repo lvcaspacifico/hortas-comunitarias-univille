@@ -176,7 +176,7 @@ class HortaService
 
         if (!empty($data['endereco_uuid'])) {
             try {
-                $this->enderecoService->findByUuid($data['endereco_uuid']);
+                $this->enderecoService->findByUuid($data['endereco_uuid'], $payloadUsuarioLogado);
             } catch (\Exception $e) {
                 // Endereço não encontrado, remover do data
                 unset($data['endereco_uuid']);
