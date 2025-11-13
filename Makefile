@@ -3,7 +3,7 @@
 # Cores para output
 GREEN=\033[0;32m
 YELLOW=\033[1;33m
-R# Informações úteis
+# Informações úteis
 info: ## Mostra informações do ambiente
 	@echo "$(GREEN)📊 Informações do Ambiente:$(NC)"
 	@echo ""
@@ -59,7 +59,7 @@ logs-db: ## Mostra logs do banco de dados
 	@docker-compose logs -f mysql
 
 shell-php: ## Acessa o container PHP
-	@docker-compose exec php bash
+	@docker-compose exec php sh
 
 shell-mysql: ## Acessa o container MySQL
 	@docker-compose exec mysql bash

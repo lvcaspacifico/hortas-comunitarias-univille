@@ -25,9 +25,11 @@ const HortaDetailScreen = ({ route }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>{horta.nome}</Text>
-        {horta.descricao && (
-          <Text style={styles.description}>{horta.descricao}</Text>
+        <Text style={styles.title}>{horta.nome_da_horta}</Text>
+        {horta.percentual_taxa_associado && (
+          <Text style={styles.description}>
+            Taxa de Associado: {horta.percentual_taxa_associado}%
+          </Text>
         )}
       </View>
 
@@ -37,28 +39,35 @@ const HortaDetailScreen = ({ route }) => {
         <InfoRow
           icon="location-outline"
           label="Cidade"
-          value={horta.cidade}
+          value={horta.endereco?.cidade}
         />
         
         <InfoRow
           icon="map-outline"
           label="Endereço"
-          value={horta.endereco}
+          value={horta.endereco ? 
+            `${horta.endereco.tipo_logradouro || ''} ${horta.endereco.logradouro || ''}, ${horta.endereco.numero || ''}`.trim() 
+            : null}
+        />
+
+        <InfoRow
+          icon="business-outline"
+          label="Bairro"
+          value={horta.endereco?.bairro}
+        />
+
+        <InfoRow
+          icon="key-outline"
+          label="Tipo de Liberação"
+          value={horta.tipo_de_liberacao}
         />
         
         <InfoRow
           icon="calendar-outline"
           label="Data de Criação"
-          value={horta.created_at ? new Date(horta.created_at).toLocaleDateString('pt-BR') : null}
+          value={horta.data_de_criacao ? new Date(horta.data_de_criacao).toLocaleDateString('pt-BR') : null}
         />
       </Card>
-
-      {horta.observacoes && (
-        <Card style={styles.card}>
-          <Text style={styles.sectionTitle}>Observações</Text>
-          <Text style={styles.observacoes}>{horta.observacoes}</Text>
-        </Card>
-      )}
     </ScrollView>
   );
 };
