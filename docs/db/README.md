@@ -615,17 +615,15 @@ O usuário que criar a conta será o usuário responsável da conta por padrão,
 | --- | --- | --- | --- |
 | UUID | uuid | CHAR(36) | Chave primária |
 | Usuário | usuario_uuid | CHAR(36) NOT NULL | FK para usuários (quem paga a mensalidade) |
-| Associação | associacao_uuid | CHAR(36) NOT NULL | FK para a associação dona do vínculo |
 | Valor em Centavos | valor_em_centavos | BIGINT NOT NULL | Valor da mensalidade em centavos |
-| Mês Referência | mes_referencia | DATE NOT NULL | Primeiro dia do mês de referência (YYYY-MM-01) |
 | Plano UUID | plano_uuid | CHAR(36) | UUID do plano |
 | Data de Vencimento | data_vencimento | DATE NOT NULL | Data que deveria pagar |
 | Data de Pagamento | data_pagamento | DATE | Preenchido quando efetivamente pago |
 | Status | status | TINYINT NOT NULL DEFAULT 0 | 0 = aguardando pagamento, 1 = pago, 2 = compensado/concluído, 3 = cancelado, 4 = em atraso |
 | Dias de Atraso | dias_atraso | INT DEFAULT 0 | Calculado automaticamente |
 | URL Anexo | url_anexo | TEXT | Link para boleto, ordem de pagamento, etc |
-| URL Recibo | url_anexo | TEXT | Link para comprovante, recibo, nota fiscal, etc |
-| Excluído | excluido | BOOLEAN DEFAULT FALSE | Exclusão lógica |
+| URL Recibo | url_recibo | VARCHAR(255) | Link para comprovante, recibo, nota fiscal, etc |
+| Excluído | excluido | TINYINT DEFAULT 0 | Exclusão lógica |
 | Usuário Criador | usuario_criador_uuid | CHAR(36) | UUID do usuário que criou |
 | Data de Criação | data_de_criacao | TIMESTAMP DEFAULT NOW() | Data/hora da criação |
 | Usuário Alterador | usuario_alterador_uuid | CHAR(36) | UUID do último usuário que alterou |
@@ -633,10 +631,9 @@ O usuário que criar a conta será o usuário responsável da conta por padrão,
 
 ### Relacionamentos de MENSALIDADES DA PLATAFORMA:
 - **usuario_uuid** → usuarios.uuid (N:1)
-- **associacao_uuid** → associacoes.uuid (N:1)
+- **plano_uuid** → planos.uuid (N:1)
 - **usuario_criador_uuid** → usuarios.uuid (N:1)
 - **usuario_alterador_uuid** → usuarios.uuid (N:1)
-- **plano_uuid** → planos.uuid (N:1)
 
 ---
 
