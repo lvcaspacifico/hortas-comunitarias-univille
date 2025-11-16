@@ -11354,14 +11354,6 @@
 			"value": ""
 		},
 		{
-			"key": "JWT_ADM_ASSOC",
-			"value": ""
-		},
-		{
-			"key": "JWT_ADM_HORTA",
-			"value": ""
-		},
-		{
 			"key": "JWT_TOKEN",
 			"value": ""
 		},

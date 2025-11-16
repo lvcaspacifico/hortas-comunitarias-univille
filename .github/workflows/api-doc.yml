@@ -23,16 +23,22 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Dependências
+      - name: Instalar dependências
         run: |
-          npm install -g postman-to-openapi
+          npm install postman-to-openapi
           npm install -g @redocly/cli
 
-      - name: Converter Postman para OpenAPI
-        run: npx postman-to-openapi postman/hortas-comunitarias.postman_collection.json -f openapi.yaml
+      - name: Postman -> OpenAPI
+        run: |
+          node -e "
+          const postmanToOpenApi = require('postman-to-openapi');
+          postmanToOpenApi('postman/hortas-comunitarias.postman_collection.json', 'openapi.yaml')
+            .then(() => console.log('Conversion complete'))
+            .catch(err => { console.error(err); process.exit(1); });
+          "
 
-      - name: Gerar doc em HTML
-        run: npx redocly build-docs openapi.yaml -o api.html
+      - name: Gerar HTML
+        run: redocly build-docs openapi.yaml -o api.html
 
       - name: Mover para docs/api/
         run: |
