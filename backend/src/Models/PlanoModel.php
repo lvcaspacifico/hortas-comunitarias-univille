@@ -18,6 +18,7 @@ class PlanoModel extends Model
         'uuid',
         'codigo',
         'slug',
+        'valor_em_centavos',
         'nome',
         'descricao',
         'excluido',
