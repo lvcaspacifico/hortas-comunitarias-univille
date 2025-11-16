@@ -6,6 +6,7 @@ on:
       - feat-collection-org
     paths:
       - 'postman/hortas-comunitarias.postman_collection.json'
+  workflow_dispatch:
 
 jobs:
   generate-docs:
