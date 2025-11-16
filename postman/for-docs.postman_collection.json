@@ -1,0 +1,7381 @@
+{
+	"info": {
+		"_postman_id": "212c2827-5f29-4c97-bc82-691adcb298b2",
+		"name": "for-docs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49156930"
+	},
+	"item": [
+		{
+			"name": "Sessions",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Salvar token JWT para var de ambiente",
+									"var dadosJson = pm.response.json();",
+									"if (dadosJson.token) {",
+									"    pm.environment.set(\"JWT_ADM_PLT\", dadosJson.token);",
+									"    console.log(\"Token salvo em JWT_ADM_PLT.\");",
+									"} else {",
+									"    console.log(\"Token não retornado.\");",
+									"}",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const EMAIL_ADM = \"hortas_comunitarias@univille.br\";\r",
+									"pm.environment.set(\"EMAIL_ADM\", EMAIL_ADM);\r",
+									"\r",
+									"const SENHA_ADM = \"senha12345\";\r",
+									"pm.environment.set(\"SENHA_ADM\", SENHA_ADM);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{EMAIL_ADM}}\",\r\n    \"senha\": \"{{SENHA_ADM}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/sessoes/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"sessoes",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastro",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var dadosJson = pm.response.json();",
+									"if (dadosJson.token) {",
+									"    pm.environment.set(\"JWT_ADM_PLT\", dadosJson.token);",
+									"    console.log(\"Token salvo em JWT_ADM_PLT:\", dadosJson.token);",
+									"} else {",
+									"    console.log(\"Token não presente na resposta\");",
+									"}",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"associacao\": {\r\n    \"cnpj\": \"08.063.748/0001-45\",\r\n    \"razao_social\": \"Associação Exemplo LTDA\",\r\n    \"nome_fantasia\": \"Associação Exemplo\",\r\n    \"url_estatuto_social_pdf\": \"https://meusite.com/estatuto.pdf\",\r\n    \"url_ata_associacao_pdf\": \"https://meusite.com/ata.pdf\"\r\n  },\r\n  \"usuario\": {\r\n    \"nome_completo\": \"João da Silva\",\r\n    \"cpf\": \"973.220.700-03\",\r\n    \"email\": \"joaozinho@email.com\",\r\n    \"senha\": \"123456\",\r\n    \"apelido\": \"Joãozinho\",\r\n    \"data_de_nascimento\": \"2002-02-02\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/sessoes/cadastro",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"sessoes",
+								"cadastro"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Endereços",
+			"item": [
+				{
+					"name": "endereços",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_um_endereco\", jsonData[0].uuid)"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/enderecos",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"enderecos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "endereço por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/enderecos/{{uuid_de_um_endereco}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"enderecos",
+								"{{uuid_de_um_endereco}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "endereços",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo_logradouro\": \"Rua\",\r\n    \"logradouro\": \"Sebastião Johnny\",\r\n    \"numero\": \"211\",\r\n    \"complemento\": \"Casa verde\",\r\n    \"bairro\": \"Costa e Silva\",\r\n    \"cidade\": \"Joinville\",\r\n    \"estado\": \"SC\",\r\n    \"cep\": \"123456789\",\r\n    \"latitude\": 90,\r\n    \"longitude\": 180\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/enderecos",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"enderecos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "endereços",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo_logradouro\": \"Rua\",\r\n    \"logradouro\": \"Sebastião Bob\",\r\n    \"numero\": \"112\",\r\n    \"complemento\": \"Casa amarela\",\r\n    \"bairro\": \"Aventureiro\",\r\n    \"cidade\": \"Joinville\",\r\n    \"estado\": \"SC\",\r\n    \"cep\": \"987654321\",\r\n    \"latitude\": -1,\r\n    \"longitude\": 90,\r\n    \"excluido\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/enderecos/{{uuid_de_um_endereco}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"enderecos",
+								"{{uuid_de_um_endereco}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "endereços",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-61b4a37c-6cc6-46d0-a979-b093a81cc1ea": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Endereços",
+											"endereços"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/enderecos/{{uuid_de_um_endereco}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"enderecos",
+								"{{uuid_de_um_endereco}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Associações",
+			"item": [
+				{
+					"name": "associações",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_associacao\", jsonData[0].id)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/associacoes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"associacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "associações por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/associacoes/{{uuid_de_uma_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"associacoes",
+								"{{uuid_de_uma_associacao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "associações",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-61b4a37c-6cc6-46d0-a979-b093a81cc1ea": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Endereços",
+											"endereços"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cnpj\": \"00.000.000/0002-00\",\r\n    \"razao_social\": \"Assoc teste LTDA\",\r\n    \"nome_fantasia\": \"Assoc teste LTDA\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"url_estatuto_social_pdf\": \"https://www.google.drive.com\",\r\n    \"url_ata_associacao_pdf\": \"https://www.google.drive.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/associacoes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"associacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "associações",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-61b4a37c-6cc6-46d0-a979-b093a81cc1ea": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Endereços",
+											"endereços"
+										]
+									},
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cnpj\": \"00.000.000/0003-00\",\r\n    \"razao_social\": \"Assoc teste LTDA\",\r\n    \"nome_fantasia\": \"Assoc teste LTDA\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"url_estatuto_social_pdf\": \"https://www.google.drive.com\",\r\n    \"url_ata_associacao_pdf\": \"https://www.google.drive.com\",\r\n    \"status_aprovacao\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/associacoes/{{uuid_de_uma_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"associacoes",
+								"{{uuid_de_uma_associacao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "associações",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/associacoes/{{uuid_de_uma_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"associacoes",
+								"{{uuid_de_uma_associacao}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Hortas",
+			"item": [
+				{
+					"name": "hortas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_horta\", jsonData[0].uuid)"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/hortas",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"hortas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "horta por UUID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-4c801442-5439-40f4-823a-5d56db5249af": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Hortas",
+											"hortas"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/hortas/{{uuid_de_uma_horta}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"hortas",
+								"{{uuid_de_uma_horta}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hortas",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									},
+									"49156930-61b4a37c-6cc6-46d0-a979-b093a81cc1ea": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Endereços",
+											"endereços"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_da_horta\": \"Horta Feliz Costa e Silva\",\r\n    \"percentual_taxa_associado\": 25.0,\r\n    \"tipo_de_liberacao\": 1,\r\n    \"associacao_vinculada_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/hortas",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"hortas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hortas",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-4c801442-5439-40f4-823a-5d56db5249af": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Hortas",
+											"hortas"
+										]
+									},
+									"49156930-61b4a37c-6cc6-46d0-a979-b093a81cc1ea": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Endereços",
+											"endereços"
+										]
+									},
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_da_horta\": \"Horta Triste Fátima\",\r\n    \"percentual_taxa_associado\": 20.0,\r\n    \"associacao_vinculada_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"excluido\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/hortas/{{uuid_de_uma_horta}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"hortas",
+								"{{uuid_de_uma_horta}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hortas",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-4c801442-5439-40f4-823a-5d56db5249af": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Hortas",
+											"hortas"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/hortas/{{uuid_de_uma_horta}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"hortas",
+								"{{uuid_de_uma_horta}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Cargos",
+			"item": [
+				{
+					"name": "cargos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_um_cargo\", jsonData[0].uuid)"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/cargos",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"cargos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cargos por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-3b656b5f-d1e4-47ba-8d87-74b0231ab0a6": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Cargos",
+											"cargos"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/cargos/{{uuid_de_um_cargo}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"cargos",
+								"{{uuid_de_um_cargo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cargos",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": 5,\r\n    \"slug\": \"cargo-teste\",\r\n    \"nome\": \"Cargo teste\",\r\n    \"descricao\": \"Cargo para testar\",\r\n    \"cor\": \"#ffffff\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/cargos",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"cargos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cargos",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-3b656b5f-d1e4-47ba-8d87-74b0231ab0a6": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Cargos",
+											"cargos"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"slug\": \"cargo-alterado\",\r\n    \"nome\": \"Cargo alterado\",\r\n    \"descricao\": \"Cargo que alterou\",\r\n    \"cor\": \"#ffffff\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/cargos/{{uuid_de_um_cargo}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"cargos",
+								"{{uuid_de_um_cargo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cargos",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-3b656b5f-d1e4-47ba-8d87-74b0231ab0a6": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Cargos",
+											"cargos"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/cargos/{{uuid_de_um_cargo}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"cargos",
+								"{{uuid_de_um_cargo}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "usuarios",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"let uuid;\r",
+									"let horta_uuid;\r",
+									"let associacao_uuid;\r",
+									"\r",
+									"for (const obj of jsonData) {\r",
+									"    if (obj.email !== pm.environment.get(\"EMAIL_ADM\")) {\r",
+									"        uuid = obj.uuid;\r",
+									"        horta_uuid = obj.horta_uuid;\r",
+									"        associacao_uuid = obj.associacao_uuid;\r",
+									"        break\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"pm.environment.set(\"uuid_de_um_user\", uuid);\r",
+									"pm.environment.set(\"uuid_horta_de_um_user\", horta_uuid);\r",
+									"pm.environment.set(\"uuid_associacao_de_um_user\", associacao_uuid);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/usuarios",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuarios sem auth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"JWT_ADM_PLT\", \"foo\");"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/usuarios",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuarios por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-7322df91-174f-4381-98ad-ccd65f9ac3df": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Usuarios",
+											"usuarios"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/usuarios/{{uuid_de_um_user}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"usuarios",
+								"{{uuid_de_um_user}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuarios",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-4c801442-5439-40f4-823a-5d56db5249af": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Hortas",
+											"hortas"
+										]
+									},
+									"49156930-61b4a37c-6cc6-46d0-a979-b093a81cc1ea": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Endereços",
+											"endereços"
+										]
+									},
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									},
+									"49156930-3b656b5f-d1e4-47ba-8d87-74b0231ab0a6": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Cargos",
+											"cargos"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_completo\": \"João Armless\",\r\n    \"apelido\": \"João sem braço\",\r\n    \"cpf\": \"767.360.290-31\",\r\n    \"email\": \"joao@plataforma.com\",\r\n    \"senha\": \"senha12345\",\r\n    \"taxa_associado_em_centavos\": 1500,\r\n    \"data_de_nascimento\": \"2002-02-02\",\r\n    \"dias_ausente\": 1,\r\n    \"associacao_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta}}\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"cargo_uuid\": \"{{uuid_de_um_cargo}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/usuarios",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuarios",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-4c801442-5439-40f4-823a-5d56db5249af": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Hortas",
+											"hortas"
+										]
+									},
+									"49156930-61b4a37c-6cc6-46d0-a979-b093a81cc1ea": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Endereços",
+											"endereços"
+										]
+									},
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									},
+									"49156930-3b656b5f-d1e4-47ba-8d87-74b0231ab0a6": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Cargos",
+											"cargos"
+										]
+									},
+									"49156930-7322df91-174f-4381-98ad-ccd65f9ac3df": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Usuarios",
+											"usuarios"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_completo\": \"Alterado da Silva\",\r\n    \"email\": \"super_admin@plataforma.com\",\r\n    \"senha\": \"senha12345\",\r\n    \"taxa_associado_em_centavos\": 1500,\r\n    \"data_de_nascimento\": \"2002-02-02\",\r\n    \"associacao_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta}}\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"cargo_uuid\": \"{{uuid_de_um_cargo}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/usuarios/{{uuid_de_um_user}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"usuarios",
+								"{{uuid_de_um_user}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuarios",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-7322df91-174f-4381-98ad-ccd65f9ac3df": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Usuarios",
+											"usuarios"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/usuarios/{{uuid_de_um_user}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"usuarios",
+								"{{uuid_de_um_user}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Permissões",
+			"item": [
+				{
+					"name": "permissões",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"let uuid;\r",
+									"\r",
+									"for (const obj of jsonData) {\r",
+									"    if (obj.modulo != 100) {\r",
+									"        uuid = obj.uuid;\r",
+									"        console.log(uuid);\r",
+									"        break\r",
+									"    }\r",
+									"}\r",
+									"pm.environment.set(\"uuid_de_uma_permissao\", jsonData[0].uuid)"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-2fbfb764-9c64-46b0-aa7c-3e1507c2d73c": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões",
+											"permissões"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes/{{uuid_de_uma_permissao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes",
+								"{{uuid_de_uma_permissao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"slug\": \"recurso_get\",\r\n    \"tipo\": 1,\r\n    \"modulo\": 1,\r\n    \"descricao\": \"Permissão dummy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-2fbfb764-9c64-46b0-aa7c-3e1507c2d73c": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões",
+											"permissões"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"slug\": \"recurso_get\",\r\n    \"tipo\": 1,\r\n    \"modulo\": 1,\r\n    \"descricao\": \"Permissão dummy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes/{{uuid_de_uma_permissao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes",
+								"{{uuid_de_uma_permissao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-2fbfb764-9c64-46b0-aa7c-3e1507c2d73c": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões",
+											"permissões"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes/{{uuid_de_uma_permissao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes",
+								"{{uuid_de_uma_permissao}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Permissões do Usuário",
+			"item": [
+				{
+					"name": "permissões do usuário por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-7322df91-174f-4381-98ad-ccd65f9ac3df": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Usuarios",
+											"usuarios"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-do-usuario/{{uuid_de_um_user}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-do-usuario",
+								"{{uuid_de_um_user}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Chaves",
+			"item": [
+				{
+					"name": "chaves",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"uuid_de_uma_chave\", jsonData[0].uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/chaves",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"chaves"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chaves por UUID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ff888680-5728-4938-b31f-ee25fd088d81": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Chaves",
+											"chaves"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/chaves/{{uuid_de_uma_chave}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"chaves",
+								"{{uuid_de_uma_chave}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chaves",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-4c801442-5439-40f4-823a-5d56db5249af": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Hortas",
+											"hortas"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"codigo\": \"CHV-001\",\r\n  \"horta_uuid\": \"{{uuid_de_uma_horta}}\",\r\n  \"observacoes\": \"Chave para acesso principal da horta\",\r\n  \"disponivel\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/chaves",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"chaves"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chaves",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ff888680-5728-4938-b31f-ee25fd088d81": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Chaves",
+											"chaves"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"disponivel\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/chaves/{{uuid_de_uma_chave}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"chaves",
+								"{{uuid_de_uma_chave}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chaves",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ff888680-5728-4938-b31f-ee25fd088d81": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Chaves",
+											"chaves"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/chaves/{{uuid_de_uma_chave}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"chaves",
+								"{{uuid_de_uma_chave}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Filas de Usuários",
+			"item": [
+				{
+					"name": "fila de usuários",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_fila\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_de_um_user_na_fila\", jsonData[0].usuario_uuid);\r",
+									"pm.environment.set(\"uuid_de_uma_horta_na_fila\", jsonData[0].horta_uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"fila-de-usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fila de usuários por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-55dd79a2-73e0-4607-8842-60d81bc98b98": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Filas de Usuários",
+											"fila de usuários"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/{{uuid_de_uma_fila}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"fila-de-usuarios",
+								"{{uuid_de_uma_fila}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fila de usuários por Usuário UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-55dd79a2-73e0-4607-8842-60d81bc98b98": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Filas de Usuários",
+											"fila de usuários"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/usuario/{{uuid_de_um_user_na_fila}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"fila-de-usuarios",
+								"usuario",
+								"{{uuid_de_um_user_na_fila}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fila de usuários por Horta UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-55dd79a2-73e0-4607-8842-60d81bc98b98": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Filas de Usuários",
+											"fila de usuários"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/horta/{{uuid_de_uma_horta_na_fila}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"fila-de-usuarios",
+								"horta",
+								"{{uuid_de_uma_horta_na_fila}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fila de usuários",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-55dd79a2-73e0-4607-8842-60d81bc98b98": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Filas de Usuários",
+											"fila de usuários"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ordem\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/{{uuid_de_uma_fila}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"fila-de-usuarios",
+								"{{uuid_de_uma_fila}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fila de usuários",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-55dd79a2-73e0-4607-8842-60d81bc98b98": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Filas de Usuários",
+											"fila de usuários"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/fila-de-usuarios/{{uuid_de_uma_fila}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"fila-de-usuarios",
+								"{{uuid_de_uma_fila}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Canteiros",
+			"item": [
+				{
+					"name": "canteiros",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_um_canteiro\", jsonData[0].id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "canteiros por UUID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-3d89d23d-7b0b-4d66-9a2a-7d9789f7c87b": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Canteiros",
+											"canteiros"
+										]
+									}
+								}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros/{{uuid_de_um_canteiro}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros",
+								"{{uuid_de_um_canteiro}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "canteiros",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-4c801442-5439-40f4-823a-5d56db5249af": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Hortas",
+											"hortas"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero_identificador\": \"A-000\",\r\n    \"tamanho_m2\": 20.50,\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "canteiros",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-4c801442-5439-40f4-823a-5d56db5249af": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Hortas",
+											"hortas"
+										]
+									},
+									"49156930-3d89d23d-7b0b-4d66-9a2a-7d9789f7c87b": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Canteiros",
+											"canteiros"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero_identificador\": \"Z-999\",\r\n    \"tamanho_m2\": 10.25,\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros/{{uuid_de_um_canteiro}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros",
+								"{{uuid_de_um_canteiro}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "canteiros",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-3d89d23d-7b0b-4d66-9a2a-7d9789f7c87b": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Canteiros",
+											"canteiros"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros/{{uuid_de_um_canteiro}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros",
+								"{{uuid_de_um_canteiro}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-df1d5f39-6345-410a-abc5-24030038c29b": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-4a56c654-b0b1-48d7-918c-17bfc4cd45a6",
+								"location": [
+									"p2o",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Vínculo: Canteiro e Usuário",
+			"item": [
+				{
+					"name": "canteiros e usuários",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_um_vinculo_canteiro_user\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_canteiro_de_um_vinculo\", jsonData[0].canteiro_uuid);\r",
+									"pm.environment.set(\"uuid_user_de_um_vinculo_canteiro\", jsonData[0].usuario_uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros-e-usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "canteiros e usuários por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-044f6825-d480-49d7-877d-7a5b8a7ea184": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Vínculo: Canteiro e Usuário",
+											"canteiros e usuários"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/{{uuid_de_um_vinculo_canteiro_user}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros-e-usuarios",
+								"{{uuid_de_um_vinculo_canteiro_user}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "canteiros e usuários",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-7322df91-174f-4381-98ad-ccd65f9ac3df": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Usuarios",
+											"usuarios"
+										]
+									},
+									"49156930-044f6825-d480-49d7-877d-7a5b8a7ea184": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Vínculo: Canteiro e Usuário",
+											"canteiros e usuários"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario_uuid\": \"{{uuid_de_um_user}}\",\r\n    \"canteiro_uuid\": \"{{uuid_canteiro_de_um_vinculo}}\",\r\n    \"tipo_vinculo\": 1,\r\n    \"data_inicio\": \"2025-01-01\",\r\n    \"data_fim\": \"2025-01-02\",\r\n    \"percentual_responsabilidade\": 25.0,\r\n    \"observacoes\": \"Teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros-e-usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "canteiros e usuários",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-7322df91-174f-4381-98ad-ccd65f9ac3df": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Usuarios",
+											"usuarios"
+										]
+									},
+									"49156930-044f6825-d480-49d7-877d-7a5b8a7ea184": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Vínculo: Canteiro e Usuário",
+											"canteiros e usuários"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario_uuid\": \"{{uuid_user_de_um_vinculo_canteiro}}\",\r\n    \"canteiro_uuid\": \"{{uuid_canteiro_de_um_vinculo}}\",\r\n    \"tipo_vinculo\": 2,\r\n    \"data_inicio\": \"2025-01-01\",\r\n    \"data_fim\": \"2025-01-02\",\r\n    \"percentual_responsabilidade\": 50.0,\r\n    \"observacoes\": \"Teste\",\r\n    \"ativo\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/{{uuid_de_um_vinculo_canteiro_user}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros-e-usuarios",
+								"{{uuid_de_um_vinculo_canteiro_user}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "canteiros e usuários",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-044f6825-d480-49d7-877d-7a5b8a7ea184": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Vínculo: Canteiro e Usuário",
+											"canteiros e usuários"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/{{uuid_de_um_vinculo_canteiro_user}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"canteiros-e-usuarios",
+								"{{uuid_de_um_vinculo_canteiro_user}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Permissões de Cargos",
+			"item": [
+				{
+					"name": "permissões de cargo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_tupla_permissao_cargo\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_cargo_com_permissao\", jsonData[0].cargo_uuid);\r",
+									"pm.environment.set(\"uuid_permissao_de_um_cargo\", jsonData[0].permissao_uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-cargo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões de cargo por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ea7d2b2d-8379-4e4c-a012-5e52a9f35a37": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões de Cargos",
+											"permissões de cargo"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/{{uuid_de_uma_tupla_permissao_cargo}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-cargo",
+								"{{uuid_de_uma_tupla_permissao_cargo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões de cargo por Cargo UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ea7d2b2d-8379-4e4c-a012-5e52a9f35a37": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões de Cargos",
+											"permissões de cargo"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/cargo/{{uuid_cargo_com_permissao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-cargo",
+								"cargo",
+								"{{uuid_cargo_com_permissao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões de cargo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-2fbfb764-9c64-46b0-aa7c-3e1507c2d73c": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões",
+											"permissões"
+										]
+									},
+									"49156930-3b656b5f-d1e4-47ba-8d87-74b0231ab0a6": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Cargos",
+											"cargos"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cargo_uuid\": \"{{uuid_de_um_cargo}}\",\r\n    \"permissao_uuid\": \"{{uuid_de_uma_permissao}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-cargo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões de cargo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ea7d2b2d-8379-4e4c-a012-5e52a9f35a37": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões de Cargos",
+											"permissões de cargo"
+										]
+									},
+									"49156930-2fbfb764-9c64-46b0-aa7c-3e1507c2d73c": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões",
+											"permissões"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"permissao_uuid\": \"{{uuid_de_uma_permissao}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/{{uuid_de_uma_tupla_permissao_cargo}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-cargo",
+								"{{uuid_de_uma_tupla_permissao_cargo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões de cargo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ea7d2b2d-8379-4e4c-a012-5e52a9f35a37": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões de Cargos",
+											"permissões de cargo"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/{{uuid_de_uma_tupla_permissao_cargo}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-cargo",
+								"{{uuid_de_uma_tupla_permissao_cargo}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Permissões de Exceção",
+			"item": [
+				{
+					"name": "permissões de exceção",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_tupla_permissao_excecao\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_de_um_usuario_excecao\", jsonData[0].usuario_uuid);\r",
+									"pm.environment.set(\"uuid_de_uma_permissao_excecao\", jsonData[0].permissao_uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-excecao",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-excecao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões de exceção por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-adbd1154-17dd-4d63-ae3e-90946261dc03": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões de Exceção",
+											"permissões de exceção"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-excecao/{{uuid_de_uma_tupla_permissao_excecao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-excecao",
+								"{{uuid_de_uma_tupla_permissao_excecao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões de exceção",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-7322df91-174f-4381-98ad-ccd65f9ac3df": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Usuarios",
+											"usuarios"
+										]
+									},
+									"49156930-2fbfb764-9c64-46b0-aa7c-3e1507c2d73c": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões",
+											"permissões"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario_uuid\": \"{{uuid_de_um_user}}\",\r\n    \"permissao_uuid\": \"{{uuid_de_uma_permissao}}\",\r\n    \"liberado\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-excecao",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-excecao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões de exceção",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-adbd1154-17dd-4d63-ae3e-90946261dc03": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões de Exceção",
+											"permissões de exceção"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"liberado\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-excecao/{{uuid_de_uma_tupla_permissao_excecao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-excecao",
+								"{{uuid_de_uma_tupla_permissao_excecao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permissões de exceção",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-adbd1154-17dd-4d63-ae3e-90946261dc03": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Permissões de Exceção",
+											"permissões de exceção"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/permissoes-de-excecao/{{uuid_de_uma_tupla_permissao_excecao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"permissoes-de-excecao",
+								"{{uuid_de_uma_tupla_permissao_excecao}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Categorias Financeiras",
+			"item": [
+				{
+					"name": "categorias financeiras",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_categoria_financeira\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_de_uma_associacao_categoria_financeira\", jsonData[0].associacao_uuid);\r",
+									"pm.environment.set(\"uuid_de_uma_horta_categoria_financeira\", jsonData[0].horta_uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"categorias-financeiras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categorias financeiras por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-69d8af3c-cf92-4245-bccd-a4cff955ef18": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Categorias Financeiras",
+											"categorias financeiras"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/{{uuid_de_uma_categoria_financeira}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"categorias-financeiras",
+								"{{uuid_de_uma_categoria_financeira}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categorias financeira por Associação UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-69d8af3c-cf92-4245-bccd-a4cff955ef18": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Categorias Financeiras",
+											"categorias financeiras"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/associacao/{{uuid_de_uma_associacao_categoria_financeira}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"categorias-financeiras",
+								"associacao",
+								"{{uuid_de_uma_associacao_categoria_financeira}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categorias financeiras por Horta UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-69d8af3c-cf92-4245-bccd-a4cff955ef18": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Categorias Financeiras",
+											"categorias financeiras"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/horta/{{uuid_de_uma_horta_categoria_financeira}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"categorias-financeiras",
+								"horta",
+								"{{uuid_de_uma_horta_categoria_financeira}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categorias financeiras",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Teste\",\r\n    \"descricao\": \"Pagamento\",\r\n    \"tipo\": 1,\r\n    \"icone\": \"standard-icon\",\r\n    \"cor\": \"#800080\",\r\n    \"associacao_uuid\": \"{{uuid_de_uma_associacao}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"categorias-financeiras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categorias financeiras",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Insumos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/{{uuid_de_uma_categoria_financeira}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"categorias-financeiras",
+								"{{uuid_de_uma_categoria_financeira}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categorias financeiras",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/categorias-financeiras/{{uuid_de_uma_categoria_financeira}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"categorias-financeiras",
+								"{{uuid_de_uma_categoria_financeira}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Financeiro da Horta",
+			"item": [
+				{
+					"name": "financeiro da horta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_tupla_financeiro_horta\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_de_uma_horta_financeiro\", jsonData[0].horta_uuid);\r",
+									"pm.environment.set(\"uuid_de_uma_categoria_financeiro_horta\", jsonData[0].categoria_uuid);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-horta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da horta por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-9f6241b5-4bb1-44f4-bc5e-6e1a0f839b67": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Financeiro da Horta",
+											"financeiro da horta"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta/{{uuid_de_uma_tupla_financeiro_horta}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-horta",
+								"{{uuid_de_uma_tupla_financeiro_horta}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da horta por Horta UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-9f6241b5-4bb1-44f4-bc5e-6e1a0f839b67": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Financeiro da Horta",
+											"financeiro da horta"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta/horta/{{uuid_de_uma_horta_financeiro}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-horta",
+								"horta",
+								"{{uuid_de_uma_horta_financeiro}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da horta",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-69d8af3c-cf92-4245-bccd-a4cff955ef18": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Categorias Financeiras",
+											"categorias financeiras"
+										]
+									},
+									"49156930-9f6241b5-4bb1-44f4-bc5e-6e1a0f839b67": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Financeiro da Horta",
+											"financeiro da horta"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valor_em_centavos\": 25999,\r\n    \"descricao_do_lancamento\": \"Pagamento de conta de água\",\r\n    \"categoria_uuid\": \"{{uuid_de_uma_categoria_financeira}}\",\r\n    \"url_anexo\": \"https://www.google.drive.com/10293sad1@3\",\r\n    \"data_do_lancamento\": \"2025-01-01\",\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta_financeiro}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-horta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da horta",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-9f6241b5-4bb1-44f4-bc5e-6e1a0f839b67": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Financeiro da Horta",
+											"financeiro da horta"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valor_em_centavos\": 111111\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta/{{uuid_de_uma_tupla_financeiro_horta}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-horta",
+								"{{uuid_de_uma_tupla_financeiro_horta}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da horta",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-9f6241b5-4bb1-44f4-bc5e-6e1a0f839b67": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Financeiro da Horta",
+											"financeiro da horta"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-horta/{{uuid_de_uma_tupla_financeiro_horta}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-horta",
+								"{{uuid_de_uma_tupla_financeiro_horta}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Financeiro da Associação",
+			"item": [
+				{
+					"name": "financeiro da associação",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_tupla_financeiro_associacao\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_de_uma_categoria_financeiro_associacao\", jsonData[0].categoria_uuid);\r",
+									"pm.environment.set(\"uuid_de_uma_associacao_financeiro\", jsonData[0].associacao_uuid);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-associacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da associação por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ccd60549-4097-47cd-b9d0-1df0a03e6aab": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Financeiro da Associação",
+											"financeiro da associação"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/{{uuid_de_uma_tupla_financeiro_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-associacao",
+								"{{uuid_de_uma_tupla_financeiro_associacao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da associação por Associação UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ccd60549-4097-47cd-b9d0-1df0a03e6aab": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Financeiro da Associação",
+											"financeiro da associação"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/associacao/{{uuid_de_uma_associacao_financeiro}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-associacao",
+								"associacao",
+								"{{uuid_de_uma_associacao_financeiro}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da associação",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-69d8af3c-cf92-4245-bccd-a4cff955ef18": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Categorias Financeiras",
+											"categorias financeiras"
+										]
+									},
+									"49156930-28f11cbb-2b12-4978-8c3f-ab8772e1a7cf": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Associações",
+											"associações"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valor_em_centavos\": 24999,\r\n    \"descricao_do_lancamento\": \"Pagamento de conta de água\",\r\n    \"categoria_uuid\": \"{{uuid_de_uma_categoria_financeira}}\",\r\n    \"url_anexo\": \"https://www.google.drive.com/10293sad1@3\",\r\n    \"data_do_lancamento\": \"2025-01-01\",\r\n    \"associacao_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"mensalidade_uuid\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-associacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da associação",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ccd60549-4097-47cd-b9d0-1df0a03e6aab": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Financeiro da Associação",
+											"financeiro da associação"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"data_do_lancamento\": \"2025-03-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/{{uuid_de_uma_tupla_financeiro_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-associacao",
+								"{{uuid_de_uma_tupla_financeiro_associacao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "financeiro da associação",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-ccd60549-4097-47cd-b9d0-1df0a03e6aab": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Financeiro da Associação",
+											"financeiro da associação"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/{{uuid_de_uma_tupla_financeiro_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"financeiro-da-associacao",
+								"{{uuid_de_uma_tupla_financeiro_associacao}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Mensalidades da Plataforma",
+			"item": [
+				{
+					"name": "mensalidades da plataforma",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_mensalidade_plataforma\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_user_de_uma_mensalidade_plataforma\", jsonData[0].usuario_uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-plataforma"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da plataforma por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-775994ca-ab1e-41b2-bb57-9bf83052baf4": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Plataforma",
+											"mensalidades da plataforma"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/{{uuid_de_uma_mensalidade_plataforma}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-plataforma",
+								"{{uuid_de_uma_mensalidade_plataforma}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da plataforma por Usuário UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-775994ca-ab1e-41b2-bb57-9bf83052baf4": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Plataforma",
+											"mensalidades da plataforma"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/usuario/{{uuid_user_de_uma_mensalidade_plataforma}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-plataforma",
+								"usuario",
+								"{{uuid_user_de_uma_mensalidade_plataforma}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da plataforma",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-7322df91-174f-4381-98ad-ccd65f9ac3df": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Usuarios",
+											"usuarios"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valor_em_centavos\": 25000,\r\n    \"usuario_uuid\": \"{{uuid_de_um_user}}\",\r\n    \"plano_uuid\": \"{{uuid_de_um_plano}}\",\r\n    \"data_vencimento\": \"2025-12-11\",\r\n    \"data_pagamento\": \"2025-12-12\",\r\n    \"status\": 1,\r\n    \"url_anexo\": \"https://www.google.drive.com/test.pdf\",\r\n    \"dias_atraso\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-plataforma"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da plataforma",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-775994ca-ab1e-41b2-bb57-9bf83052baf4": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Plataforma",
+											"mensalidades da plataforma"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valor_em_centavos\": 860,\r\n    \"data_vencimento\": \"2026-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/{{uuid_de_uma_mensalidade_plataforma}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-plataforma",
+								"{{uuid_de_uma_mensalidade_plataforma}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da plataforma",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-775994ca-ab1e-41b2-bb57-9bf83052baf4": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Plataforma",
+											"mensalidades da plataforma"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/{{uuid_de_uma_mensalidade_plataforma}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-plataforma",
+								"{{uuid_de_uma_mensalidade_plataforma}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Mensalidades da Associação",
+			"item": [
+				{
+					"name": "mensalidades da associação",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_uma_mensalidade_associacao\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_user_em_mensalidade_associacao\", jsonData[0].usuario_uuid);\r",
+									"pm.environment.set(\"uuid_associacao_em_mensalidade_associacao\", jsonData[0].associacao_uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-associacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da associação por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-03f11c46-7de0-477d-82d9-f8b274ea52a3": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Associação",
+											"mensalidades da associação"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/{{uuid_de_uma_mensalidade_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-associacao",
+								"{{uuid_de_uma_mensalidade_associacao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da associação por Usuário UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-03f11c46-7de0-477d-82d9-f8b274ea52a3": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Associação",
+											"mensalidades da associação"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/usuario/{{uuid_user_em_mensalidade_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-associacao",
+								"usuario",
+								"{{uuid_user_em_mensalidade_associacao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da associação por Associação UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-03f11c46-7de0-477d-82d9-f8b274ea52a3": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Associação",
+											"mensalidades da associação"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/associacao/{{uuid_associacao_em_mensalidade_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-associacao",
+								"associacao",
+								"{{uuid_associacao_em_mensalidade_associacao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da associação",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-7322df91-174f-4381-98ad-ccd65f9ac3df": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Usuarios",
+											"usuarios"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valor_em_centavos\": 25000,\r\n    \"usuario_uuid\": \"{{uuid_de_um_user}}\",\r\n    \"associacao_uuid\": \"{{uuid_associacao_de_um_user}}\",\r\n    \"data_vencimento\": \"2025-12-30\",\r\n    \"data_pagamento\": null,\r\n    \"status\": 1,\r\n    \"dias_atraso\": 1,\r\n    \"url_anexo\": \"https://www.google.drive.com/test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-associacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da associação",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-03f11c46-7de0-477d-82d9-f8b274ea52a3": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Associação",
+											"mensalidades da associação"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/{{uuid_de_uma_mensalidade_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-associacao",
+								"{{uuid_de_uma_mensalidade_associacao}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mensalidades da associação",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-03f11c46-7de0-477d-82d9-f8b274ea52a3": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Associação",
+											"mensalidades da associação"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/{{uuid_de_uma_mensalidade_associacao}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"mensalidades-da-associacao",
+								"{{uuid_de_uma_mensalidade_associacao}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Recurso do Plano",
+			"item": [
+				{
+					"name": "recursos do plano",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_recursos_de_um_plano\", jsonData[0].uuid);\r",
+									"pm.environment.set(\"uuid_de_um_plano_com_recursos\", jsonData[0].plano_uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"recursos-do-plano"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recursos do plano por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-a2b7dbb2-fba9-42d6-a57d-188801f6e3fd": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Recurso do Plano",
+											"recursos do plano"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano/{{uuid_recursos_de_um_plano}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"recursos-do-plano",
+								"{{uuid_recursos_de_um_plano}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recursos do plano por Plano UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-a2b7dbb2-fba9-42d6-a57d-188801f6e3fd": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Recurso do Plano",
+											"recursos do plano"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano/plano/{{uuid_de_um_plano_com_recursos}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"recursos-do-plano",
+								"plano",
+								"{{uuid_de_um_plano_com_recursos}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recursos do plano",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-094c3ed8-e8df-41de-8cf6-83f32348a079": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Planos",
+											"planos"
+										]
+									}
+								}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_do_recurso\": \"Criar usuários\",\r\n    \"quantidade\": 3,\r\n    \"descricao\": \"Teste\",\r\n    \"plano_uuid\": \"{{uuid_de_um_plano}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"recursos-do-plano"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recursos do plano",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-a2b7dbb2-fba9-42d6-a57d-188801f6e3fd": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Recurso do Plano",
+											"recursos do plano"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantidade\": 1,\r\n    \"descricao\": \"Teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano/{{uuid_recursos_de_um_plano}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"recursos-do-plano",
+								"{{uuid_recursos_de_um_plano}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recursos do plano",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-a2b7dbb2-fba9-42d6-a57d-188801f6e3fd": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Recurso do Plano",
+											"recursos do plano"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/recursos-do-plano/{{uuid_recursos_de_um_plano}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"recursos-do-plano",
+								"{{uuid_recursos_de_um_plano}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Planos",
+			"item": [
+				{
+					"name": "planos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"uuid_de_um_plano\", jsonData[0].uuid);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/planos",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"planos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "planos por UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-094c3ed8-e8df-41de-8cf6-83f32348a079": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Planos",
+											"planos"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/planos/{{uuid_de_um_plano}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"planos",
+								"{{uuid_de_um_plano}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "planos por Usuário UUID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-775994ca-ab1e-41b2-bb57-9bf83052baf4": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Mensalidades da Plataforma",
+											"mensalidades da plataforma"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/planos/usuario/{{uuid_user_de_uma_mensalidade_plataforma}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"planos",
+								"usuario",
+								"{{uuid_user_de_uma_mensalidade_plataforma}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "planos",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-094c3ed8-e8df-41de-8cf6-83f32348a079": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Planos",
+											"planos"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/planos/{{uuid_de_um_plano}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"planos",
+								"{{uuid_de_um_plano}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "planos",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {
+									"49156930-094c3ed8-e8df-41de-8cf6-83f32348a079": {
+										"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+										"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+										"location": [
+											"🪴Hortas Comunitárias",
+											"Planos",
+											"planos"
+										]
+									}
+								}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/planos/{{uuid_de_um_plano}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"planos",
+								"{{uuid_de_um_plano}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_ADM_PLT}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {
+							"49156930-9cd545e2-e6d9-4b12-ba3b-9fa910b94389": {
+								"workspace": "ad83cae7-679e-478a-8129-a139146ff0a4",
+								"collection": "49156930-3fe73841-6f06-4c01-90ac-f27ed9f70771",
+								"location": [
+									"🪴Hortas Comunitárias",
+									"Sessions",
+									"login"
+								]
+							}
+						},
+						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'Bearer ' + pm.environment.get(\"JWT_ADM_PLT\")\r",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8181/api/"
+		},
+		{
+			"key": "JWT_ADM_PLT",
+			"value": ""
+		},
+		{
+			"key": "JWT_DUMMY",
+			"value": ""
+		},
+		{
+			"key": "JWT_ADM_ASSOC",
+			"value": ""
+		},
+		{
+			"key": "JWT_ADM_HORTA",
+			"value": ""
+		},
+		{
+			"key": "JWT_TOKEN",
+			"value": ""
+		},
+		{
+			"key": "um_codigo_novo",
+			"value": ""
+		},
+		{
+			"key": "EMAIL_ADM",
+			"value": ""
+		},
+		{
+			"key": "SENHA_ADM",
+			"value": ""
+		}
+	]
+}

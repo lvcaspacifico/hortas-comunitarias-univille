@@ -4,8 +4,8 @@
 
 - [📗 Introdução](#introducao)
 - [⏩ Início Rápido](#inicio-rapido)
-- [🔒 Permissões por Cargo](#templates-postman)
-- [🧑🏻‍🚀 Templates do Postman](#permissoes)
+- [🔒 Permissões por Cargo](#permissoes)
+- [🧑🏻‍🚀 Templates do Postman](#templates-postman)
 - [🧭 Rotas](#rotas)
 
 <ul>
@@ -307,9 +307,9 @@ Aqui consideramos o uso do Postman como client de uso, portanto os templates dis
 
 Em geral, o cabeçalho da requisição deve conter o token JWT no formato Bearer, ou seja: Authorization: Bearer {token}.
 
-<h2 id="#templates-postman">🧑🏻‍🚀 Templates do Postman</h2>
+<h2 id="templates-postman">🧑🏻‍🚀 Templates do Postman</h2>
 
-[Templates do Postman 🔗](../../backend/Hortas_Comunitarias_Univille.postman_collection.json)
+[Templates do Postman 🔗](../../postman/sandbox.postman_collection.json)
 
 <h1 id="permissoes">🔒 Permissões por Cargo</h1>
 
