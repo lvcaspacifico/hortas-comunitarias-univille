@@ -28,16 +28,16 @@ jobs:
           npm install -g @redocly/cli
 
       - name: Converter Postman para OpenAPI
-        run: p2o postman/hortas-comunitarias.postman_collection.json -f openapi.yaml
+        run: npx p2o postman/hortas-comunitarias.postman_collection.json -f openapi.yaml
 
       - name: Gerar doc em HTML
-        run: redocly build-docs openapi.yaml -o api.html
+        run: npx redocly build-docs openapi.yaml -o api.html
 
       - name: Mover para docs/api/
         run: |
           mv api.html docs/api/api.html
 
-      - name: Commit e push
+      - name: Push
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
