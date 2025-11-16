@@ -1,4 +1,4 @@
-name: Gerar documentação da API
+name: geracao-docs-api
 
 on:
   push:

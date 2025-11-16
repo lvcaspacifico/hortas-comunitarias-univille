@@ -251,7 +251,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Funções para entrada no sistema"
 		},
 		{
 			"name": "Endereços",
@@ -729,7 +730,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerenciamento de endereços vinculados a entidades do sistema."
 		},
 		{
 			"name": "Associações",
@@ -1247,7 +1249,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia entidade Associações que representa uma associação de moradores."
 		},
 		{
 			"name": "Hortas",
@@ -1796,7 +1799,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia informações das hortas vinculadas às associações e usuários."
 		},
 		{
 			"name": "Cargos",
@@ -2286,7 +2290,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia os cargos do sistema, permitindo criar, consultar, atualizar e excluir logicamente."
 		},
 		{
 			"name": "Usuarios",
@@ -2874,7 +2879,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia os vínculos entre canteiros e usuários, permitindo criar, atualizar, consultar e excluir relações."
 		},
 		{
 			"name": "Permissões",
@@ -3399,7 +3405,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia as permissões atribuídas a cada cargo, com controle de acesso baseado no cargo do usuário logado."
 		},
 		{
 			"name": "Permissões do Usuário",
@@ -3544,7 +3551,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia e retorna todas as permissões de um usuário, combinando permissões do cargo e exceções individuais."
 		},
 		{
 			"name": "Chaves",
@@ -4076,7 +4084,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia as chaves vinculadas às hortas, permitindo criar, consultar, atualizar e excluir logicamente."
 		},
 		{
 			"name": "Filas de Usuários",
@@ -4668,7 +4677,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia a fila de usuários vinculados às hortas, permitindo criar, consultar, atualizar e excluir logicamente."
 		},
 		{
 			"name": "Canteiros",
@@ -5226,7 +5236,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia os vínculos entre canteiros e usuários, permitindo criar, atualizar, consultar e excluir relações."
 		},
 		{
 			"name": "Vínculo: Canteiro e Usuário",
@@ -5757,7 +5768,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia os vínculos entre canteiros e usuários, permitindo criar, atualizar, consultar e excluir relações."
 		},
 		{
 			"name": "Permissões de Cargos",
@@ -6374,7 +6386,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia os cargos do sistema, permitindo criar, consultar, atualizar e excluir logicamente."
 		},
 		{
 			"name": "Permissões de Exceção",
@@ -6895,7 +6908,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia permissões de exceção atribuídas a usuários específicos."
 		},
 		{
 			"name": "Categorias Financeiras",
@@ -7594,7 +7608,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia categorias financeiras vinculadas a Associações ou Hortas."
 		},
 		{
 			"name": "Financeiro da Horta",
@@ -8214,7 +8229,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia lançamentos financeiros relacionados a uma horta específica."
 		},
 		{
 			"name": "Financeiro da Associação",
@@ -8834,7 +8850,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia os lançamentos financeiros vinculados às associações, permitindo criação, consulta, atualização e exclusão lógica."
 		},
 		{
 			"name": "Mensalidades da Plataforma",
@@ -9443,7 +9460,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia mensalidades da plataforma, vinculadas a usuários e planos, com controle de acesso baseado no cargo."
 		},
 		{
 			"name": "Mensalidades da Associação",
@@ -10129,7 +10147,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia mensalidades vinculadas a usuários e associações, com controle de acesso baseado no cargo do usuário."
 		},
 		{
 			"name": "Recurso do Plano",
@@ -10738,7 +10757,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia os recursos associados aos planos da plataforma, incluindo criação, atualização, exclusão e consulta de recursos individuais ou por plano."
 		},
 		{
 			"name": "Planos",
@@ -11236,7 +11256,8 @@
 						]
 					}
 				}
-			]
+			],
+			"description": "Gerencia os planos disponíveis na plataforma, incluindo criação, atualização, exclusão e consulta de planos individuais ou por usuário."
 		}
 	],
 	"event": [
