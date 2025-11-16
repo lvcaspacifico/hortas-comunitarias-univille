@@ -74,9 +74,53 @@
 								"sessoes",
 								"login"
 							]
-						}
+						},
+						"description": "Gera um JWT token e \"loga\" na aplicação. Sem ele 99% das rotas são bloqueadas."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{EMAIL_ADM}}\",\r\n    \"senha\": \"{{SENHA_ADM}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/sessoes/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"sessoes",
+										"login"
+									]
+								},
+								"description": "Gera um JWT token e \"loga\" na aplicação. Sem ele 99% das rotas são bloqueadas."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"token\": \"string\"\n}"
+						}
+					]
 				},
 				{
 					"name": "cadastro",
@@ -134,9 +178,53 @@
 								"sessoes",
 								"cadastro"
 							]
-						}
+						},
+						"description": "Cria uma nova associação e um usuário administrador associado à mesma, configurando também a primeira mensalidade para 30 dias."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"associacao\": {\r\n    \"cnpj\": \"08.063.748/0001-45\",\r\n    \"razao_social\": \"Associação Exemplo LTDA\",\r\n    \"nome_fantasia\": \"Associação Exemplo\",\r\n    \"url_estatuto_social_pdf\": \"https://meusite.com/estatuto.pdf\",\r\n    \"url_ata_associacao_pdf\": \"https://meusite.com/ata.pdf\"\r\n  },\r\n  \"usuario\": {\r\n    \"nome_completo\": \"João da Silva\",\r\n    \"cpf\": \"973.220.700-03\",\r\n    \"email\": \"joaozinho@email.com\",\r\n    \"senha\": \"123456\",\r\n    \"apelido\": \"Joãozinho\",\r\n    \"data_de_nascimento\": \"2002-02-02\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/sessoes/cadastro",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"sessoes",
+										"cadastro"
+									]
+								},
+								"description": "Cria uma nova associação e um usuário administrador associado à mesma, configurando também a primeira mensalidade para 30 dias."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"associacao\": {\n    \"uuid\": \"string (UUID)\",\n    \"cnpj\": \"string\",\n    \"razao_social\": \"string\",\n    \"nome_fantasia\": \"string\",\n    \"url_estatuto_social_pdf\": \"string (URL)\",\n    \"url_ata_associacao_pdf\": \"string (URL)\",\n    \"status_aprovacao\": 1,\n    \"data_de_criacao\": \"string (timestamp)\",\n    \"data_de_ultima_alteracao\": \"string (timestamp)\"\n  },\n  \"usuario\": {\n    \"uuid\": \"string (UUID)\",\n    \"nome_completo\": \"string\",\n    \"cpf\": \"string\",\n    \"email\": \"string\",\n    \"apelido\": \"string\",\n    \"data_de_nascimento\": \"string (YYYY-MM-DD)\",\n    \"cargo_uuid\": \"string (UUID)\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"status_de_acesso\": 1,\n    \"responsavel_da_conta\": 0,\n    \"data_bloqueio_acesso\": null,\n    \"usuario_associado_uuid\": null,\n    \"motivo_bloqueio_acesso\": null,\n    \"usuario_criador_uuid\": \"NEW_ACCOUNT\",\n    \"usuario_alterador_uuid\": \"NEW_ACCOUNT\",\n    \"data_de_criacao\": \"string (timestamp)\",\n    \"data_de_ultima_alteracao\": \"string (timestamp)\"\n  },\n  \"mensalidade\": {\n    \"uuid\": \"string (UUID)\",\n    \"valor_em_centavos\": \"int\",\n    \"usuario_uuid\": \"string (UUID)\",\n    \"plano_uuid\": \"string (UUID)\",\n    \"data_vencimento\": \"string (YYYY-MM-DD)\",\n    \"data_pagamento\": null,\n    \"status\": 1,\n    \"dias_atraso\": 0,\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"url_anexo\": null,\n    \"url_recibo\": null,\n    \"data_de_criacao\": \"string (timestamp)\",\n    \"data_de_ultima_alteracao\": \"string (timestamp)\"\n  },\n  \"token\": \"string\"\n}"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -212,9 +300,40 @@
 								"v1",
 								"enderecos"
 							]
-						}
+						},
+						"description": "Lista todos os endereços não excluídos."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/enderecos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"enderecos"
+									]
+								},
+								"description": "Lista todos os endereços não excluídos."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"tipo_logradouro\": \"string\",\n    \"logradouro\": \"string\",\n    \"numero\": \"string\",\n    \"complemento\": \"string/null\",\n    \"bairro\": \"string\",\n    \"cidade\": \"string\",\n    \"estado\": \"string\",\n    \"cep\": \"string\",\n    \"latitude\": \"float/null\",\n    \"longitude\": \"float/null\",\n    \"excluido\": \"int\",\n    \"usuario_criador_uuid\": \"string/null\",\n    \"data_de_criacao\": \"datetime\",\n    \"usuario_alterador_uuid\": \"string/null\",\n    \"data_de_ultima_alteracao\": \"datetime\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "endereço por UUID",
@@ -257,9 +376,41 @@
 								"enderecos",
 								"{{uuid_de_um_endereco}}"
 							]
-						}
+						},
+						"description": "Busca um endereço específico pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/enderecos/{{uuid_de_um_endereco}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"enderecos",
+										"{{uuid_de_um_endereco}}"
+									]
+								},
+								"description": "Busca um endereço específico pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"tipo_logradouro\": \"string\",\n  \"logradouro\": \"string\",\n  \"numero\": \"string\",\n  \"complemento\": \"string/null\",\n  \"bairro\": \"string\",\n  \"cidade\": \"string\",\n  \"estado\": \"string\",\n  \"cep\": \"string\",\n  \"latitude\": \"float/null\",\n  \"longitude\": \"float/null\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string/null\",\n  \"data_de_criacao\": \"datetime\",\n  \"usuario_alterador_uuid\": \"string/null\",\n  \"data_de_ultima_alteracao\": \"datetime\"\n}"
+						}
+					]
 				},
 				{
 					"name": "endereços",
@@ -311,9 +462,49 @@
 								"v1",
 								"enderecos"
 							]
-						}
+						},
+						"description": "Cria um novo endereço."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipo_logradouro\": \"Rua\",\r\n    \"logradouro\": \"Sebastião Johnny\",\r\n    \"numero\": \"211\",\r\n    \"complemento\": \"Casa verde\",\r\n    \"bairro\": \"Costa e Silva\",\r\n    \"cidade\": \"Joinville\",\r\n    \"estado\": \"SC\",\r\n    \"cep\": \"123456789\",\r\n    \"latitude\": 90,\r\n    \"longitude\": 180\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/enderecos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"enderecos"
+									]
+								},
+								"description": "Cria um novo endereço."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"tipo_logradouro\": \"string\",\n  \"logradouro\": \"string\",\n  \"numero\": \"string\",\n  \"complemento\": \"string/null\",\n  \"bairro\": \"string\",\n  \"cidade\": \"string\",\n  \"estado\": \"string\",\n  \"cep\": \"string\",\n  \"latitude\": \"float/null\",\n  \"longitude\": \"float/null\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"datetime\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"datetime\"\n}"
+						}
+					]
 				},
 				{
 					"name": "endereços",
@@ -363,9 +554,50 @@
 								"enderecos",
 								"{{uuid_de_um_endereco}}"
 							]
-						}
+						},
+						"description": "Atualiza um endereço existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipo_logradouro\": \"Rua\",\r\n    \"logradouro\": \"Sebastião Bob\",\r\n    \"numero\": \"112\",\r\n    \"complemento\": \"Casa amarela\",\r\n    \"bairro\": \"Aventureiro\",\r\n    \"cidade\": \"Joinville\",\r\n    \"estado\": \"SC\",\r\n    \"cep\": \"987654321\",\r\n    \"latitude\": -1,\r\n    \"longitude\": 90,\r\n    \"excluido\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/enderecos/{{uuid_de_um_endereco}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"enderecos",
+										"{{uuid_de_um_endereco}}"
+									]
+								},
+								"description": "Atualiza um endereço existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"tipo_logradouro\": \"string\",\n  \"logradouro\": \"string\",\n  \"numero\": \"string\",\n  \"complemento\": \"string/null\",\n  \"bairro\": \"string\",\n  \"cidade\": \"string\",\n  \"estado\": \"string\",\n  \"cep\": \"string\",\n  \"latitude\": \"float/null\",\n  \"longitude\": \"float/null\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"datetime\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"datetime\"\n}"
+						}
+					]
 				},
 				{
 					"name": "endereços",
@@ -427,9 +659,50 @@
 								"enderecos",
 								"{{uuid_de_um_endereco}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de um endereço (marca excluido = 1)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/enderecos/{{uuid_de_um_endereco}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"enderecos",
+										"{{uuid_de_um_endereco}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de um endereço (marca excluido = 1)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"event": [
@@ -506,9 +779,40 @@
 								"v1",
 								"associacoes"
 							]
-						}
+						},
+						"description": "Lista todas as associações não excluídas do sistema."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/associacoes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"associacoes"
+									]
+								},
+								"description": "Lista todas as associações não excluídas do sistema."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"cnpj\": \"string\",\n    \"razao_social\": \"string\",\n    \"nome_fantasia\": \"string\",\n    \"endereco_uuid\": \"string (UUID)\",\n    \"url_estatuto_social_pdf\": \"string (URL)\",\n    \"url_ata_associacao_pdf\": \"string (URL)\",\n    \"status_aprovacao\": \"integer\",\n    \"excluido\": \"integer\",\n    \"usuario_responsavel_uuid\": \"string (UUID) | null\",\n    \"usuario_criador_uuid\": \"string (UUID) | null\",\n    \"data_de_criacao\": \"string (datetime)\",\n    \"usuario_alterador_uuid\": \"string (UUID) | null\",\n    \"data_de_ultima_alteracao\": \"string (datetime)\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "associações por UUID",
@@ -546,9 +850,41 @@
 								"associacoes",
 								"{{uuid_de_uma_associacao}}"
 							]
-						}
+						},
+						"description": "Busca uma associação específica pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/associacoes/{{uuid_de_uma_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"associacoes",
+										"{{uuid_de_uma_associacao}}"
+									]
+								},
+								"description": "Busca uma associação específica pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"cnpj\": \"string\",\n  \"razao_social\": \"string\",\n  \"nome_fantasia\": \"string\",\n  \"endereco_uuid\": \"string (UUID)\",\n  \"url_estatuto_social_pdf\": \"string (URL)\",\n  \"url_ata_associacao_pdf\": \"string (URL)\",\n  \"status_aprovacao\": \"integer\",\n  \"excluido\": \"integer\",\n  \"usuario_responsavel_uuid\": \"string (UUID) | null\",\n  \"usuario_criador_uuid\": \"string (UUID) | null\",\n  \"data_de_criacao\": \"string (datetime)\",\n  \"usuario_alterador_uuid\": \"string (UUID) | null\",\n  \"data_de_ultima_alteracao\": \"string (datetime)\"\n}"
+						}
+					]
 				},
 				{
 					"name": "associações",
@@ -607,9 +943,49 @@
 								"v1",
 								"associacoes"
 							]
-						}
+						},
+						"description": "Cria uma nova associação no sistema."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cnpj\": \"00.000.000/0002-00\",\r\n    \"razao_social\": \"Assoc teste LTDA\",\r\n    \"nome_fantasia\": \"Assoc teste LTDA\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"url_estatuto_social_pdf\": \"https://www.google.drive.com\",\r\n    \"url_ata_associacao_pdf\": \"https://www.google.drive.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/associacoes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"associacoes"
+									]
+								},
+								"description": "Cria uma nova associação no sistema."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"cnpj\": \"string\",\n  \"razao_social\": \"string\",\n  \"nome_fantasia\": \"string\",\n  \"endereco_uuid\": \"string (UUID)\",\n  \"url_estatuto_social_pdf\": \"string (URL)\",\n  \"url_ata_associacao_pdf\": \"string (URL)\",\n  \"status_aprovacao\": 1,\n  \"excluido\": 0,\n  \"usuario_responsavel_uuid\": \"string (UUID) | null\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"string (datetime)\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"string (datetime)\"\n}"
+						}
+					]
 				},
 				{
 					"name": "associações",
@@ -678,9 +1054,50 @@
 								"associacoes",
 								"{{uuid_de_uma_associacao}}"
 							]
-						}
+						},
+						"description": "Atualiza uma associação existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cnpj\": \"00.000.000/0003-00\",\r\n    \"razao_social\": \"Assoc teste LTDA\",\r\n    \"nome_fantasia\": \"Assoc teste LTDA\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"url_estatuto_social_pdf\": \"https://www.google.drive.com\",\r\n    \"url_ata_associacao_pdf\": \"https://www.google.drive.com\",\r\n    \"status_aprovacao\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/associacoes/{{uuid_de_uma_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"associacoes",
+										"{{uuid_de_uma_associacao}}"
+									]
+								},
+								"description": "Atualiza uma associação existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"cnpj\": \"string\",\n  \"razao_social\": \"string\",\n  \"nome_fantasia\": \"string\",\n  \"endereco_uuid\": \"string (UUID)\",\n  \"url_estatuto_social_pdf\": \"string (URL)\",\n  \"url_ata_associacao_pdf\": \"string (URL)\",\n  \"status_aprovacao\": \"integer\",\n  \"excluido\": \"integer\",\n  \"usuario_responsavel_uuid\": \"string (UUID) | null\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"string (datetime)\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"string (datetime)\"\n}"
+						}
+					]
 				},
 				{
 					"name": "associações",
@@ -740,9 +1157,50 @@
 								"associacoes",
 								"{{uuid_de_uma_associacao}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de uma associação (marca como excluída)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/associacoes/{{uuid_de_uma_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"associacoes",
+										"{{uuid_de_uma_associacao}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de uma associação (marca como excluída)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -838,9 +1296,40 @@
 								"v1",
 								"hortas"
 							]
-						}
+						},
+						"description": "Lista todas as hortas disponíveis de acordo com o cargo do usuário."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/hortas",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"hortas"
+									]
+								},
+								"description": "Lista todas as hortas disponíveis de acordo com o cargo do usuário."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"nome_da_horta\": \"string\",\n    \"endereco_uuid\": \"string (UUID)\",\n    \"associacao_vinculada_uuid\": \"string (UUID)\",\n    \"percentual_taxa_associado\": \"decimal\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\",\n    \"tipo_de_liberacao\": \"string\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "horta por UUID",
@@ -892,9 +1381,41 @@
 								"hortas",
 								"{{uuid_de_uma_horta}}"
 							]
-						}
+						},
+						"description": "Busca uma horta específica pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/hortas/{{uuid_de_uma_horta}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"hortas",
+										"{{uuid_de_uma_horta}}"
+									]
+								},
+								"description": "Busca uma horta específica pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"nome_da_horta\": \"string\",\n  \"endereco_uuid\": \"string (UUID)\",\n  \"associacao_vinculada_uuid\": \"string (UUID)\",\n  \"percentual_taxa_associado\": \"decimal\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\",\n  \"tipo_de_liberacao\": \"string\"\n}"
+						}
+					]
 				},
 				{
 					"name": "hortas",
@@ -962,9 +1483,49 @@
 								"v1",
 								"hortas"
 							]
-						}
+						},
+						"description": "Cria uma nova horta no sistema."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome_da_horta\": \"Horta Feliz Costa e Silva\",\r\n    \"percentual_taxa_associado\": 25.0,\r\n    \"tipo_de_liberacao\": 1,\r\n    \"associacao_vinculada_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/hortas",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"hortas"
+									]
+								},
+								"description": "Cria uma nova horta no sistema."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"nome_da_horta\": \"string\",\n  \"endereco_uuid\": \"string (UUID)\",\n  \"associacao_vinculada_uuid\": \"string (UUID)\",\n  \"percentual_taxa_associado\": \"decimal\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\",\n  \"tipo_de_liberacao\": \"string\"\n}"
+						}
+					]
 				},
 				{
 					"name": "hortas",
@@ -1042,9 +1603,50 @@
 								"hortas",
 								"{{uuid_de_uma_horta}}"
 							]
-						}
+						},
+						"description": "Atualiza informações de uma horta existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome_da_horta\": \"Horta Triste Fátima\",\r\n    \"percentual_taxa_associado\": 20.0,\r\n    \"associacao_vinculada_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"excluido\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/hortas/{{uuid_de_uma_horta}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"hortas",
+										"{{uuid_de_uma_horta}}"
+									]
+								},
+								"description": "Atualiza informações de uma horta existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"nome_da_horta\": \"string\",\n  \"endereco_uuid\": \"string (UUID)\",\n  \"associacao_vinculada_uuid\": \"string (UUID)\",\n  \"percentual_taxa_associado\": \"decimal\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\",\n  \"tipo_de_liberacao\": \"string\"\n}"
+						}
+					]
 				},
 				{
 					"name": "hortas",
@@ -1104,9 +1706,50 @@
 								"hortas",
 								"{{uuid_de_uma_horta}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de uma horta."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/hortas/{{uuid_de_uma_horta}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"hortas",
+										"{{uuid_de_uma_horta}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de uma horta."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -1202,9 +1845,40 @@
 								"v1",
 								"cargos"
 							]
-						}
+						},
+						"description": "Lista todos os cargos não excluídos."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/cargos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"cargos"
+									]
+								},
+								"description": "Lista todos os cargos não excluídos."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"codigo\": \"int\",\n    \"slug\": \"string\",\n    \"nome\": \"string\",\n    \"descricao\": \"string\",\n    \"cor\": \"string\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "cargos por UUID",
@@ -1255,9 +1929,41 @@
 								"cargos",
 								"{{uuid_de_um_cargo}}"
 							]
-						}
+						},
+						"description": "Busca um cargo específico pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/cargos/{{uuid_de_um_cargo}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"cargos",
+										"{{uuid_de_um_cargo}}"
+									]
+								},
+								"description": "Busca um cargo específico pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"codigo\": \"int\",\n  \"slug\": \"string\",\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"cor\": \"string\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "cargos",
@@ -1308,9 +2014,49 @@
 								"v1",
 								"cargos"
 							]
-						}
+						},
+						"description": "Cria um novo cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"codigo\": 5,\r\n    \"slug\": \"cargo-teste\",\r\n    \"nome\": \"Cargo teste\",\r\n    \"descricao\": \"Cargo para testar\",\r\n    \"cor\": \"#ffffff\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/cargos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"cargos"
+									]
+								},
+								"description": "Cria um novo cargo."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"codigo\": \"int\",\n  \"slug\": \"string\",\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"cor\": \"string\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "cargos",
@@ -1357,9 +2103,50 @@
 								"cargos",
 								"{{uuid_de_um_cargo}}"
 							]
-						}
+						},
+						"description": "Atualiza um cargo existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"slug\": \"cargo-alterado\",\r\n    \"nome\": \"Cargo alterado\",\r\n    \"descricao\": \"Cargo que alterou\",\r\n    \"cor\": \"#ffffff\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/cargos/{{uuid_de_um_cargo}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"cargos",
+										"{{uuid_de_um_cargo}}"
+									]
+								},
+								"description": "Atualiza um cargo existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"codigo\": \"int\",\n  \"slug\": \"string\",\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"cor\": \"string\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "cargos",
@@ -1419,9 +2206,50 @@
 								"cargos",
 								"{{uuid_de_um_cargo}}"
 							]
-						}
+						},
+						"description": "Exclui logicamente um cargo (marca excluido = 1)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/cargos/{{uuid_de_um_cargo}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"cargos",
+										"{{uuid_de_um_cargo}}"
+									]
+								},
+								"description": "Exclui logicamente um cargo (marca excluido = 1)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"event": [
@@ -1524,9 +2352,40 @@
 								"v1",
 								"usuarios"
 							]
-						}
+						},
+						"description": "Lista todos os usuários conforme permissão do cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/usuarios",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"usuarios"
+									]
+								},
+								"description": "Lista todos os usuários conforme permissão do cargo."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"nome_completo\": \"string\",\n    \"cpf\": \"string\",\n    \"email\": \"string\",\n    \"data_de_nascimento\": \"date\",\n    \"cargo_uuid\": \"string (UUID)\",\n    \"taxa_associado_em_centavos\": \"int\",\n    \"endereco_uuid\": \"string (UUID)\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"horta_uuid\": \"string (UUID)\",\n    \"usuario_associado_uuid\": \"string (UUID)\",\n    \"status_de_acesso\": \"int\",\n    \"responsavel_da_conta\": \"int\",\n    \"data_bloqueio_acesso\": \"timestamp\",\n    \"motivo_bloqueio_acesso\": \"string\",\n    \"excluido\": \"int\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\",\n    \"apelido\": \"string\",\n    \"dias_ausente\": \"int\",\n    \"chave_uuid\": \"string (UUID)\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "usuarios sem auth",
@@ -1568,9 +2427,40 @@
 								"v1",
 								"usuarios"
 							]
-						}
+						},
+						"description": "Lista todos os usuários conforme permissão do cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/usuarios",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"usuarios"
+									]
+								},
+								"description": "Lista todos os usuários conforme permissão do cargo."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"nome_completo\": \"string\",\n    \"cpf\": \"string\",\n    \"email\": \"string\",\n    \"data_de_nascimento\": \"date\",\n    \"cargo_uuid\": \"string (UUID)\",\n    \"taxa_associado_em_centavos\": \"int\",\n    \"endereco_uuid\": \"string (UUID)\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"horta_uuid\": \"string (UUID)\",\n    \"usuario_associado_uuid\": \"string (UUID)\",\n    \"status_de_acesso\": \"int\",\n    \"responsavel_da_conta\": \"int\",\n    \"data_bloqueio_acesso\": \"timestamp\",\n    \"motivo_bloqueio_acesso\": \"string\",\n    \"excluido\": \"int\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\",\n    \"apelido\": \"string\",\n    \"dias_ausente\": \"int\",\n    \"chave_uuid\": \"string (UUID)\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "usuarios por UUID",
@@ -1621,9 +2511,41 @@
 								"usuarios",
 								"{{uuid_de_um_user}}"
 							]
-						}
+						},
+						"description": "Busca um usuário específico pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/usuarios/{{uuid_de_um_user}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"usuarios",
+										"{{uuid_de_um_user}}"
+									]
+								},
+								"description": "Busca um usuário específico pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"nome_completo\": \"string\",\n  \"cpf\": \"string\",\n  \"email\": \"string\",\n  \"data_de_nascimento\": \"date\",\n  \"cargo_uuid\": \"string (UUID)\",\n  \"taxa_associado_em_centavos\": \"int\",\n  \"endereco_uuid\": \"string (UUID)\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"usuario_associado_uuid\": \"string (UUID)\",\n  \"status_de_acesso\": \"int\",\n  \"responsavel_da_conta\": \"int\",\n  \"data_bloqueio_acesso\": \"timestamp\",\n  \"motivo_bloqueio_acesso\": \"string\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\",\n  \"apelido\": \"string\",\n  \"dias_ausente\": \"int\",\n  \"chave_uuid\": \"string (UUID)\"\n}"
+						}
+					]
 				},
 				{
 					"name": "usuarios",
@@ -1709,9 +2631,49 @@
 								"v1",
 								"usuarios"
 							]
-						}
+						},
+						"description": "Cria um novo usuário."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome_completo\": \"João Armless\",\r\n    \"apelido\": \"João sem braço\",\r\n    \"cpf\": \"767.360.290-31\",\r\n    \"email\": \"joao@plataforma.com\",\r\n    \"senha\": \"senha12345\",\r\n    \"taxa_associado_em_centavos\": 1500,\r\n    \"data_de_nascimento\": \"2002-02-02\",\r\n    \"dias_ausente\": 1,\r\n    \"associacao_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta}}\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"cargo_uuid\": \"{{uuid_de_um_cargo}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/usuarios",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"usuarios"
+									]
+								},
+								"description": "Cria um novo usuário."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"nome_completo\": \"string\",\n  \"cpf\": \"string\",\n  \"email\": \"string\",\n  \"data_de_nascimento\": \"date\",\n  \"cargo_uuid\": \"string (UUID)\",\n  \"taxa_associado_em_centavos\": \"int\",\n  \"endereco_uuid\": \"string (UUID)\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"usuario_associado_uuid\": \"string (UUID)\",\n  \"status_de_acesso\": 1,\n  \"responsavel_da_conta\": \"int\",\n  \"data_bloqueio_acesso\": null,\n  \"motivo_bloqueio_acesso\": null,\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\",\n  \"apelido\": \"string\",\n  \"dias_ausente\": \"int\",\n  \"chave_uuid\": \"string (UUID)\"\n}"
+						}
+					]
 				},
 				{
 					"name": "usuarios",
@@ -1807,9 +2769,50 @@
 								"usuarios",
 								"{{uuid_de_um_user}}"
 							]
-						}
+						},
+						"description": "Atualiza um usuário existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome_completo\": \"Alterado da Silva\",\r\n    \"email\": \"super_admin@plataforma.com\",\r\n    \"senha\": \"senha12345\",\r\n    \"taxa_associado_em_centavos\": 1500,\r\n    \"data_de_nascimento\": \"2002-02-02\",\r\n    \"associacao_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta}}\",\r\n    \"endereco_uuid\": \"{{uuid_de_um_endereco}}\",\r\n    \"cargo_uuid\": \"{{uuid_de_um_cargo}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/usuarios/{{uuid_de_um_user}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"usuarios",
+										"{{uuid_de_um_user}}"
+									]
+								},
+								"description": "Atualiza um usuário existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"nome_completo\": \"string\",\n  \"cpf\": \"string\",\n  \"email\": \"string\",\n  \"data_de_nascimento\": \"date\",\n  \"cargo_uuid\": \"string (UUID)\",\n  \"taxa_associado_em_centavos\": \"int\",\n  \"endereco_uuid\": \"string (UUID)\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"usuario_associado_uuid\": \"string (UUID)\",\n  \"status_de_acesso\": \"int\",\n  \"responsavel_da_conta\": \"int\",\n  \"data_bloqueio_acesso\": \"timestamp\",\n  \"motivo_bloqueio_acesso\": \"string\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\",\n  \"apelido\": \"string\",\n  \"dias_ausente\": \"int\",\n  \"chave_uuid\": \"string (UUID)\"\n}"
+						}
+					]
 				},
 				{
 					"name": "usuarios",
@@ -1856,9 +2859,50 @@
 								"usuarios",
 								"{{uuid_de_um_user}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de um usuário."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/usuarios/{{uuid_de_um_user}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"usuarios",
+										"{{uuid_de_um_user}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de um usuário."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -1964,9 +3008,40 @@
 								"v1",
 								"permissoes"
 							]
-						}
+						},
+						"description": "Retorna todas as permissões do sistema que não foram excluídas."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes"
+									]
+								},
+								"description": "Retorna todas as permissões do sistema que não foram excluídas."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"slug\": \"string\",\n    \"tipo\": \"int\",\n    \"descricao\": \"string\",\n    \"modulo\": \"int\",\n    \"excluido\": \"int\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "permissões por UUID",
@@ -2017,9 +3092,41 @@
 								"permissoes",
 								"{{uuid_de_uma_permissao}}"
 							]
-						}
+						},
+						"description": "Busca uma permissão específica pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes/{{uuid_de_uma_permissao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes",
+										"{{uuid_de_uma_permissao}}"
+									]
+								},
+								"description": "Busca uma permissão específica pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"slug\": \"string\",\n  \"tipo\": \"int\",\n  \"descricao\": \"string\",\n  \"modulo\": \"int\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "permissões",
@@ -2070,9 +3177,49 @@
 								"v1",
 								"permissoes"
 							]
-						}
+						},
+						"description": "Cria uma nova permissão no sistema."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"slug\": \"recurso_get\",\r\n    \"tipo\": 1,\r\n    \"modulo\": 1,\r\n    \"descricao\": \"Permissão dummy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes"
+									]
+								},
+								"description": "Cria uma nova permissão no sistema."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"slug\": \"string\",\n  \"tipo\": \"int\",\n  \"descricao\": \"string\",\n  \"modulo\": \"int\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "permissões",
@@ -2134,9 +3281,50 @@
 								"permissoes",
 								"{{uuid_de_uma_permissao}}"
 							]
-						}
+						},
+						"description": "Atualiza uma permissão existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"slug\": \"recurso_get\",\r\n    \"tipo\": 1,\r\n    \"modulo\": 1,\r\n    \"descricao\": \"Permissão dummy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes/{{uuid_de_uma_permissao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes",
+										"{{uuid_de_uma_permissao}}"
+									]
+								},
+								"description": "Atualiza uma permissão existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"slug\": \"string\",\n  \"tipo\": \"int\",\n  \"descricao\": \"string\",\n  \"modulo\": \"int\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "permissões",
@@ -2196,9 +3384,50 @@
 								"permissoes",
 								"{{uuid_de_uma_permissao}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de uma permissão (marca como excluída)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes/{{uuid_de_uma_permissao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes",
+										"{{uuid_de_uma_permissao}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de uma permissão (marca como excluída)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -2313,9 +3542,50 @@
 								"permissoes-do-usuario",
 								"{{uuid_de_um_user}}"
 							]
-						}
+						},
+						"description": "Retorna todas as permissões associadas a um usuário específico."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-do-usuario/{{uuid_de_um_user}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-do-usuario",
+										"{{uuid_de_um_user}}"
+									]
+								},
+								"description": "Retorna todas as permissões associadas a um usuário específico."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"slug\": \"string\",\n    \"tipo\": \"int\",\n    \"descricao\": \"string\",\n    \"modulo\": \"int\",\n    \"excluido\": \"int\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -2399,9 +3669,40 @@
 								"v1",
 								"chaves"
 							]
-						}
+						},
+						"description": "Lista todas as chaves não excluídas, respeitando os filtros por cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/chaves",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"chaves"
+									]
+								},
+								"description": "Lista todas as chaves não excluídas, respeitando os filtros por cargo."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"codigo\": \"string\",\n    \"horta_uuid\": \"string (UUID)\",\n    \"observacoes\": \"string (text)\",\n    \"disponivel\": \"tinyint\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"datetime\",\n    \"data_de_ultima_alteracao\": \"datetime\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "chaves por UUID",
@@ -2452,9 +3753,41 @@
 								"chaves",
 								"{{uuid_de_uma_chave}}"
 							]
-						}
+						},
+						"description": "Busca uma chave específica pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/chaves/{{uuid_de_uma_chave}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"chaves",
+										"{{uuid_de_uma_chave}}"
+									]
+								},
+								"description": "Busca uma chave específica pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"codigo\": \"string\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"observacoes\": \"string (text)\",\n  \"disponivel\": \"tinyint\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"datetime\",\n  \"data_de_ultima_alteracao\": \"datetime\"\n}"
+						}
+					]
 				},
 				{
 					"name": "chaves",
@@ -2513,9 +3846,49 @@
 								"v1",
 								"chaves"
 							]
-						}
+						},
+						"description": "Cria uma nova chave vinculada a uma horta."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"codigo\": \"CHV-001\",\r\n  \"horta_uuid\": \"{{uuid_de_uma_horta}}\",\r\n  \"observacoes\": \"Chave para acesso principal da horta\",\r\n  \"disponivel\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/chaves",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"chaves"
+									]
+								},
+								"description": "Cria uma nova chave vinculada a uma horta."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"codigo\": \"string\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"observacoes\": \"string (text)\",\n  \"disponivel\": \"tinyint\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"datetime\",\n  \"data_de_ultima_alteracao\": \"datetime\"\n}"
+						}
+					]
 				},
 				{
 					"name": "chaves",
@@ -2575,9 +3948,50 @@
 								"chaves",
 								"{{uuid_de_uma_chave}}"
 							]
-						}
+						},
+						"description": "Atualiza os dados de uma chave existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"disponivel\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/chaves/{{uuid_de_uma_chave}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"chaves",
+										"{{uuid_de_uma_chave}}"
+									]
+								},
+								"description": "Atualiza os dados de uma chave existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"codigo\": \"string\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"observacoes\": \"string (text)\",\n  \"disponivel\": \"tinyint\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"datetime\",\n  \"data_de_ultima_alteracao\": \"datetime\"\n}"
+						}
+					]
 				},
 				{
 					"name": "chaves",
@@ -2637,9 +4051,50 @@
 								"chaves",
 								"{{uuid_de_uma_chave}}"
 							]
-						}
+						},
+						"description": "Exclui logicamente uma chave (marca excluido = 1)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/chaves/{{uuid_de_uma_chave}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"chaves",
+										"{{uuid_de_uma_chave}}"
+									]
+								},
+								"description": "Exclui logicamente uma chave (marca excluido = 1)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -2743,9 +4198,40 @@
 								"v1",
 								"fila-de-usuarios"
 							]
-						}
+						},
+						"description": "Lista todas as filas de usuários não excluídas, com filtros conforme cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/fila-de-usuarios",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"fila-de-usuarios"
+									]
+								},
+								"description": "Lista todas as filas de usuários não excluídas, com filtros conforme cargo."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"usuario_uuid\": \"string\",\n    \"horta_uuid\": \"string\",\n    \"data_entrada\": \"timestamp\",\n    \"ordem\": \"int\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "fila de usuários por UUID",
@@ -2796,9 +4282,41 @@
 								"fila-de-usuarios",
 								"{{uuid_de_uma_fila}}"
 							]
-						}
+						},
+						"description": "Busca uma fila específica pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/fila-de-usuarios/{{uuid_de_uma_fila}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"fila-de-usuarios",
+										"{{uuid_de_uma_fila}}"
+									]
+								},
+								"description": "Busca uma fila específica pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string\",\n  \"horta_uuid\": \"string\",\n  \"data_entrada\": \"timestamp\",\n  \"ordem\": \"int\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "fila de usuários por Usuário UUID",
@@ -2850,9 +4368,42 @@
 								"usuario",
 								"{{uuid_de_um_user_na_fila}}"
 							]
-						}
+						},
+						"description": "Busca todas as filas de um usuário específico."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/fila-de-usuarios/usuario/{{uuid_de_um_user_na_fila}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"fila-de-usuarios",
+										"usuario",
+										"{{uuid_de_um_user_na_fila}}"
+									]
+								},
+								"description": "Busca todas as filas de um usuário específico."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"usuario_uuid\": \"string\",\n    \"horta_uuid\": \"string\",\n    \"data_entrada\": \"timestamp\",\n    \"ordem\": \"int\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "fila de usuários por Horta UUID",
@@ -2904,9 +4455,42 @@
 								"horta",
 								"{{uuid_de_uma_horta_na_fila}}"
 							]
-						}
+						},
+						"description": "Lista as filas de usuários de uma horta específica."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/fila-de-usuarios/horta/{{uuid_de_uma_horta_na_fila}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"fila-de-usuarios",
+										"horta",
+										"{{uuid_de_uma_horta_na_fila}}"
+									]
+								},
+								"description": "Lista as filas de usuários de uma horta específica."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"usuario_uuid\": \"string\",\n    \"horta_uuid\": \"string\",\n    \"data_entrada\": \"timestamp\",\n    \"ordem\": \"int\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "fila de usuários",
@@ -2966,9 +4550,50 @@
 								"fila-de-usuarios",
 								"{{uuid_de_uma_fila}}"
 							]
-						}
+						},
+						"description": "Atualiza uma fila de usuário existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ordem\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/fila-de-usuarios/{{uuid_de_uma_fila}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"fila-de-usuarios",
+										"{{uuid_de_uma_fila}}"
+									]
+								},
+								"description": "Atualiza uma fila de usuário existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string\",\n  \"horta_uuid\": \"string\",\n  \"data_entrada\": \"timestamp\",\n  \"ordem\": \"int\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "fila de usuários",
@@ -3028,9 +4653,50 @@
 								"fila-de-usuarios",
 								"{{uuid_de_uma_fila}}"
 							]
-						}
+						},
+						"description": "Exclui logicamente uma fila de usuário (marca excluido = 1)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/fila-de-usuarios/{{uuid_de_uma_fila}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"fila-de-usuarios",
+										"{{uuid_de_uma_fila}}"
+									]
+								},
+								"description": "Exclui logicamente uma fila de usuário (marca excluido = 1)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -3127,9 +4793,40 @@
 								"v1",
 								"canteiros"
 							]
-						}
+						},
+						"description": "Lista todos os canteiros de acordo com o escopo do usuário logado."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros"
+									]
+								},
+								"description": "Lista todos os canteiros de acordo com o escopo do usuário logado."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"numero_identificador\": \"string\",\n    \"tamanho_m2\": \"decimal\",\n    \"horta_uuid\": \"string\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string\",\n    \"data_de_ultima_alteracao\": \"timestamp\",\n    \"usuario_anterior_uuid\": \"string\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "canteiros por UUID",
@@ -3194,9 +4891,50 @@
 								"canteiros",
 								"{{uuid_de_um_canteiro}}"
 							]
-						}
+						},
+						"description": "Busca um canteiro específico pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros/{{uuid_de_um_canteiro}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros",
+										"{{uuid_de_um_canteiro}}"
+									]
+								},
+								"description": "Busca um canteiro específico pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"numero_identificador\": \"string\",\n  \"tamanho_m2\": \"decimal\",\n  \"horta_uuid\": \"string\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\",\n  \"usuario_anterior_uuid\": \"string\"\n}"
+						}
+					]
 				},
 				{
 					"name": "canteiros",
@@ -3257,9 +4995,49 @@
 								"v1",
 								"canteiros"
 							]
-						}
+						},
+						"description": "Cria um novo canteiro."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numero_identificador\": \"A-000\",\r\n    \"tamanho_m2\": 20.50,\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros"
+									]
+								},
+								"description": "Cria um novo canteiro."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"numero_identificador\": \"string\",\n  \"tamanho_m2\": \"decimal\",\n  \"horta_uuid\": \"string\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\",\n  \"usuario_anterior_uuid\": \"string\"\n}"
+						}
+					]
 				},
 				{
 					"name": "canteiros",
@@ -3330,9 +5108,50 @@
 								"canteiros",
 								"{{uuid_de_um_canteiro}}"
 							]
-						}
+						},
+						"description": "Atualiza os dados de um canteiro."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numero_identificador\": \"Z-999\",\r\n    \"tamanho_m2\": 10.25,\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros/{{uuid_de_um_canteiro}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros",
+										"{{uuid_de_um_canteiro}}"
+									]
+								},
+								"description": "Atualiza os dados de um canteiro."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"numero_identificador\": \"string\",\n  \"tamanho_m2\": \"decimal\",\n  \"horta_uuid\": \"string\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\",\n  \"usuario_anterior_uuid\": \"string\"\n}"
+						}
+					]
 				},
 				{
 					"name": "canteiros",
@@ -3392,9 +5211,50 @@
 								"canteiros",
 								"{{uuid_de_um_canteiro}}"
 							]
-						}
+						},
+						"description": "Exclui logicamente um canteiro (marca excluido = 1)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros/{{uuid_de_um_canteiro}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros",
+										"{{uuid_de_um_canteiro}}"
+									]
+								},
+								"description": "Exclui logicamente um canteiro (marca excluido = 1)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -3492,9 +5352,40 @@
 								"v1",
 								"canteiros-e-usuarios"
 							]
-						}
+						},
+						"description": "Lista os vínculos de usuários com canteiros, aplicando filtro de acordo com o cargo do usuário logado."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros-e-usuarios"
+									]
+								},
+								"description": "Lista os vínculos de usuários com canteiros, aplicando filtro de acordo com o cargo do usuário logado."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"canteiro_uuid\": \"string\",\n    \"usuario_uuid\": \"string\",\n    \"tipo_vinculo\": \"int\",\n    \"data_inicio\": \"date\",\n    \"data_fim\": \"date\",\n    \"percentual_responsabilidade\": \"decimal\",\n    \"observacoes\": \"text\",\n    \"ativo\": \"tinyint\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "canteiros e usuários por UUID",
@@ -3545,9 +5436,41 @@
 								"canteiros-e-usuarios",
 								"{{uuid_de_um_vinculo_canteiro_user}}"
 							]
-						}
+						},
+						"description": "Busca um vínculo específico entre usuário e canteiro pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/{{uuid_de_um_vinculo_canteiro_user}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros-e-usuarios",
+										"{{uuid_de_um_vinculo_canteiro_user}}"
+									]
+								},
+								"description": "Busca um vínculo específico entre usuário e canteiro pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"canteiro_uuid\": \"string\",\n  \"usuario_uuid\": \"string\",\n  \"tipo_vinculo\": \"int\",\n  \"data_inicio\": \"date\",\n  \"data_fim\": \"date\",\n  \"percentual_responsabilidade\": \"decimal\",\n  \"observacoes\": \"text\",\n  \"ativo\": \"tinyint\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "canteiros e usuários",
@@ -3615,9 +5538,49 @@
 								"v1",
 								"canteiros-e-usuarios"
 							]
-						}
+						},
+						"description": "Cria um novo vínculo entre um usuário e um canteiro."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario_uuid\": \"{{uuid_de_um_user}}\",\r\n    \"canteiro_uuid\": \"{{uuid_canteiro_de_um_vinculo}}\",\r\n    \"tipo_vinculo\": 1,\r\n    \"data_inicio\": \"2025-01-01\",\r\n    \"data_fim\": \"2025-01-02\",\r\n    \"percentual_responsabilidade\": 25.0,\r\n    \"observacoes\": \"Teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros-e-usuarios"
+									]
+								},
+								"description": "Cria um novo vínculo entre um usuário e um canteiro."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"canteiro_uuid\": \"string\",\n  \"usuario_uuid\": \"string\",\n  \"tipo_vinculo\": \"int\",\n  \"data_inicio\": \"date\",\n  \"data_fim\": \"date\",\n  \"percentual_responsabilidade\": \"decimal\",\n  \"observacoes\": \"text\",\n  \"ativo\": 1,\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "canteiros e usuários",
@@ -3686,9 +5649,50 @@
 								"canteiros-e-usuarios",
 								"{{uuid_de_um_vinculo_canteiro_user}}"
 							]
-						}
+						},
+						"description": "Atualiza os dados de um vínculo já existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario_uuid\": \"{{uuid_user_de_um_vinculo_canteiro}}\",\r\n    \"canteiro_uuid\": \"{{uuid_canteiro_de_um_vinculo}}\",\r\n    \"tipo_vinculo\": 2,\r\n    \"data_inicio\": \"2025-01-01\",\r\n    \"data_fim\": \"2025-01-02\",\r\n    \"percentual_responsabilidade\": 50.0,\r\n    \"observacoes\": \"Teste\",\r\n    \"ativo\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/{{uuid_de_um_vinculo_canteiro_user}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros-e-usuarios",
+										"{{uuid_de_um_vinculo_canteiro_user}}"
+									]
+								},
+								"description": "Atualiza os dados de um vínculo já existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"canteiro_uuid\": \"string\",\n  \"usuario_uuid\": \"string\",\n  \"tipo_vinculo\": \"int\",\n  \"data_inicio\": \"date\",\n  \"data_fim\": \"date\",\n  \"percentual_responsabilidade\": \"decimal\",\n  \"observacoes\": \"text\",\n  \"ativo\": \"tinyint\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "canteiros e usuários",
@@ -3748,9 +5752,50 @@
 								"canteiros-e-usuarios",
 								"{{uuid_de_um_vinculo_canteiro_user}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de um vínculo (marca como excluído)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/canteiros-e-usuarios/{{uuid_de_um_vinculo_canteiro_user}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"canteiros-e-usuarios",
+										"{{uuid_de_um_vinculo_canteiro_user}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de um vínculo (marca como excluído)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"event": [
@@ -3827,9 +5872,40 @@
 								"v1",
 								"permissoes-de-cargo"
 							]
-						}
+						},
+						"description": "Lista todas as permissões de cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-cargo",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-cargo"
+									]
+								},
+								"description": "Lista todas as permissões de cargo."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"cargo_uuid\": \"string (UUID)\",\n    \"permissao_uuid\": \"string (UUID)\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "permissões de cargo por UUID",
@@ -3880,9 +5956,41 @@
 								"permissoes-de-cargo",
 								"{{uuid_de_uma_tupla_permissao_cargo}}"
 							]
-						}
+						},
+						"description": "Busca uma permissão específica de cargo pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/{{uuid_de_uma_tupla_permissao_cargo}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-cargo",
+										"{{uuid_de_uma_tupla_permissao_cargo}}"
+									]
+								},
+								"description": "Busca uma permissão específica de cargo pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"cargo_uuid\": \"string (UUID)\",\n  \"permissao_uuid\": \"string (UUID)\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "permissões de cargo por Cargo UUID",
@@ -3934,9 +6042,42 @@
 								"cargo",
 								"{{uuid_cargo_com_permissao}}"
 							]
-						}
+						},
+						"description": "Lista todas as permissões atribuídas a um cargo específico."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/cargo/{{uuid_cargo_com_permissao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-cargo",
+										"cargo",
+										"{{uuid_cargo_com_permissao}}"
+									]
+								},
+								"description": "Lista todas as permissões atribuídas a um cargo específico."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"cargo_uuid\": \"string (UUID)\",\n    \"permissao_uuid\": \"string (UUID)\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "permissões de cargo",
@@ -4004,9 +6145,49 @@
 								"v1",
 								"permissoes-de-cargo"
 							]
-						}
+						},
+						"description": "Cria uma nova permissão para um cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cargo_uuid\": \"{{uuid_de_um_cargo}}\",\r\n    \"permissao_uuid\": \"{{uuid_de_uma_permissao}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-cargo",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-cargo"
+									]
+								},
+								"description": "Cria uma nova permissão para um cargo."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"cargo_uuid\": \"string (UUID)\",\n  \"permissao_uuid\": \"string (UUID)\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "permissões de cargo",
@@ -4075,9 +6256,50 @@
 								"permissoes-de-cargo",
 								"{{uuid_de_uma_tupla_permissao_cargo}}"
 							]
-						}
+						},
+						"description": "Atualiza uma permissão existente de cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"permissao_uuid\": \"{{uuid_de_uma_permissao}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/{{uuid_de_uma_tupla_permissao_cargo}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-cargo",
+										"{{uuid_de_uma_tupla_permissao_cargo}}"
+									]
+								},
+								"description": "Atualiza uma permissão existente de cargo."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"cargo_uuid\": \"string (UUID)\",\n  \"permissao_uuid\": \"string (UUID)\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "permissões de cargo",
@@ -4137,9 +6359,50 @@
 								"permissoes-de-cargo",
 								"{{uuid_de_uma_tupla_permissao_cargo}}"
 							]
-						}
+						},
+						"description": "Exclusão lógica de uma permissão de cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-cargo/{{uuid_de_uma_tupla_permissao_cargo}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-cargo",
+										"{{uuid_de_uma_tupla_permissao_cargo}}"
+									]
+								},
+								"description": "Exclusão lógica de uma permissão de cargo."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -4226,9 +6489,40 @@
 								"v1",
 								"permissoes-de-excecao"
 							]
-						}
+						},
+						"description": "Lista todas as permissões de exceção."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-excecao",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-excecao"
+									]
+								},
+								"description": "Lista todas as permissões de exceção."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"usuario_uuid\": \"string (UUID)\",\n    \"permissao_uuid\": \"string (UUID)\",\n    \"liberado\": \"tinyint\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "permissões de exceção por UUID",
@@ -4279,9 +6573,41 @@
 								"permissoes-de-excecao",
 								"{{uuid_de_uma_tupla_permissao_excecao}}"
 							]
-						}
+						},
+						"description": "Busca uma permissão de exceção pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-excecao/{{uuid_de_uma_tupla_permissao_excecao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-excecao",
+										"{{uuid_de_uma_tupla_permissao_excecao}}"
+									]
+								},
+								"description": "Busca uma permissão de exceção pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string (UUID)\",\n  \"permissao_uuid\": \"string (UUID)\",\n  \"liberado\": \"tinyint\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "permissões de exceção",
@@ -4349,9 +6675,49 @@
 								"v1",
 								"permissoes-de-excecao"
 							]
-						}
+						},
+						"description": "Cria uma nova permissão de exceção para um usuário."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario_uuid\": \"{{uuid_de_um_user}}\",\r\n    \"permissao_uuid\": \"{{uuid_de_uma_permissao}}\",\r\n    \"liberado\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-excecao",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-excecao"
+									]
+								},
+								"description": "Cria uma nova permissão de exceção para um usuário."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string (UUID)\",\n  \"permissao_uuid\": \"string (UUID)\",\n  \"liberado\": \"tinyint\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "permissões de exceção",
@@ -4411,9 +6777,50 @@
 								"permissoes-de-excecao",
 								"{{uuid_de_uma_tupla_permissao_excecao}}"
 							]
-						}
+						},
+						"description": "Atualiza uma permissão de exceção existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"liberado\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-excecao/{{uuid_de_uma_tupla_permissao_excecao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-excecao",
+										"{{uuid_de_uma_tupla_permissao_excecao}}"
+									]
+								},
+								"description": "Atualiza uma permissão de exceção existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string (UUID)\",\n  \"permissao_uuid\": \"string (UUID)\",\n  \"liberado\": \"tinyint\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "permissões de exceção",
@@ -4473,9 +6880,50 @@
 								"permissoes-de-excecao",
 								"{{uuid_de_uma_tupla_permissao_excecao}}"
 							]
-						}
+						},
+						"description": "Exclusão lógica de uma permissão de exceção."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/permissoes-de-excecao/{{uuid_de_uma_tupla_permissao_excecao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"permissoes-de-excecao",
+										"{{uuid_de_uma_tupla_permissao_excecao}}"
+									]
+								},
+								"description": "Exclusão lógica de uma permissão de exceção."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -4573,9 +7021,40 @@
 								"v1",
 								"categorias-financeiras"
 							]
-						}
+						},
+						"description": "Lista todas as categorias financeiras conforme escopo do cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/categorias-financeiras",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"categorias-financeiras"
+									]
+								},
+								"description": "Lista todas as categorias financeiras conforme escopo do cargo."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"nome\": \"string\",\n    \"descricao\": \"string\",\n    \"tipo\": \"tinyint (1/2/3)\",\n    \"cor\": \"string (#HEX)\",\n    \"icone\": \"string\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"horta_uuid\": \"string (UUID)\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "categorias financeiras por UUID",
@@ -4626,9 +7105,41 @@
 								"categorias-financeiras",
 								"{{uuid_de_uma_categoria_financeira}}"
 							]
-						}
+						},
+						"description": "Busca categoria financeira pelo uuid."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/categorias-financeiras/{{uuid_de_uma_categoria_financeira}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"categorias-financeiras",
+										"{{uuid_de_uma_categoria_financeira}}"
+									]
+								},
+								"description": "Busca categoria financeira pelo uuid."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"tipo\": \"tinyint (1/2/3)\",\n  \"cor\": \"string (#HEX)\",\n  \"icone\": \"string\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "categorias financeira por Associação UUID",
@@ -4680,9 +7191,42 @@
 								"associacao",
 								"{{uuid_de_uma_associacao_categoria_financeira}}"
 							]
-						}
+						},
+						"description": "Lista categorias financeiras de uma associação específica."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/categorias-financeiras/associacao/{{uuid_de_uma_associacao_categoria_financeira}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"categorias-financeiras",
+										"associacao",
+										"{{uuid_de_uma_associacao_categoria_financeira}}"
+									]
+								},
+								"description": "Lista categorias financeiras de uma associação específica."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"nome\": \"string\",\n    \"descricao\": \"string\",\n    \"tipo\": \"tinyint (1/2/3)\",\n    \"cor\": \"string (#HEX)\",\n    \"icone\": \"string\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"horta_uuid\": \"string (UUID)\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "categorias financeiras por Horta UUID",
@@ -4734,9 +7278,42 @@
 								"horta",
 								"{{uuid_de_uma_horta_categoria_financeira}}"
 							]
-						}
+						},
+						"description": "Lista categorias financeiras de uma horta específica."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/categorias-financeiras/horta/{{uuid_de_uma_horta_categoria_financeira}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"categorias-financeiras",
+										"horta",
+										"{{uuid_de_uma_horta_categoria_financeira}}"
+									]
+								},
+								"description": "Lista categorias financeiras de uma horta específica."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"nome\": \"string\",\n    \"descricao\": \"string\",\n    \"tipo\": \"tinyint (1/2/3)\",\n    \"cor\": \"string (#HEX)\",\n    \"icone\": \"string\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"horta_uuid\": \"string (UUID)\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "categorias financeiras",
@@ -4797,9 +7374,49 @@
 								"v1",
 								"categorias-financeiras"
 							]
-						}
+						},
+						"description": "Cria uma nova categoria financeira."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Teste\",\r\n    \"descricao\": \"Pagamento\",\r\n    \"tipo\": 1,\r\n    \"icone\": \"standard-icon\",\r\n    \"cor\": \"#800080\",\r\n    \"associacao_uuid\": \"{{uuid_de_uma_associacao}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/categorias-financeiras",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"categorias-financeiras"
+									]
+								},
+								"description": "Cria uma nova categoria financeira."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"tipo\": \"tinyint (1/2/3)\",\n  \"cor\": \"string (#HEX)\",\n  \"icone\": \"string\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "categorias financeiras",
@@ -4859,9 +7476,50 @@
 								"categorias-financeiras",
 								"{{uuid_de_uma_categoria_financeira}}"
 							]
-						}
+						},
+						"description": "Atualiza categoria financeira existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Insumos\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/categorias-financeiras/{{uuid_de_uma_categoria_financeira}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"categorias-financeiras",
+										"{{uuid_de_uma_categoria_financeira}}"
+									]
+								},
+								"description": "Atualiza categoria financeira existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"tipo\": \"tinyint (1/2/3)\",\n  \"cor\": \"string (#HEX)\",\n  \"icone\": \"string\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "categorias financeiras",
@@ -4921,9 +7579,50 @@
 								"categorias-financeiras",
 								"{{uuid_de_uma_categoria_financeira}}"
 							]
-						}
+						},
+						"description": "Exclusão lógica de categoria financeira (marca excluido = 1)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/categorias-financeiras/{{uuid_de_uma_categoria_financeira}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"categorias-financeiras",
+										"{{uuid_de_uma_categoria_financeira}}"
+									]
+								},
+								"description": "Exclusão lógica de categoria financeira (marca excluido = 1)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -5012,9 +7711,40 @@
 								"v1",
 								"financeiro-da-horta"
 							]
-						}
+						},
+						"description": "Lista todos os lançamentos financeiros de hortas, respeitando o escopo do cargo."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-horta",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-horta"
+									]
+								},
+								"description": "Lista todos os lançamentos financeiros de hortas, respeitando o escopo do cargo."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"valor_em_centavos\": \"bigint\",\n    \"descricao_do_lancamento\": \"string\",\n    \"categoria_uuid\": \"string (UUID)\",\n    \"url_anexo\": \"string (URL)\",\n    \"data_do_lancamento\": \"date\",\n    \"horta_uuid\": \"string (UUID)\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "financeiro da horta por UUID",
@@ -5065,9 +7795,41 @@
 								"financeiro-da-horta",
 								"{{uuid_de_uma_tupla_financeiro_horta}}"
 							]
-						}
+						},
+						"description": "Busca um lançamento financeiro específico pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-horta/{{uuid_de_uma_tupla_financeiro_horta}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-horta",
+										"{{uuid_de_uma_tupla_financeiro_horta}}"
+									]
+								},
+								"description": "Busca um lançamento financeiro específico pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"valor_em_centavos\": \"bigint\",\n  \"descricao_do_lancamento\": \"string\",\n  \"categoria_uuid\": \"string (UUID)\",\n  \"url_anexo\": \"string (URL)\",\n  \"data_do_lancamento\": \"date\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "financeiro da horta por Horta UUID",
@@ -5119,9 +7881,42 @@
 								"horta",
 								"{{uuid_de_uma_horta_financeiro}}"
 							]
-						}
+						},
+						"description": "Lista os lançamentos financeiros de uma horta específica."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-horta/horta/{{uuid_de_uma_horta_financeiro}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-horta",
+										"horta",
+										"{{uuid_de_uma_horta_financeiro}}"
+									]
+								},
+								"description": "Lista os lançamentos financeiros de uma horta específica."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"valor_em_centavos\": \"bigint\",\n    \"descricao_do_lancamento\": \"string\",\n    \"categoria_uuid\": \"string (UUID)\",\n    \"url_anexo\": \"string (URL)\",\n    \"data_do_lancamento\": \"date\",\n    \"horta_uuid\": \"string (UUID)\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "financeiro da horta",
@@ -5189,9 +7984,49 @@
 								"v1",
 								"financeiro-da-horta"
 							]
-						}
+						},
+						"description": "Cria um novo lançamento financeiro para uma horta."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor_em_centavos\": 25999,\r\n    \"descricao_do_lancamento\": \"Pagamento de conta de água\",\r\n    \"categoria_uuid\": \"{{uuid_de_uma_categoria_financeira}}\",\r\n    \"url_anexo\": \"https://www.google.drive.com/10293sad1@3\",\r\n    \"data_do_lancamento\": \"2025-01-01\",\r\n    \"horta_uuid\": \"{{uuid_de_uma_horta_financeiro}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-horta",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-horta"
+									]
+								},
+								"description": "Cria um novo lançamento financeiro para uma horta."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"valor_em_centavos\": \"bigint\",\n  \"descricao_do_lancamento\": \"string\",\n  \"categoria_uuid\": \"string (UUID)\",\n  \"url_anexo\": \"string (URL)\",\n  \"data_do_lancamento\": \"date\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "financeiro da horta",
@@ -5251,9 +8086,50 @@
 								"financeiro-da-horta",
 								"{{uuid_de_uma_tupla_financeiro_horta}}"
 							]
-						}
+						},
+						"description": "Atualiza um lançamento financeiro existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor_em_centavos\": 111111\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-horta/{{uuid_de_uma_tupla_financeiro_horta}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-horta",
+										"{{uuid_de_uma_tupla_financeiro_horta}}"
+									]
+								},
+								"description": "Atualiza um lançamento financeiro existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"valor_em_centavos\": \"bigint\",\n  \"descricao_do_lancamento\": \"string\",\n  \"categoria_uuid\": \"string (UUID)\",\n  \"url_anexo\": \"string (URL)\",\n  \"data_do_lancamento\": \"date\",\n  \"horta_uuid\": \"string (UUID)\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "financeiro da horta",
@@ -5313,9 +8189,50 @@
 								"financeiro-da-horta",
 								"{{uuid_de_uma_tupla_financeiro_horta}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de um lançamento financeiro."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-horta/{{uuid_de_uma_tupla_financeiro_horta}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-horta",
+										"{{uuid_de_uma_tupla_financeiro_horta}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de um lançamento financeiro."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -5424,9 +8341,40 @@
 								"v1",
 								"financeiro-da-associacao"
 							]
-						}
+						},
+						"description": "Lista todos os lançamentos financeiros da associação."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-associacao",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-associacao"
+									]
+								},
+								"description": "Lista todos os lançamentos financeiros da associação."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"valor_em_centavos\": \"bigint\",\n    \"descricao_do_lancamento\": \"text\",\n    \"categoria_uuid\": \"string (UUID)\",\n    \"url_anexo\": \"text\",\n    \"data_do_lancamento\": \"date\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"mensalidade_uuid\": \"string (UUID)\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "financeiro da associação por UUID",
@@ -5477,9 +8425,41 @@
 								"financeiro-da-associacao",
 								"{{uuid_de_uma_tupla_financeiro_associacao}}"
 							]
-						}
+						},
+						"description": "Busca um lançamento financeiro específico pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/{{uuid_de_uma_tupla_financeiro_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-associacao",
+										"{{uuid_de_uma_tupla_financeiro_associacao}}"
+									]
+								},
+								"description": "Busca um lançamento financeiro específico pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"valor_em_centavos\": \"bigint\",\n  \"descricao_do_lancamento\": \"text\",\n  \"categoria_uuid\": \"string (UUID)\",\n  \"url_anexo\": \"text\",\n  \"data_do_lancamento\": \"date\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"mensalidade_uuid\": \"string (UUID)\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "financeiro da associação por Associação UUID",
@@ -5531,9 +8511,42 @@
 								"associacao",
 								"{{uuid_de_uma_associacao_financeiro}}"
 							]
-						}
+						},
+						"description": "Lista os lançamentos financeiros de uma associação específica."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/associacao/{{uuid_de_uma_associacao_financeiro}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-associacao",
+										"associacao",
+										"{{uuid_de_uma_associacao_financeiro}}"
+									]
+								},
+								"description": "Lista os lançamentos financeiros de uma associação específica."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"valor_em_centavos\": \"bigint\",\n    \"descricao_do_lancamento\": \"text\",\n    \"categoria_uuid\": \"string (UUID)\",\n    \"url_anexo\": \"text\",\n    \"data_do_lancamento\": \"date\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"mensalidade_uuid\": \"string (UUID)\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "financeiro da associação",
@@ -5601,9 +8614,49 @@
 								"v1",
 								"financeiro-da-associacao"
 							]
-						}
+						},
+						"description": "Cria um novo lançamento financeiro."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor_em_centavos\": 24999,\r\n    \"descricao_do_lancamento\": \"Pagamento de conta de água\",\r\n    \"categoria_uuid\": \"{{uuid_de_uma_categoria_financeira}}\",\r\n    \"url_anexo\": \"https://www.google.drive.com/10293sad1@3\",\r\n    \"data_do_lancamento\": \"2025-01-01\",\r\n    \"associacao_uuid\": \"{{uuid_de_uma_associacao}}\",\r\n    \"mensalidade_uuid\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-associacao",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-associacao"
+									]
+								},
+								"description": "Cria um novo lançamento financeiro."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"valor_em_centavos\": \"bigint\",\n  \"descricao_do_lancamento\": \"text\",\n  \"categoria_uuid\": \"string (UUID)\",\n  \"url_anexo\": \"text\",\n  \"data_do_lancamento\": \"date\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"mensalidade_uuid\": \"string (UUID)\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "financeiro da associação",
@@ -5663,9 +8716,50 @@
 								"financeiro-da-associacao",
 								"{{uuid_de_uma_tupla_financeiro_associacao}}"
 							]
-						}
+						},
+						"description": "Atualiza um lançamento financeiro existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"data_do_lancamento\": \"2025-03-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/{{uuid_de_uma_tupla_financeiro_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-associacao",
+										"{{uuid_de_uma_tupla_financeiro_associacao}}"
+									]
+								},
+								"description": "Atualiza um lançamento financeiro existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"valor_em_centavos\": \"bigint\",\n  \"descricao_do_lancamento\": \"text\",\n  \"categoria_uuid\": \"string (UUID)\",\n  \"url_anexo\": \"text\",\n  \"data_do_lancamento\": \"date\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"mensalidade_uuid\": \"string (UUID)\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "financeiro da associação",
@@ -5725,9 +8819,50 @@
 								"financeiro-da-associacao",
 								"{{uuid_de_uma_tupla_financeiro_associacao}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de um lançamento financeiro (marca excluido = 1)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/financeiro-da-associacao/{{uuid_de_uma_tupla_financeiro_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"financeiro-da-associacao",
+										"{{uuid_de_uma_tupla_financeiro_associacao}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de um lançamento financeiro (marca excluido = 1)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -5824,9 +8959,40 @@
 								"v1",
 								"mensalidades-da-plataforma"
 							]
-						}
+						},
+						"description": "Lista todas as mensalidades disponíveis (apenas para Admin Plataforma e Admin Associação)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-plataforma"
+									]
+								},
+								"description": "Lista todas as mensalidades disponíveis (apenas para Admin Plataforma e Admin Associação)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"usuario_uuid\": \"string (UUID)\",\n    \"valor_em_centavos\": \"bigint\",\n    \"plano_uuid\": \"string (UUID)\",\n    \"data_vencimento\": \"date\",\n    \"data_pagamento\": \"date\",\n    \"status\": \"tinyint\",\n    \"dias_atraso\": \"int\",\n    \"url_anexo\": \"text\",\n    \"url_recibo\": \"string\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da plataforma por UUID",
@@ -5877,9 +9043,41 @@
 								"mensalidades-da-plataforma",
 								"{{uuid_de_uma_mensalidade_plataforma}}"
 							]
-						}
+						},
+						"description": "Busca uma mensalidade específica pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/{{uuid_de_uma_mensalidade_plataforma}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-plataforma",
+										"{{uuid_de_uma_mensalidade_plataforma}}"
+									]
+								},
+								"description": "Busca uma mensalidade específica pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string (UUID)\",\n  \"valor_em_centavos\": \"bigint\",\n  \"plano_uuid\": \"string (UUID)\",\n  \"data_vencimento\": \"date\",\n  \"data_pagamento\": \"date\",\n  \"status\": \"tinyint\",\n  \"dias_atraso\": \"int\",\n  \"url_anexo\": \"text\",\n  \"url_recibo\": \"string\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da plataforma por Usuário UUID",
@@ -5931,9 +9129,42 @@
 								"usuario",
 								"{{uuid_user_de_uma_mensalidade_plataforma}}"
 							]
-						}
+						},
+						"description": "Lista mensalidades filtradas por usuário (apenas Admin Plataforma)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/usuario/{{uuid_user_de_uma_mensalidade_plataforma}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-plataforma",
+										"usuario",
+										"{{uuid_user_de_uma_mensalidade_plataforma}}"
+									]
+								},
+								"description": "Lista mensalidades filtradas por usuário (apenas Admin Plataforma)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"usuario_uuid\": \"string (UUID)\",\n    \"valor_em_centavos\": \"bigint\",\n    \"plano_uuid\": \"string (UUID)\",\n    \"data_vencimento\": \"date\",\n    \"data_pagamento\": \"date\",\n    \"status\": \"tinyint\",\n    \"dias_atraso\": \"int\",\n    \"url_anexo\": \"text\",\n    \"url_recibo\": \"string\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da plataforma",
@@ -5992,9 +9223,49 @@
 								"v1",
 								"mensalidades-da-plataforma"
 							]
-						}
+						},
+						"description": "Cria uma nova mensalidade."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor_em_centavos\": 25000,\r\n    \"usuario_uuid\": \"{{uuid_de_um_user}}\",\r\n    \"plano_uuid\": \"{{uuid_de_um_plano}}\",\r\n    \"data_vencimento\": \"2025-12-11\",\r\n    \"data_pagamento\": \"2025-12-12\",\r\n    \"status\": 1,\r\n    \"url_anexo\": \"https://www.google.drive.com/test.pdf\",\r\n    \"dias_atraso\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-plataforma"
+									]
+								},
+								"description": "Cria uma nova mensalidade."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string (UUID)\",\n  \"valor_em_centavos\": \"bigint\",\n  \"plano_uuid\": \"string (UUID)\",\n  \"data_vencimento\": \"date\",\n  \"data_pagamento\": \"date\",\n  \"status\": \"tinyint\",\n  \"dias_atraso\": \"int\",\n  \"url_anexo\": \"text\",\n  \"url_recibo\": \"string\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da plataforma",
@@ -6054,9 +9325,50 @@
 								"mensalidades-da-plataforma",
 								"{{uuid_de_uma_mensalidade_plataforma}}"
 							]
-						}
+						},
+						"description": "Atualiza uma mensalidade existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor_em_centavos\": 860,\r\n    \"data_vencimento\": \"2026-01-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/{{uuid_de_uma_mensalidade_plataforma}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-plataforma",
+										"{{uuid_de_uma_mensalidade_plataforma}}"
+									]
+								},
+								"description": "Atualiza uma mensalidade existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string (UUID)\",\n  \"valor_em_centavos\": \"bigint\",\n  \"plano_uuid\": \"string (UUID)\",\n  \"data_vencimento\": \"date\",\n  \"data_pagamento\": \"date\",\n  \"status\": \"tinyint\",\n  \"dias_atraso\": \"int\",\n  \"url_anexo\": \"text\",\n  \"url_recibo\": \"string\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da plataforma",
@@ -6116,9 +9428,50 @@
 								"mensalidades-da-plataforma",
 								"{{uuid_de_uma_mensalidade_plataforma}}"
 							]
-						}
+						},
+						"description": "Exclusão lógica de uma mensalidade."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-plataforma/{{uuid_de_uma_mensalidade_plataforma}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-plataforma",
+										"{{uuid_de_uma_mensalidade_plataforma}}"
+									]
+								},
+								"description": "Exclusão lógica de uma mensalidade."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -6205,9 +9558,40 @@
 								"v1",
 								"mensalidades-da-associacao"
 							]
-						}
+						},
+						"description": "Lista todas as mensalidades disponíveis de acordo com o cargo do usuário."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-associacao"
+									]
+								},
+								"description": "Lista todas as mensalidades disponíveis de acordo com o cargo do usuário."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"usuario_uuid\": \"string (UUID)\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"valor_em_centavos\": \"bigint\",\n    \"data_vencimento\": \"date\",\n    \"data_pagamento\": \"date\",\n    \"status\": \"tinyint\",\n    \"dias_atraso\": \"int\",\n    \"url_anexo\": \"text\",\n    \"url_recibo\": \"string\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da associação por UUID",
@@ -6258,9 +9642,41 @@
 								"mensalidades-da-associacao",
 								"{{uuid_de_uma_mensalidade_associacao}}"
 							]
-						}
+						},
+						"description": "Busca uma mensalidade específica pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/{{uuid_de_uma_mensalidade_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-associacao",
+										"{{uuid_de_uma_mensalidade_associacao}}"
+									]
+								},
+								"description": "Busca uma mensalidade específica pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string (UUID)\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"valor_em_centavos\": \"bigint\",\n  \"data_vencimento\": \"date\",\n  \"data_pagamento\": \"date\",\n  \"status\": \"tinyint\",\n  \"dias_atraso\": \"int\",\n  \"url_anexo\": \"text\",\n  \"url_recibo\": \"string\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da associação por Usuário UUID",
@@ -6312,9 +9728,42 @@
 								"usuario",
 								"{{uuid_user_em_mensalidade_associacao}}"
 							]
-						}
+						},
+						"description": "Lista mensalidades filtradas por usuário."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/usuario/{{uuid_user_em_mensalidade_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-associacao",
+										"usuario",
+										"{{uuid_user_em_mensalidade_associacao}}"
+									]
+								},
+								"description": "Lista mensalidades filtradas por usuário."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"usuario_uuid\": \"string (UUID)\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"valor_em_centavos\": \"bigint\",\n    \"data_vencimento\": \"date\",\n    \"data_pagamento\": \"date\",\n    \"status\": \"tinyint\",\n    \"dias_atraso\": \"int\",\n    \"url_anexo\": \"text\",\n    \"url_recibo\": \"string\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da associação por Associação UUID",
@@ -6366,9 +9815,42 @@
 								"associacao",
 								"{{uuid_associacao_em_mensalidade_associacao}}"
 							]
-						}
+						},
+						"description": "Lista mensalidades filtradas por associação."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/associacao/{{uuid_associacao_em_mensalidade_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-associacao",
+										"associacao",
+										"{{uuid_associacao_em_mensalidade_associacao}}"
+									]
+								},
+								"description": "Lista mensalidades filtradas por associação."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string\",\n    \"usuario_uuid\": \"string (UUID)\",\n    \"associacao_uuid\": \"string (UUID)\",\n    \"valor_em_centavos\": \"bigint\",\n    \"data_vencimento\": \"date\",\n    \"data_pagamento\": \"date\",\n    \"status\": \"tinyint\",\n    \"dias_atraso\": \"int\",\n    \"url_anexo\": \"text\",\n    \"url_recibo\": \"string\",\n    \"excluido\": \"tinyint\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da associação",
@@ -6427,9 +9909,49 @@
 								"v1",
 								"mensalidades-da-associacao"
 							]
-						}
+						},
+						"description": "Cria uma nova mensalidade."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor_em_centavos\": 25000,\r\n    \"usuario_uuid\": \"{{uuid_de_um_user}}\",\r\n    \"associacao_uuid\": \"{{uuid_associacao_de_um_user}}\",\r\n    \"data_vencimento\": \"2025-12-30\",\r\n    \"data_pagamento\": null,\r\n    \"status\": 1,\r\n    \"dias_atraso\": 1,\r\n    \"url_anexo\": \"https://www.google.drive.com/test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-associacao"
+									]
+								},
+								"description": "Cria uma nova mensalidade."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string (UUID)\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"valor_em_centavos\": \"bigint\",\n  \"data_vencimento\": \"date\",\n  \"data_pagamento\": \"date\",\n  \"status\": \"tinyint\",\n  \"dias_atraso\": \"int\",\n  \"url_anexo\": \"text\",\n  \"url_recibo\": \"string\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da associação",
@@ -6489,9 +10011,50 @@
 								"mensalidades-da-associacao",
 								"{{uuid_de_uma_mensalidade_associacao}}"
 							]
-						}
+						},
+						"description": "Atualiza uma mensalidade existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/{{uuid_de_uma_mensalidade_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-associacao",
+										"{{uuid_de_uma_mensalidade_associacao}}"
+									]
+								},
+								"description": "Atualiza uma mensalidade existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string\",\n  \"usuario_uuid\": \"string (UUID)\",\n  \"associacao_uuid\": \"string (UUID)\",\n  \"valor_em_centavos\": \"bigint\",\n  \"data_vencimento\": \"date\",\n  \"data_pagamento\": \"date\",\n  \"status\": \"tinyint\",\n  \"dias_atraso\": \"int\",\n  \"url_anexo\": \"text\",\n  \"url_recibo\": \"string\",\n  \"excluido\": \"tinyint\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "mensalidades da associação",
@@ -6551,9 +10114,50 @@
 								"mensalidades-da-associacao",
 								"{{uuid_de_uma_mensalidade_associacao}}"
 							]
-						}
+						},
+						"description": "Exclusão lógica de uma mensalidade."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/mensalidades-da-associacao/{{uuid_de_uma_mensalidade_associacao}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"mensalidades-da-associacao",
+										"{{uuid_de_uma_mensalidade_associacao}}"
+									]
+								},
+								"description": "Exclusão lógica de uma mensalidade."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -6650,9 +10254,40 @@
 								"v1",
 								"recursos-do-plano"
 							]
-						}
+						},
+						"description": "Retorna todos os recursos ativos cadastrados na plataforma."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/recursos-do-plano",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"recursos-do-plano"
+									]
+								},
+								"description": "Retorna todos os recursos ativos cadastrados na plataforma."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"plano_uuid\": \"string (UUID)\",\n    \"nome_do_recurso\": \"string\",\n    \"quantidade\": \"int\",\n    \"descricao\": \"string\",\n    \"excluido\": \"int\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "recursos do plano por UUID",
@@ -6703,9 +10338,41 @@
 								"recursos-do-plano",
 								"{{uuid_recursos_de_um_plano}}"
 							]
-						}
+						},
+						"description": "Busca um recurso específico pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/recursos-do-plano/{{uuid_recursos_de_um_plano}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"recursos-do-plano",
+										"{{uuid_recursos_de_um_plano}}"
+									]
+								},
+								"description": "Busca um recurso específico pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"plano_uuid\": \"string (UUID)\",\n  \"nome_do_recurso\": \"string\",\n  \"quantidade\": \"int\",\n  \"descricao\": \"string\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "recursos do plano por Plano UUID",
@@ -6757,9 +10424,42 @@
 								"plano",
 								"{{uuid_de_um_plano_com_recursos}}"
 							]
-						}
+						},
+						"description": "Consulta todos os recursos associados a um plano específico."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/recursos-do-plano/plano/{{uuid_de_um_plano_com_recursos}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"recursos-do-plano",
+										"plano",
+										"{{uuid_de_um_plano_com_recursos}}"
+									]
+								},
+								"description": "Consulta todos os recursos associados a um plano específico."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"plano_uuid\": \"string (UUID)\",\n    \"nome_do_recurso\": \"string\",\n    \"quantidade\": \"int\",\n    \"descricao\": \"string\",\n    \"excluido\": \"int\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "recursos do plano",
@@ -6818,9 +10518,49 @@
 								"v1",
 								"recursos-do-plano"
 							]
-						}
+						},
+						"description": "Cria um novo recurso para um plano existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome_do_recurso\": \"Criar usuários\",\r\n    \"quantidade\": 3,\r\n    \"descricao\": \"Teste\",\r\n    \"plano_uuid\": \"{{uuid_de_um_plano}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/recursos-do-plano",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"recursos-do-plano"
+									]
+								},
+								"description": "Cria um novo recurso para um plano existente."
+							},
+							"status": "OK",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"plano_uuid\": \"string (UUID)\",\n  \"nome_do_recurso\": \"string\",\n  \"quantidade\": \"int\",\n  \"descricao\": \"string\",\n  \"excluido\": 0,\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "recursos do plano",
@@ -6880,9 +10620,50 @@
 								"recursos-do-plano",
 								"{{uuid_recursos_de_um_plano}}"
 							]
-						}
+						},
+						"description": "Atualiza um recurso existente de um plano."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantidade\": 1,\r\n    \"descricao\": \"Teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/recursos-do-plano/{{uuid_recursos_de_um_plano}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"recursos-do-plano",
+										"{{uuid_recursos_de_um_plano}}"
+									]
+								},
+								"description": "Atualiza um recurso existente de um plano."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"plano_uuid\": \"string (UUID)\",\n  \"nome_do_recurso\": \"string\",\n  \"quantidade\": \"int\",\n  \"descricao\": \"string\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "recursos do plano",
@@ -6942,9 +10723,50 @@
 								"recursos-do-plano",
 								"{{uuid_recursos_de_um_plano}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de um recurso do plano (marca como excluído)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/recursos-do-plano/{{uuid_recursos_de_um_plano}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"recursos-do-plano",
+										"{{uuid_recursos_de_um_plano}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de um recurso do plano (marca como excluído)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -7031,9 +10853,40 @@
 								"v1",
 								"planos"
 							]
-						}
+						},
+						"description": "Retorna todos os planos ativos da plataforma."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/planos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"planos"
+									]
+								},
+								"description": "Retorna todos os planos ativos da plataforma."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"string (UUID)\",\n    \"codigo\": \"int\",\n    \"slug\": \"string\",\n    \"valor_em_centavos\": \"int\",\n    \"nome\": \"string\",\n    \"descricao\": \"string\",\n    \"excluido\": \"int\",\n    \"usuario_criador_uuid\": \"string (UUID)\",\n    \"data_de_criacao\": \"timestamp\",\n    \"usuario_alterador_uuid\": \"string (UUID)\",\n    \"data_de_ultima_alteracao\": \"timestamp\"\n  }\n]"
+						}
+					]
 				},
 				{
 					"name": "planos por UUID",
@@ -7084,9 +10937,41 @@
 								"planos",
 								"{{uuid_de_um_plano}}"
 							]
-						}
+						},
+						"description": "Busca um plano específico pelo UUID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/planos/{{uuid_de_um_plano}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"planos",
+										"{{uuid_de_um_plano}}"
+									]
+								},
+								"description": "Busca um plano específico pelo UUID."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"codigo\": \"int\",\n  \"slug\": \"string\",\n  \"valor_em_centavos\": \"int\",\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "planos por Usuário UUID",
@@ -7138,9 +11023,42 @@
 								"usuario",
 								"{{uuid_user_de_uma_mensalidade_plataforma}}"
 							]
-						}
+						},
+						"description": "Consulta o plano associado a um usuário específico."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/v1/planos/usuario/{{uuid_user_de_uma_mensalidade_plataforma}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"planos",
+										"usuario",
+										"{{uuid_user_de_uma_mensalidade_plataforma}}"
+									]
+								},
+								"description": "Consulta o plano associado a um usuário específico."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"plano_uuid\": \"string (UUID)\"\n}"
+						}
+					]
 				},
 				{
 					"name": "planos",
@@ -7200,9 +11118,50 @@
 								"planos",
 								"{{uuid_de_um_plano}}"
 							]
-						}
+						},
+						"description": "Atualiza um plano existente."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"codigo\": \"4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/planos/{{uuid_de_um_plano}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"planos",
+										"{{uuid_de_um_plano}}"
+									]
+								},
+								"description": "Atualiza um plano existente."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"string (UUID)\",\n  \"codigo\": \"int\",\n  \"slug\": \"string\",\n  \"valor_em_centavos\": \"int\",\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"excluido\": \"int\",\n  \"usuario_criador_uuid\": \"string (UUID)\",\n  \"data_de_criacao\": \"timestamp\",\n  \"usuario_alterador_uuid\": \"string (UUID)\",\n  \"data_de_ultima_alteracao\": \"timestamp\"\n}"
+						}
+					]
 				},
 				{
 					"name": "planos",
@@ -7262,9 +11221,50 @@
 								"planos",
 								"{{uuid_de_um_plano}}"
 							]
-						}
+						},
+						"description": "Realiza exclusão lógica de um plano (marca como excluído)."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/v1/planos/{{uuid_de_um_plano}}",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"v1",
+										"planos",
+										"{{uuid_de_um_plano}}"
+									]
+								},
+								"description": "Realiza exclusão lógica de um plano (marca como excluído)."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				}
 			],
 			"auth": {
