@@ -28,7 +28,7 @@ jobs:
           npm install -g @redocly/cli
 
       - name: Converter Postman para OpenAPI
-        run: npx p2o postman/hortas-comunitarias.postman_collection.json -f openapi.yaml
+        run: npx postman-to-openapi postman/hortas-comunitarias.postman_collection.json -f openapi.yaml
 
       - name: Gerar doc em HTML
         run: npx redocly build-docs openapi.yaml -o api.html
