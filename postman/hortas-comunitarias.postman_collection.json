@@ -11343,7 +11343,7 @@
 	"variable": [
 		{
 			"key": "BASE_URL",
-			"value": "http://localhost:8181/api/"
+			"value": "http://localhost:8181/api"
 		},
 		{
 			"key": "JWT_ADM_PLT",

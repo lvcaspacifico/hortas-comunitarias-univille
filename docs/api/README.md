@@ -309,7 +309,7 @@ Em geral, o cabeçalho da requisição deve conter o token JWT no formato Bearer
 
 <h2 id="templates-postman">🧑🏻‍🚀 Templates do Postman</h2>
 
-[Templates do Postman 🔗](../../postman/sandbox.postman_collection.json)
+[Templates do Postman 🔗](../../postman/hortas-comunitarias.postman_collection.json)
 
 <h1 id="permissoes">🔒 Permissões por Cargo</h1>
 
