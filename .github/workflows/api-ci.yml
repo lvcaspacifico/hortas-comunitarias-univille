@@ -3,6 +3,15 @@ name: api-ci
 on:
   pull_request:
     branches: [main]
+    paths:
+      - 'backend/**'
+      - 'docker/php/**'
+      - 'docker/mysql/**'
+      - 'docker/nginx/**'
+      - 'docker-compose.yml'
+      - 'smoke-tests.postman_collection.json'
+      - 'dummy-env.postman_environment.json'
+      - '.github/workflows/api-ci.yml'
 
 jobs:
   api-tests:
