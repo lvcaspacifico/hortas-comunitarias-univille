@@ -73,7 +73,7 @@
 								"login"
 							]
 						},
-						"description": "Gera um JWT token e \"loga\" na aplicação. Sem ele 99% das rotas são bloqueadas."
+						"description": "Gera um JWT token e \"loga\" na aplicação. Sem ele 99% das rotas são bloqueadas.\n\n**Escopo por cargo:**\nRota pública."
 					},
 					"response": [
 						{
@@ -177,7 +177,7 @@
 								"cadastro"
 							]
 						},
-						"description": "Cria uma nova associação e um usuário administrador associado à mesma, configurando também a primeira mensalidade para 30 dias."
+						"description": "Cria uma nova associação e um usuário administrador associado à mesma, configurando também a primeira mensalidade para 30 dias.\n\n**Escopo por cargo:**\nRota pública."
 					},
 					"response": [
 						{
@@ -299,7 +299,7 @@
 								"enderecos"
 							]
 						},
-						"description": "Lista todos os endereços não excluídos."
+						"description": "Lista todos os endereços não excluídos.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                               |\r\n| --------------------------- | -------------------------------------- |\r\n| Administração da Plataforma | Lista todos os endereços não excluídos |\r\n| Administração da Associação | Lista todos os endereços não excluídos |\r\n| Administração da Horta      | Lista todos os endereços não excluídos |\r\n| Canteirista                 | Lista todos os endereços não excluídos |\r\n| Dependente                  | Lista todos os endereços não excluídos |"
 					},
 					"response": [
 						{
@@ -461,7 +461,7 @@
 								"enderecos"
 							]
 						},
-						"description": "Cria um novo endereço."
+						"description": "Cria um novo endereço.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto             |\r\n| --------------------------- | -------------------- |\r\n| Administração da Plataforma | Pode criar endereços |\r\n| Administração da Associação | Pode criar endereços |\r\n| Administração da Horta      | Pode criar endereços |\r\n| Canteirista                 | Sem permissão        |\r\n| Dependente                  | Sem permissão        |"
 					},
 					"response": [
 						{
@@ -553,7 +553,7 @@
 								"{{uuid_de_um_endereco}}"
 							]
 						},
-						"description": "Atualiza um endereço existente."
+						"description": "Atualiza um endereço existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                         |\r\n| --------------------------- | -------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer endereço |\r\n| Administração da Associação | Pode atualizar qualquer endereço |\r\n| Administração da Horta      | Pode atualizar qualquer endereço |\r\n| Canteirista                 | Sem permissão                    |\r\n| Dependente                  | Sem permissão                    |"
 					},
 					"response": [
 						{
@@ -658,7 +658,7 @@
 								"{{uuid_de_um_endereco}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de um endereço (marca excluido = 1)."
+						"description": "Realiza exclusão lógica de um endereço (marca excluido = 1).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                       |\r\n| --------------------------- | ------------------------------ |\r\n| Administração da Plataforma | Pode excluir qualquer endereço |\r\n| Administração da Associação | Pode excluir qualquer endereço |\r\n| Administração da Horta      | Pode excluir qualquer endereço |\r\n| Canteirista                 | Sem permissão                  |\r\n| Dependente                  | Sem permissão                  |\r"
 					},
 					"response": [
 						{
@@ -778,7 +778,7 @@
 								"associacoes"
 							]
 						},
-						"description": "Lista todas as associações não excluídas do sistema."
+						"description": "Lista todas as associações não excluídas do sistema.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                    |\r\n| --------------------------- | ----------------------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza todas as associações do sistema. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                               |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                               |\r\n| Canteirista                 | Sem permissão. Lança exceção.                               |\r\n| Dependente                  | Sem permissão. Lança exceção.                               |"
 					},
 					"response": [
 						{
@@ -849,7 +849,7 @@
 								"{{uuid_de_uma_associacao}}"
 							]
 						},
-						"description": "Busca uma associação específica pelo UUID."
+						"description": "Busca uma associação específica pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                    |\r\n| --------------------------- | ----------------------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza todas as associações do sistema. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                               |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                               |\r\n| Canteirista                 | Sem permissão. Lança exceção.                               |\r\n| Dependente                  | Sem permissão. Lança exceção.                               |"
 					},
 					"response": [
 						{
@@ -942,7 +942,7 @@
 								"associacoes"
 							]
 						},
-						"description": "Cria uma nova associação no sistema."
+						"description": "Cria uma nova associação no sistema.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                                                                                                 |\r\n| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode criar associações. Todos os campos são obrigatórios exceto URLs. `status_aprovacao` é definido automaticamente como 1.              |\r\n| NEW_ACCOUNT                 | Pode criar associações (caso especial). `endereco_uuid` e `url_estatuto_social_pdf` são opcionais. `status_aprovacao` é definido como 1. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                                                                                                            |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                                                                                                            |\r\n| Canteirista                 | Sem permissão. Lança exceção.                                                                                                            |\r\n| Dependente                  | Sem permissão. Lança exceção.                                                                                                            |"
 					},
 					"response": [
 						{
@@ -1053,7 +1053,7 @@
 								"{{uuid_de_uma_associacao}}"
 							]
 						},
-						"description": "Atualiza uma associação existente."
+						"description": "Atualiza uma associação existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                                                                   |\r\n| --------------------------- | ---------------------------------------------------------------------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Pode atualizar qualquer associação. Todos os campos são opcionais exceto `endereco_uuid`. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                                                                              |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                                                                              |\r\n| Canteirista                 | Sem permissão. Lança exceção.                                                                              |\r\n| Dependente                  | Sem permissão. Lança exceção.                                                                              |"
 					},
 					"response": [
 						{
@@ -1156,7 +1156,7 @@
 								"{{uuid_de_uma_associacao}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de uma associação (marca como excluída)."
+						"description": "Realiza exclusão lógica de uma associação (marca como excluída).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                         |\r\n| --------------------------- | ---------------------------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Pode excluir (logicamente) qualquer associação. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                                    |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                                    |\r\n| Canteirista                 | Sem permissão. Lança exceção.                                    |\r\n| Dependente                  | Sem permissão. Lança exceção.                                    |\r"
 					},
 					"response": [
 						{
@@ -1295,7 +1295,7 @@
 								"hortas"
 							]
 						},
-						"description": "Lista todas as hortas disponíveis de acordo com o cargo do usuário."
+						"description": "Lista todas as hortas disponíveis de acordo com o cargo do usuário.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                         |\r\n| --------------------------- | -------------------------------- |\r\n| Administração da Plataforma | Pode visualizar todas as hortas. |\r\n| Administração da Associação | Apenas hortas da sua associação. |\r\n| Administração da Horta      | Apenas sua própria horta.        |\r\n| Canteirista                 | Apenas sua própria horta.        |\r\n| Dependente                  | Apenas sua própria horta.        |"
 					},
 					"response": [
 						{
@@ -1482,7 +1482,7 @@
 								"hortas"
 							]
 						},
-						"description": "Cria uma nova horta no sistema."
+						"description": "Cria uma nova horta no sistema.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                        |\r\n| --------------------------- | ----------------------------------------------- |\r\n| Administração da Plataforma | Pode criar hortas para qualquer associação.     |\r\n| Administração da Associação | Só pode criar hortas para a própria associação. |\r\n| Administração da Horta      | Sem permissão.                                  |\r\n| Canteirista                 | Sem permissão.                                  |\r\n| Dependente                  | Sem permissão.                                  |"
 					},
 					"response": [
 						{
@@ -1602,7 +1602,7 @@
 								"{{uuid_de_uma_horta}}"
 							]
 						},
-						"description": "Atualiza informações de uma horta existente."
+						"description": "Atualiza informações de uma horta existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                        |\r\n| --------------------------- | ----------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer horta.                  |\r\n| Administração da Associação | Pode atualizar apenas hortas da sua associação. |\r\n| Administração da Horta      | Pode atualizar apenas sua própria horta.        |\r\n| Canteirista                 | Sem permissão.                                  |\r\n| Dependente                  | Sem permissão.                                  |"
 					},
 					"response": [
 						{
@@ -1705,7 +1705,7 @@
 								"{{uuid_de_uma_horta}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de uma horta."
+						"description": "Realiza exclusão lógica de uma horta.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                      |\r\n| --------------------------- | --------------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer horta.                  |\r\n| Administração da Associação | Pode excluir apenas hortas da sua associação. |\r\n| Administração da Horta      | Pode excluir apenas sua própria horta.        |\r\n| Canteirista                 | Sem permissão.                                |\r\n| Dependente                  | Sem permissão.                                |\r"
 					},
 					"response": [
 						{
@@ -1844,7 +1844,7 @@
 								"cargos"
 							]
 						},
-						"description": "Lista todos os cargos não excluídos."
+						"description": "Lista todos os cargos não excluídos.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto               |\r\n| --------------------------- | ---------------------- |\r\n| Administração da Plataforma | Lista todos os cargos. |\r\n| Administração da Associação | Lista todos os cargos. |\r\n| Administração da Horta      | Lista todos os cargos. |\r\n| Canteirista                 | Sem permissão.         |\r\n| Dependente                  | Sem permissão.         |"
 					},
 					"response": [
 						{
@@ -1928,7 +1928,7 @@
 								"{{uuid_de_um_cargo}}"
 							]
 						},
-						"description": "Busca um cargo específico pelo UUID."
+						"description": "Busca um cargo específico pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto               |\r\n| --------------------------- | ---------------------- |\r\n| Administração da Plataforma | Lista todos os cargos. |\r\n| Administração da Associação | Lista todos os cargos. |\r\n| Administração da Horta      | Lista todos os cargos. |\r\n| Canteirista                 | Sem permissão.         |\r\n| Dependente                  | Sem permissão.         |"
 					},
 					"response": [
 						{
@@ -2013,7 +2013,7 @@
 								"cargos"
 							]
 						},
-						"description": "Cria um novo cargo."
+						"description": "Cria um novo cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto           |\r\n| --------------------------- | ------------------ |\r\n| Administração da Plataforma | Pode criar cargos. |\r\n| Administração da Associação | Sem permissão.     |\r\n| Administração da Horta      | Sem permissão.     |\r\n| Canteirista                 | Sem permissão.     |\r\n| Dependente                  | Sem permissão.     |"
 					},
 					"response": [
 						{
@@ -2102,7 +2102,7 @@
 								"{{uuid_de_um_cargo}}"
 							]
 						},
-						"description": "Atualiza um cargo existente."
+						"description": "Atualiza um cargo existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                       |\r\n| --------------------------- | ------------------------------ |\r\n| Administração da Plataforma | Pode atualizar qualquer cargo. |\r\n| Administração da Associação | Sem permissão.                 |\r\n| Administração da Horta      | Sem permissão.                 |\r\n| Canteirista                 | Sem permissão.                 |\r\n| Dependente                  | Sem permissão.                 |"
 					},
 					"response": [
 						{
@@ -2205,7 +2205,7 @@
 								"{{uuid_de_um_cargo}}"
 							]
 						},
-						"description": "Exclui logicamente um cargo (marca excluido = 1)."
+						"description": "Exclui logicamente um cargo (marca excluido = 1).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                     |\r\n| --------------------------- | ---------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer cargo. |\r\n| Administração da Associação | Sem permissão.               |\r\n| Administração da Horta      | Sem permissão.               |\r\n| Canteirista                 | Sem permissão.               |\r\n| Dependente                  | Sem permissão.               |"
 					},
 					"response": [
 						{
@@ -2351,7 +2351,7 @@
 								"usuarios"
 							]
 						},
-						"description": "Lista todos os usuários conforme permissão do cargo."
+						"description": "Lista todos os usuários conforme permissão do cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                         |\r\n| --------------------------- | ---------------------------------------------------------------- |\r\n| Administração da Plataforma | Lista todos os vínculos existentes.                              |\r\n| Administração da Associação | Lista apenas vínculos de usuários pertencentes à sua associação. |\r\n| Administração da Horta      | Lista apenas vínculos em canteiros da horta administrada.        |\r\n| Canteirista                 | Lista apenas seus próprios vínculos.                             |\r\n| Dependente                  | Lista apenas seus próprios vínculos.                             |"
 					},
 					"response": [
 						{
@@ -2426,7 +2426,7 @@
 								"usuarios"
 							]
 						},
-						"description": "Lista todos os usuários conforme permissão do cargo."
+						"description": "Lista todos os usuários conforme permissão do cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                         |\r\n| --------------------------- | ------------------------------------------------ |\r\n| Administração da Plataforma | Acesso completo. Visualiza todos os usuários.    |\r\n| Administração da Associação | Visualiza apenas usuários da própria associação. |\r\n| Administração da Horta      | Visualiza apenas usuários da própria horta.      |\r\n| Canteirista                 | Sem permissão. Lança exceção.                    |\r\n| Dependente                  | Sem permissão. Lança exceção.                    |"
 					},
 					"response": [
 						{
@@ -2510,7 +2510,7 @@
 								"{{uuid_de_um_user}}"
 							]
 						},
-						"description": "Busca um usuário específico pelo UUID."
+						"description": "Busca um usuário específico pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                         |\r\n| --------------------------- | ------------------------------------------------ |\r\n| Administração da Plataforma | Acesso completo. Visualiza todos os usuários.    |\r\n| Administração da Associação | Visualiza apenas usuários da própria associação. |\r\n| Administração da Horta      | Visualiza apenas usuários da própria horta.      |\r\n| Canteirista                 | Sem permissão. Lança exceção.                    |\r\n| Dependente                  | Sem permissão. Lança exceção.                    |"
 					},
 					"response": [
 						{
@@ -2630,7 +2630,7 @@
 								"usuarios"
 							]
 						},
-						"description": "Cria um novo usuário."
+						"description": "Cria um novo usuário.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                        |\r\n| --------------------------- | --------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode criar vínculos entre qualquer usuário e qualquer canteiro. |\r\n| Administração da Associação | Pode criar vínculos apenas para usuários da sua associação.     |\r\n| Administração da Horta      | Pode criar vínculos apenas em canteiros da sua horta.           |\r\n| Canteirista                 | Sem permissão.                                                  |\r\n| Dependente                  | Sem permissão.                                                  |"
 					},
 					"response": [
 						{
@@ -2768,7 +2768,7 @@
 								"{{uuid_de_um_user}}"
 							]
 						},
-						"description": "Atualiza um usuário existente."
+						"description": "Atualiza um usuário existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                      |\r\n| --------------------------- | ------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer vínculo.                              |\r\n| Administração da Associação | Pode atualizar vínculos apenas de usuários da sua associação. |\r\n| Administração da Horta      | Pode atualizar vínculos apenas em canteiros da sua horta.     |\r\n| Canteirista                 | Sem permissão.                                                |\r\n| Dependente                  | Sem permissão.                                                |"
 					},
 					"response": [
 						{
@@ -2858,7 +2858,7 @@
 								"{{uuid_de_um_user}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de um usuário."
+						"description": "Realiza exclusão lógica de um usuário.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                    |\r\n| --------------------------- | ----------------------------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer vínculo.                              |\r\n| Administração da Associação | Pode excluir vínculos apenas de usuários da sua associação. |\r\n| Administração da Horta      | Pode excluir vínculos apenas de canteiros da sua horta.     |\r\n| Canteirista                 | Sem permissão.                                              |\r\n| Dependente                  | Sem permissão.                                              |"
 					},
 					"response": [
 						{
@@ -3007,7 +3007,7 @@
 								"permissoes"
 							]
 						},
-						"description": "Retorna todas as permissões do sistema que não foram excluídas."
+						"description": "Retorna todas as permissões do sistema que não foram excluídas.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                |\r\n| --------------------------- | ------------------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza qualquer permissão de cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                           |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                           |\r\n| Canteirista                 | Sem permissão. Lança exceção.                           |\r\n| Dependente                  | Sem permissão. Lança exceção.                           |"
 					},
 					"response": [
 						{
@@ -3091,7 +3091,7 @@
 								"{{uuid_de_uma_permissao}}"
 							]
 						},
-						"description": "Busca uma permissão específica pelo UUID."
+						"description": "Busca uma permissão específica pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                        |\r\n| --------------------------- | ----------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza todas as permissões. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                   |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                   |\r\n| Canteirista                 | Sem permissão. Lança exceção.                   |\r\n| Dependente                  | Sem permissão. Lança exceção.                   |"
 					},
 					"response": [
 						{
@@ -3176,7 +3176,7 @@
 								"permissoes"
 							]
 						},
-						"description": "Cria uma nova permissão no sistema."
+						"description": "Cria uma nova permissão no sistema.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                  |\r\n| --------------------------- | ----------------------------------------- |\r\n| Administração da Plataforma | Pode criar permissão para qualquer cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.             |\r\n| Administração da Horta      | Sem permissão. Lança exceção.             |\r\n| Canteirista                 | Sem permissão. Lança exceção.             |\r\n| Dependente                  | Sem permissão. Lança exceção.             |"
 					},
 					"response": [
 						{
@@ -3280,7 +3280,7 @@
 								"{{uuid_de_uma_permissao}}"
 							]
 						},
-						"description": "Atualiza uma permissão existente."
+						"description": "Atualiza uma permissão existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer permissão de cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.               |\r\n| Administração da Horta      | Sem permissão. Lança exceção.               |\r\n| Canteirista                 | Sem permissão. Lança exceção.               |\r\n| Dependente                  | Sem permissão. Lança exceção.               |"
 					},
 					"response": [
 						{
@@ -3383,7 +3383,7 @@
 								"{{uuid_de_uma_permissao}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de uma permissão (marca como excluída)."
+						"description": "Realiza exclusão lógica de uma permissão (marca como excluída).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                  |\r\n| --------------------------- | ----------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer permissão de cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.             |\r\n| Administração da Horta      | Sem permissão. Lança exceção.             |\r\n| Canteirista                 | Sem permissão. Lança exceção.             |\r\n| Dependente                  | Sem permissão. Lança exceção.             |\r"
 					},
 					"response": [
 						{
@@ -3541,7 +3541,7 @@
 								"{{uuid_de_um_user}}"
 							]
 						},
-						"description": "Retorna todas as permissões associadas a um usuário específico."
+						"description": "Retorna todas as permissões associadas a um usuário específico.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                        |\r\n| --------------------------- | ----------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza todas as permissões. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                   |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                   |\r\n| Canteirista                 | Sem permissão. Lança exceção.                   |\r\n| Dependente                  | Sem permissão. Lança exceção.                   |"
 					},
 					"response": [
 						{
@@ -3668,7 +3668,7 @@
 								"chaves"
 							]
 						},
-						"description": "Lista todas as chaves não excluídas, respeitando os filtros por cargo."
+						"description": "Lista todas as chaves não excluídas, respeitando os filtros por cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                 |\r\n| --------------------------- | -------------------------------------------------------- |\r\n| Administração da Plataforma | Lista todas as chaves de todas as hortas.                |\r\n| Administração da Associação | Lista somente chaves das hortas da associação vinculada. |\r\n| Administração da Horta      | Lista somente chaves da horta vinculada.                 |\r\n| Canteirista                 | Sem permissão. Lança exceção.                            |\r\n| Dependente                  | Sem permissão. Lança exceção.                            |"
 					},
 					"response": [
 						{
@@ -3752,7 +3752,7 @@
 								"{{uuid_de_uma_chave}}"
 							]
 						},
-						"description": "Busca uma chave específica pelo UUID."
+						"description": "Busca uma chave específica pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                 |\r\n| --------------------------- | -------------------------------------------------------- |\r\n| Administração da Plataforma | Lista todas as chaves de todas as hortas.                |\r\n| Administração da Associação | Lista somente chaves das hortas da associação vinculada. |\r\n| Administração da Horta      | Lista somente chaves da horta vinculada.                 |\r\n| Canteirista                 | Sem permissão. Lança exceção.                            |\r\n| Dependente                  | Sem permissão. Lança exceção.                            |"
 					},
 					"response": [
 						{
@@ -3845,7 +3845,7 @@
 								"chaves"
 							]
 						},
-						"description": "Cria uma nova chave vinculada a uma horta."
+						"description": "Cria uma nova chave vinculada a uma horta.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                     |\r\n| --------------------------- | ------------------------------------------------------------ |\r\n| Administração da Plataforma | Pode criar chave para qualquer horta.                        |\r\n| Administração da Associação | Pode criar chave apenas para hortas da associação vinculada. |\r\n| Administração da Horta      | Pode criar chave apenas para a horta vinculada.              |\r\n| Canteirista                 | Sem permissão. Lança exceção.                                |\r\n| Dependente                  | Sem permissão. Lança exceção.                                |"
 					},
 					"response": [
 						{
@@ -3947,7 +3947,7 @@
 								"{{uuid_de_uma_chave}}"
 							]
 						},
-						"description": "Atualiza os dados de uma chave existente."
+						"description": "Atualiza os dados de uma chave existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                        |\r\n| --------------------------- | --------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer chave.                                  |\r\n| Administração da Associação | Pode atualizar apenas chaves de hortas da associação vinculada. |\r\n| Administração da Horta      | Pode atualizar apenas chaves da horta vinculada.                |\r\n| Canteirista                 | Sem permissão. Lança exceção.                                   |\r\n| Dependente                  | Sem permissão. Lança exceção.                                   |"
 					},
 					"response": [
 						{
@@ -4050,7 +4050,7 @@
 								"{{uuid_de_uma_chave}}"
 							]
 						},
-						"description": "Exclui logicamente uma chave (marca excluido = 1)."
+						"description": "Exclui logicamente uma chave (marca excluido = 1).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                      |\r\n| --------------------------- | ------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer chave.                                  |\r\n| Administração da Associação | Pode excluir apenas chaves de hortas da associação vinculada. |\r\n| Administração da Horta      | Pode excluir apenas chaves da horta vinculada.                |\r\n| Canteirista                 | Sem permissão. Lança exceção.                                 |\r\n| Dependente                  | Sem permissão. Lança exceção.                                 |\r"
 					},
 					"response": [
 						{
@@ -4197,7 +4197,7 @@
 								"fila-de-usuarios"
 							]
 						},
-						"description": "Lista todas as filas de usuários não excluídas, com filtros conforme cargo."
+						"description": "Lista todas as filas de usuários não excluídas, com filtros conforme cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Lista todas as filas.                       |\r\n| Administração da Associação | Lista apenas filas de hortas da associação. |\r\n| Administração da Horta      | Lista apenas filas da horta administrada.   |\r\n| Canteirista                 | Lista apenas filas da sua horta.            |\r\n| Dependente                  | Lista apenas filas da sua horta.            |"
 					},
 					"response": [
 						{
@@ -4281,7 +4281,7 @@
 								"{{uuid_de_uma_fila}}"
 							]
 						},
-						"description": "Busca uma fila específica pelo UUID."
+						"description": "Busca uma fila específica pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Lista todas as filas.                       |\r\n| Administração da Associação | Lista apenas filas de hortas da associação. |\r\n| Administração da Horta      | Lista apenas filas da horta administrada.   |\r\n| Canteirista                 | Lista apenas filas da sua horta.            |\r\n| Dependente                  | Lista apenas filas da sua horta.            |"
 					},
 					"response": [
 						{
@@ -4367,7 +4367,7 @@
 								"{{uuid_de_um_user_na_fila}}"
 							]
 						},
-						"description": "Busca todas as filas de um usuário específico."
+						"description": "Busca todas as filas de um usuário específico.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Lista todas as filas.                       |\r\n| Administração da Associação | Lista apenas filas de hortas da associação. |\r\n| Administração da Horta      | Lista apenas filas da horta administrada.   |\r\n| Canteirista                 | Lista apenas filas da sua horta.            |\r\n| Dependente                  | Lista apenas filas da sua horta.            |"
 					},
 					"response": [
 						{
@@ -4454,7 +4454,7 @@
 								"{{uuid_de_uma_horta_na_fila}}"
 							]
 						},
-						"description": "Lista as filas de usuários de uma horta específica."
+						"description": "Lista as filas de usuários de uma horta específica.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Lista todas as filas.                       |\r\n| Administração da Associação | Lista apenas filas de hortas da associação. |\r\n| Administração da Horta      | Lista apenas filas da horta administrada.   |\r\n| Canteirista                 | Lista apenas filas da sua horta.            |\r\n| Dependente                  | Lista apenas filas da sua horta.            |"
 					},
 					"response": [
 						{
@@ -4549,7 +4549,7 @@
 								"{{uuid_de_uma_fila}}"
 							]
 						},
-						"description": "Atualiza uma fila de usuário existente."
+						"description": "Atualiza uma fila de usuário existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                           |\r\n| --------------------------- | -------------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer fila.                      |\r\n| Administração da Associação | Pode atualizar apenas filas da associação.         |\r\n| Administração da Horta      | Pode atualizar apenas filas da horta administrada. |\r\n| Canteirista                 | Sem permissão.                                     |\r\n| Dependente                  | Sem permissão.                                     |"
 					},
 					"response": [
 						{
@@ -4652,7 +4652,7 @@
 								"{{uuid_de_uma_fila}}"
 							]
 						},
-						"description": "Exclui logicamente uma fila de usuário (marca excluido = 1)."
+						"description": "Exclui logicamente uma fila de usuário (marca excluido = 1).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                         |\r\n| --------------------------- | ------------------------------------------------ |\r\n| Administração da Plataforma | Pode excluir qualquer fila.                      |\r\n| Administração da Associação | Pode excluir apenas filas da associação.         |\r\n| Administração da Horta      | Pode excluir apenas filas da horta administrada. |\r\n| Canteirista                 | Sem permissão.                                   |\r\n| Dependente                  | Sem permissão.                                   |\r"
 					},
 					"response": [
 						{
@@ -4792,7 +4792,7 @@
 								"canteiros"
 							]
 						},
-						"description": "Lista todos os canteiros de acordo com o escopo do usuário logado."
+						"description": "Lista todos os canteiros de acordo com o escopo do usuário logado.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                         |\r\n| --------------------------- | ---------------------------------------------------------------- |\r\n| Administração da Plataforma | Lista todos os vínculos existentes.                              |\r\n| Administração da Associação | Lista apenas vínculos de usuários pertencentes à sua associação. |\r\n| Administração da Horta      | Lista apenas vínculos em canteiros da horta administrada.        |\r\n| Canteirista                 | Lista apenas seus próprios vínculos.                             |\r\n| Dependente                  | Lista apenas seus próprios vínculos.                             |"
 					},
 					"response": [
 						{
@@ -4890,7 +4890,7 @@
 								"{{uuid_de_um_canteiro}}"
 							]
 						},
-						"description": "Busca um canteiro específico pelo UUID."
+						"description": "Busca um canteiro específico pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                     |\r\n| --------------------------- | ------------------------------------------------------------ |\r\n| Administração da Plataforma | Lista todos os canteiros.                                    |\r\n| Administração da Associação | Lista apenas canteiros de hortas da sua associação.          |\r\n| Administração da Horta      | Lista apenas canteiros da sua horta.                         |\r\n| Canteirista                 | Lista apenas canteiros da horta da sua associação vinculada. |\r\n| Dependente                  | Lista apenas canteiros da horta da sua associação vinculada. |"
 					},
 					"response": [
 						{
@@ -4994,7 +4994,7 @@
 								"canteiros"
 							]
 						},
-						"description": "Cria um novo canteiro."
+						"description": "Cria um novo canteiro.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                        |\r\n| --------------------------- | --------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode criar vínculos entre qualquer usuário e qualquer canteiro. |\r\n| Administração da Associação | Pode criar vínculos apenas para usuários da sua associação.     |\r\n| Administração da Horta      | Pode criar vínculos apenas em canteiros da sua horta.           |\r\n| Canteirista                 | Sem permissão.                                                  |\r\n| Dependente                  | Sem permissão.                                                  |"
 					},
 					"response": [
 						{
@@ -5107,7 +5107,7 @@
 								"{{uuid_de_um_canteiro}}"
 							]
 						},
-						"description": "Atualiza os dados de um canteiro."
+						"description": "Atualiza os dados de um canteiro.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                      |\r\n| --------------------------- | ------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer vínculo.                              |\r\n| Administração da Associação | Pode atualizar vínculos apenas de usuários da sua associação. |\r\n| Administração da Horta      | Pode atualizar vínculos apenas em canteiros da sua horta.     |\r\n| Canteirista                 | Sem permissão.                                                |\r\n| Dependente                  | Sem permissão.                                                |"
 					},
 					"response": [
 						{
@@ -5210,7 +5210,7 @@
 								"{{uuid_de_um_canteiro}}"
 							]
 						},
-						"description": "Exclui logicamente um canteiro (marca excluido = 1)."
+						"description": "Exclui logicamente um canteiro (marca excluido = 1).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                    |\r\n| --------------------------- | ----------------------------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer vínculo.                              |\r\n| Administração da Associação | Pode excluir vínculos apenas de usuários da sua associação. |\r\n| Administração da Horta      | Pode excluir vínculos apenas de canteiros da sua horta.     |\r\n| Canteirista                 | Sem permissão.                                              |\r\n| Dependente                  | Sem permissão.                                              |"
 					},
 					"response": [
 						{
@@ -5351,7 +5351,7 @@
 								"canteiros-e-usuarios"
 							]
 						},
-						"description": "Lista os vínculos de usuários com canteiros, aplicando filtro de acordo com o cargo do usuário logado."
+						"description": "Lista os vínculos de usuários com canteiros, aplicando filtro de acordo com o cargo do usuário logado.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                         |\r\n| --------------------------- | ---------------------------------------------------------------- |\r\n| Administração da Plataforma | Lista todos os vínculos existentes.                              |\r\n| Administração da Associação | Lista apenas vínculos de usuários pertencentes à sua associação. |\r\n| Administração da Horta      | Lista apenas vínculos em canteiros da horta administrada.        |\r\n| Canteirista                 | Lista apenas seus próprios vínculos.                             |\r\n| Dependente                  | Lista apenas seus próprios vínculos.                             |"
 					},
 					"response": [
 						{
@@ -5435,7 +5435,7 @@
 								"{{uuid_de_um_vinculo_canteiro_user}}"
 							]
 						},
-						"description": "Busca um vínculo específico entre usuário e canteiro pelo UUID."
+						"description": "Busca um vínculo específico entre usuário e canteiro pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                     |\r\n| --------------------------- | ------------------------------------------------------------ |\r\n| Administração da Plataforma | Lista todos os canteiros.                                    |\r\n| Administração da Associação | Lista apenas canteiros de hortas da sua associação.          |\r\n| Administração da Horta      | Lista apenas canteiros da sua horta.                         |\r\n| Canteirista                 | Lista apenas canteiros da horta da sua associação vinculada. |\r\n| Dependente                  | Lista apenas canteiros da horta da sua associação vinculada. |"
 					},
 					"response": [
 						{
@@ -5537,7 +5537,7 @@
 								"canteiros-e-usuarios"
 							]
 						},
-						"description": "Cria um novo vínculo entre um usuário e um canteiro."
+						"description": "Cria um novo vínculo entre um usuário e um canteiro.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                        |\r\n| --------------------------- | --------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode criar vínculos entre qualquer usuário e qualquer canteiro. |\r\n| Administração da Associação | Pode criar vínculos apenas para usuários da sua associação.     |\r\n| Administração da Horta      | Pode criar vínculos apenas em canteiros da sua horta.           |\r\n| Canteirista                 | Sem permissão.                                                  |\r\n| Dependente                  | Sem permissão.                                                  |"
 					},
 					"response": [
 						{
@@ -5648,7 +5648,7 @@
 								"{{uuid_de_um_vinculo_canteiro_user}}"
 							]
 						},
-						"description": "Atualiza os dados de um vínculo já existente."
+						"description": "Atualiza os dados de um vínculo já existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                      |\r\n| --------------------------- | ------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer vínculo.                              |\r\n| Administração da Associação | Pode atualizar vínculos apenas de usuários da sua associação. |\r\n| Administração da Horta      | Pode atualizar vínculos apenas em canteiros da sua horta.     |\r\n| Canteirista                 | Sem permissão.                                                |\r\n| Dependente                  | Sem permissão.                                                |"
 					},
 					"response": [
 						{
@@ -5751,7 +5751,7 @@
 								"{{uuid_de_um_vinculo_canteiro_user}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de um vínculo (marca como excluído)."
+						"description": "Realiza exclusão lógica de um vínculo (marca como excluído).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                    |\r\n| --------------------------- | ----------------------------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer vínculo.                              |\r\n| Administração da Associação | Pode excluir vínculos apenas de usuários da sua associação. |\r\n| Administração da Horta      | Pode excluir vínculos apenas de canteiros da sua horta.     |\r\n| Canteirista                 | Sem permissão.                                              |\r\n| Dependente                  | Sem permissão.                                              |"
 					},
 					"response": [
 						{
@@ -5871,7 +5871,7 @@
 								"permissoes-de-cargo"
 							]
 						},
-						"description": "Lista todas as permissões de cargo."
+						"description": "Lista todas as permissões de cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                |\r\n| --------------------------- | ------------------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza qualquer permissão de cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                           |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                           |\r\n| Canteirista                 | Sem permissão. Lança exceção.                           |\r\n| Dependente                  | Sem permissão. Lança exceção.                           |"
 					},
 					"response": [
 						{
@@ -5955,7 +5955,7 @@
 								"{{uuid_de_uma_tupla_permissao_cargo}}"
 							]
 						},
-						"description": "Busca uma permissão específica de cargo pelo UUID."
+						"description": "Busca uma permissão específica de cargo pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                |\r\n| --------------------------- | ------------------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza qualquer permissão de cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                           |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                           |\r\n| Canteirista                 | Sem permissão. Lança exceção.                           |\r\n| Dependente                  | Sem permissão. Lança exceção.                           |"
 					},
 					"response": [
 						{
@@ -6041,7 +6041,7 @@
 								"{{uuid_cargo_com_permissao}}"
 							]
 						},
-						"description": "Lista todas as permissões atribuídas a um cargo específico."
+						"description": "Lista todas as permissões atribuídas a um cargo específico.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                |\r\n| --------------------------- | ------------------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza qualquer permissão de cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                           |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                           |\r\n| Canteirista                 | Sem permissão. Lança exceção.                           |\r\n| Dependente                  | Sem permissão. Lança exceção.                           |"
 					},
 					"response": [
 						{
@@ -6144,7 +6144,7 @@
 								"permissoes-de-cargo"
 							]
 						},
-						"description": "Cria uma nova permissão para um cargo."
+						"description": "Cria uma nova permissão para um cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                  |\r\n| --------------------------- | ----------------------------------------- |\r\n| Administração da Plataforma | Pode criar permissão para qualquer cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.             |\r\n| Administração da Horta      | Sem permissão. Lança exceção.             |\r\n| Canteirista                 | Sem permissão. Lança exceção.             |\r\n| Dependente                  | Sem permissão. Lança exceção.             |"
 					},
 					"response": [
 						{
@@ -6255,7 +6255,7 @@
 								"{{uuid_de_uma_tupla_permissao_cargo}}"
 							]
 						},
-						"description": "Atualiza uma permissão existente de cargo."
+						"description": "Atualiza uma permissão existente de cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer permissão de cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.               |\r\n| Administração da Horta      | Sem permissão. Lança exceção.               |\r\n| Canteirista                 | Sem permissão. Lança exceção.               |\r\n| Dependente                  | Sem permissão. Lança exceção.               |"
 					},
 					"response": [
 						{
@@ -6358,7 +6358,7 @@
 								"{{uuid_de_uma_tupla_permissao_cargo}}"
 							]
 						},
-						"description": "Exclusão lógica de uma permissão de cargo."
+						"description": "Exclusão lógica de uma permissão de cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                  |\r\n| --------------------------- | ----------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer permissão de cargo. |\r\n| Administração da Associação | Sem permissão. Lança exceção.             |\r\n| Administração da Horta      | Sem permissão. Lança exceção.             |\r\n| Canteirista                 | Sem permissão. Lança exceção.             |\r\n| Dependente                  | Sem permissão. Lança exceção.             |\r"
 					},
 					"response": [
 						{
@@ -6488,7 +6488,7 @@
 								"permissoes-de-excecao"
 							]
 						},
-						"description": "Lista todas as permissões de exceção."
+						"description": "Lista todas as permissões de exceção.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                  |\r\n| --------------------------- | ----------------------------------------- |\r\n| Administração da Plataforma | Visualiza todas as permissões de exceção. |\r\n| Administração da Associação | Sem permissão. Lança exceção.             |\r\n| Administração da Horta      | Sem permissão. Lança exceção.             |\r\n| Canteirista                 | Sem permissão. Lança exceção.             |\r\n| Dependente                  | Sem permissão. Lança exceção.             |"
 					},
 					"response": [
 						{
@@ -6572,7 +6572,7 @@
 								"{{uuid_de_uma_tupla_permissao_excecao}}"
 							]
 						},
-						"description": "Busca uma permissão de exceção pelo UUID."
+						"description": "Busca uma permissão de exceção pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                  |\r\n| --------------------------- | ----------------------------------------- |\r\n| Administração da Plataforma | Visualiza todas as permissões de exceção. |\r\n| Administração da Associação | Sem permissão. Lança exceção.             |\r\n| Administração da Horta      | Sem permissão. Lança exceção.             |\r\n| Canteirista                 | Sem permissão. Lança exceção.             |\r\n| Dependente                  | Sem permissão. Lança exceção.             |"
 					},
 					"response": [
 						{
@@ -6674,7 +6674,7 @@
 								"permissoes-de-excecao"
 							]
 						},
-						"description": "Cria uma nova permissão de exceção para um usuário."
+						"description": "Cria uma nova permissão de exceção para um usuário.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                               |\r\n| --------------------------- | ------------------------------------------------------ |\r\n| Administração da Plataforma | Pode criar permissão de exceção para qualquer usuário. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                          |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                          |\r\n| Canteirista                 | Sem permissão. Lança exceção.                          |\r\n| Dependente                  | Sem permissão. Lança exceção.                          |"
 					},
 					"response": [
 						{
@@ -6776,7 +6776,7 @@
 								"{{uuid_de_uma_tupla_permissao_excecao}}"
 							]
 						},
-						"description": "Atualiza uma permissão de exceção existente."
+						"description": "Atualiza uma permissão de exceção existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                      |\r\n| --------------------------- | --------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer permissão de exceção. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                 |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                 |\r\n| Canteirista                 | Sem permissão. Lança exceção.                 |\r\n| Dependente                  | Sem permissão. Lança exceção.                 |"
 					},
 					"response": [
 						{
@@ -6879,7 +6879,7 @@
 								"{{uuid_de_uma_tupla_permissao_excecao}}"
 							]
 						},
-						"description": "Exclusão lógica de uma permissão de exceção."
+						"description": "Exclusão lógica de uma permissão de exceção.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer permissão de exceção. |\r\n| Administração da Associação | Sem permissão. Lança exceção.               |\r\n| Administração da Horta      | Sem permissão. Lança exceção.               |\r\n| Canteirista                 | Sem permissão. Lança exceção.               |\r\n| Dependente                  | Sem permissão. Lança exceção.               |\r"
 					},
 					"response": [
 						{
@@ -7020,7 +7020,7 @@
 								"categorias-financeiras"
 							]
 						},
-						"description": "Lista todas as categorias financeiras conforme escopo do cargo."
+						"description": "Lista todas as categorias financeiras conforme escopo do cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                       |\r\n| --------------------------- | ---------------------------------------------- |\r\n| Administração da Plataforma | Lista todas categorias do sistema.             |\r\n| Administração da Associação | Lista apenas categorias da própria associação. |\r\n| Administração da Horta      | Lista apenas categorias da própria horta.      |\r\n| Canteirista                 | Sem permissão.                                 |\r\n| Dependente                  | Sem permissão.                                 |"
 					},
 					"response": [
 						{
@@ -7104,7 +7104,7 @@
 								"{{uuid_de_uma_categoria_financeira}}"
 							]
 						},
-						"description": "Busca categoria financeira pelo uuid."
+						"description": "Busca categoria financeira pelo uuid.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                       |\r\n| --------------------------- | ---------------------------------------------- |\r\n| Administração da Plataforma | Lista todas categorias do sistema.             |\r\n| Administração da Associação | Lista apenas categorias da própria associação. |\r\n| Administração da Horta      | Lista apenas categorias da própria horta.      |\r\n| Canteirista                 | Sem permissão.                                 |\r\n| Dependente                  | Sem permissão.                                 |"
 					},
 					"response": [
 						{
@@ -7277,7 +7277,7 @@
 								"{{uuid_de_uma_horta_categoria_financeira}}"
 							]
 						},
-						"description": "Lista categorias financeiras de uma horta específica."
+						"description": "Lista categorias financeiras de uma horta específica.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                       |\r\n| --------------------------- | ---------------------------------------------- |\r\n| Administração da Plataforma | Lista todas categorias do sistema.             |\r\n| Administração da Associação | Lista apenas categorias da própria associação. |\r\n| Administração da Horta      | Lista apenas categorias da própria horta.      |\r\n| Canteirista                 | Sem permissão.                                 |\r\n| Dependente                  | Sem permissão.                                 |"
 					},
 					"response": [
 						{
@@ -7373,7 +7373,7 @@
 								"categorias-financeiras"
 							]
 						},
-						"description": "Cria uma nova categoria financeira."
+						"description": "Cria uma nova categoria financeira.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                                |\r\n| --------------------------- | ----------------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode criar para qualquer associação ou horta.                           |\r\n| Administração da Associação | Pode criar somente para sua associação. Não pode informar `horta_uuid`. |\r\n| Administração da Horta      | Pode criar somente para sua horta. Não pode informar `associacao_uuid`. |\r\n| Canteirista                 | Sem permissão.                                                          |\r\n| Dependente                  | Sem permissão.                                                          |"
 					},
 					"response": [
 						{
@@ -7475,7 +7475,7 @@
 								"{{uuid_de_uma_categoria_financeira}}"
 							]
 						},
-						"description": "Atualiza categoria financeira existente."
+						"description": "Atualiza categoria financeira existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                 |\r\n| --------------------------- | ---------------------------------------- |\r\n| Administração da Plataforma | Pode editar qualquer categoria.          |\r\n| Administração da Associação | Apenas categorias da própria associação. |\r\n| Administração da Horta      | Apenas categorias da própria horta.      |\r\n| Canteirista                 | Sem permissão.                           |\r\n| Dependente                  | Sem permissão.                           |"
 					},
 					"response": [
 						{
@@ -7578,7 +7578,7 @@
 								"{{uuid_de_uma_categoria_financeira}}"
 							]
 						},
-						"description": "Exclusão lógica de categoria financeira (marca excluido = 1)."
+						"description": "Exclusão lógica de categoria financeira (marca excluido = 1).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                 |\r\n| --------------------------- | ---------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer categoria.         |\r\n| Administração da Associação | Apenas categorias da própria associação. |\r\n| Administração da Horta      | Apenas categorias da própria horta.      |\r\n| Canteirista                 | Sem permissão.                           |\r\n| Dependente                  | Sem permissão.                           |"
 					},
 					"response": [
 						{
@@ -7710,7 +7710,7 @@
 								"financeiro-da-horta"
 							]
 						},
-						"description": "Lista todos os lançamentos financeiros de hortas, respeitando o escopo do cargo."
+						"description": "Lista todos os lançamentos financeiros de hortas, respeitando o escopo do cargo.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                              |\r\n| --------------------------- | ----------------------------------------------------- |\r\n| Administração da Plataforma | Visualiza lançamentos de todas as hortas.             |\r\n| Administração da Associação | Visualiza lançamentos apenas de hortas da associação. |\r\n| Administração da Horta      | Visualiza lançamentos apenas da horta que administra. |\r\n| Canteirista                 | Visualiza lançamentos apenas da sua horta.            |\r\n| Dependente                  | Visualiza lançamentos apenas da sua horta.            |"
 					},
 					"response": [
 						{
@@ -7983,7 +7983,7 @@
 								"financeiro-da-horta"
 							]
 						},
-						"description": "Cria um novo lançamento financeiro para uma horta."
+						"description": "Cria um novo lançamento financeiro para uma horta.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                         |\r\n| --------------------------- | ------------------------------------------------ |\r\n| Administração da Plataforma | Pode criar para qualquer horta.                  |\r\n| Administração da Associação | Pode criar apenas para hortas da sua associação. |\r\n| Administração da Horta      | Pode criar apenas para sua horta.                |\r\n| Canteirista                 | Sem permissão.                                   |\r\n| Dependente                  | Sem permissão.                                   |"
 					},
 					"response": [
 						{
@@ -8085,7 +8085,7 @@
 								"{{uuid_de_uma_tupla_financeiro_horta}}"
 							]
 						},
-						"description": "Atualiza um lançamento financeiro existente."
+						"description": "Atualiza um lançamento financeiro existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                       |\r\n| --------------------------- | -------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer lançamento.                            |\r\n| Administração da Associação | Pode atualizar apenas lançamentos de hortas da sua associação. |\r\n| Administração da Horta      | Pode atualizar apenas lançamentos da sua horta.                |\r\n| Canteirista                 | Sem permissão.                                                 |\r\n| Dependente                  | Sem permissão.                                                 |"
 					},
 					"response": [
 						{
@@ -8188,7 +8188,7 @@
 								"{{uuid_de_uma_tupla_financeiro_horta}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de um lançamento financeiro."
+						"description": "Realiza exclusão lógica de um lançamento financeiro.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                     |\r\n| --------------------------- | ------------------------------------------------------------ |\r\n| Administração da Plataforma | Pode excluir qualquer lançamento.                            |\r\n| Administração da Associação | Pode excluir apenas lançamentos de hortas da sua associação. |\r\n| Administração da Horta      | Pode excluir apenas lançamentos da sua horta.                |\r\n| Canteirista                 | Sem permissão.                                               |\r\n| Dependente                  | Sem permissão.                                               |\r"
 					},
 					"response": [
 						{
@@ -8340,7 +8340,7 @@
 								"financeiro-da-associacao"
 							]
 						},
-						"description": "Lista todos os lançamentos financeiros da associação."
+						"description": "Lista todos os lançamentos financeiros da associação.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                |\r\n| --------------------------- | ------------------------------------------------------- |\r\n| Administração da Plataforma | Visualiza todos os lançamentos de todas as associações. |\r\n| Administração da Associação | Visualiza apenas lançamentos da sua associação.         |\r\n| Administração da Horta      | Visualiza apenas lançamentos da sua associação.         |\r\n| Canteirista                 | Visualiza apenas lançamentos da sua associação.         |\r\n| Dependente                  | Visualiza apenas lançamentos da sua associação.         |"
 					},
 					"response": [
 						{
@@ -8613,7 +8613,7 @@
 								"financeiro-da-associacao"
 							]
 						},
-						"description": "Cria um novo lançamento financeiro."
+						"description": "Cria um novo lançamento financeiro.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                               |\r\n| --------------------------- | -------------------------------------- |\r\n| Administração da Plataforma | Pode criar para qualquer associação.   |\r\n| Administração da Associação | Pode criar apenas para sua associação. |\r\n| Administração da Horta      | Sem permissão.                         |\r\n| Canteirista                 | Sem permissão.                         |\r\n| Dependente                  | Sem permissão.                         |"
 					},
 					"response": [
 						{
@@ -8715,7 +8715,7 @@
 								"{{uuid_de_uma_tupla_financeiro_associacao}}"
 							]
 						},
-						"description": "Atualiza um lançamento financeiro existente."
+						"description": "Atualiza um lançamento financeiro existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                             |\r\n| --------------------------- | ---------------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer lançamento.                  |\r\n| Administração da Associação | Pode atualizar apenas lançamentos da sua associação. |\r\n| Administração da Horta      | Sem permissão.                                       |\r\n| Canteirista                 | Sem permissão.                                       |\r\n| Dependente                  | Sem permissão.                                       |"
 					},
 					"response": [
 						{
@@ -8818,7 +8818,7 @@
 								"{{uuid_de_uma_tupla_financeiro_associacao}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de um lançamento financeiro (marca excluido = 1)."
+						"description": "Realiza exclusão lógica de um lançamento financeiro (marca excluido = 1).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                           |\r\n| --------------------------- | -------------------------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer lançamento.                  |\r\n| Administração da Associação | Pode excluir apenas lançamentos da sua associação. |\r\n| Administração da Horta      | Sem permissão.                                     |\r\n| Canteirista                 | Sem permissão.                                     |\r\n| Dependente                  | Sem permissão.                                     |\r"
 					},
 					"response": [
 						{
@@ -8958,7 +8958,7 @@
 								"mensalidades-da-plataforma"
 							]
 						},
-						"description": "Lista todas as mensalidades disponíveis (apenas para Admin Plataforma e Admin Associação)."
+						"description": "Lista todas as mensalidades disponíveis (apenas para Admin Plataforma e Admin Associação).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                         |\r\n| --------------------------- | -------------------------------- |\r\n| Administração da Plataforma | Visualiza todas as mensalidades. |\r\n| Administração da Associação | Visualiza todas as mensalidades. |\r\n| Administração da Horta      | Sem permissão.                   |\r\n| Canteirista                 | Sem permissão.                   |\r\n| Dependente                  | Sem permissão.                   |"
 					},
 					"response": [
 						{
@@ -9042,7 +9042,7 @@
 								"{{uuid_de_uma_mensalidade_plataforma}}"
 							]
 						},
-						"description": "Busca uma mensalidade específica pelo UUID."
+						"description": "Busca uma mensalidade específica pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                         |\r\n| --------------------------- | -------------------------------- |\r\n| Administração da Plataforma | Visualiza todas as mensalidades. |\r\n| Administração da Associação | Visualiza todas as mensalidades. |\r\n| Administração da Horta      | Sem permissão.                   |\r\n| Canteirista                 | Sem permissão.                   |\r\n| Dependente                  | Sem permissão.                   |"
 					},
 					"response": [
 						{
@@ -9128,7 +9128,7 @@
 								"{{uuid_user_de_uma_mensalidade_plataforma}}"
 							]
 						},
-						"description": "Lista mensalidades filtradas por usuário (apenas Admin Plataforma)."
+						"description": "Lista mensalidades filtradas por usuário (apenas Admin Plataforma).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                         |\r\n| --------------------------- | -------------------------------- |\r\n| Administração da Plataforma | Visualiza todas as mensalidades. |\r\n| Administração da Associação | Visualiza todas as mensalidades. |\r\n| Administração da Horta      | Sem permissão.                   |\r\n| Canteirista                 | Sem permissão.                   |\r\n| Dependente                  | Sem permissão.                   |"
 					},
 					"response": [
 						{
@@ -9222,7 +9222,7 @@
 								"mensalidades-da-plataforma"
 							]
 						},
-						"description": "Cria uma nova mensalidade."
+						"description": "Cria uma nova mensalidade.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                                                                               |\r\n| --------------------------- | ---------------------------------------------------------------------------------------------------------------------- |\r\n| Administração da Plataforma | Pode criar mensalidades para qualquer usuário. Todos os campos podem ser informados.                                   |\r\n| NEW_ACCOUNT                 | Pode criar mensalidade com `valor_em_centavos`, `usuario_uuid` e `plano_uuid`. Campos de datas e status são opcionais. |\r\n| Administração da Associação | Sem permissão.                                                                                                         |\r\n| Administração da Horta      | Sem permissão.                                                                                                         |\r\n| Canteirista                 | Sem permissão.                                                                                                         |\r\n| Dependente                  | Sem permissão.                                                                                                         |"
 					},
 					"response": [
 						{
@@ -9324,7 +9324,7 @@
 								"{{uuid_de_uma_mensalidade_plataforma}}"
 							]
 						},
-						"description": "Atualiza uma mensalidade existente."
+						"description": "Atualiza uma mensalidade existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                             |\r\n| --------------------------- | ------------------------------------ |\r\n| Administração da Plataforma | Pode atualizar qualquer mensalidade. |\r\n| Administração da Associação | Sem permissão.                       |\r\n| Administração da Horta      | Sem permissão.                       |\r\n| Canteirista                 | Sem permissão.                       |\r\n| Dependente                  | Sem permissão.                       |"
 					},
 					"response": [
 						{
@@ -9427,7 +9427,7 @@
 								"{{uuid_de_uma_mensalidade_plataforma}}"
 							]
 						},
-						"description": "Exclusão lógica de uma mensalidade."
+						"description": "Exclusão lógica de uma mensalidade.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                           |\r\n| --------------------------- | ---------------------------------- |\r\n| Administração da Plataforma | Pode excluir qualquer mensalidade. |\r\n| Administração da Associação | Sem permissão.                     |\r\n| Administração da Horta      | Sem permissão.                     |\r\n| Canteirista                 | Sem permissão.                     |\r\n| Dependente                  | Sem permissão.                     |\r"
 					},
 					"response": [
 						{
@@ -9557,7 +9557,7 @@
 								"mensalidades-da-associacao"
 							]
 						},
-						"description": "Lista todas as mensalidades disponíveis de acordo com o cargo do usuário."
+						"description": "Lista todas as mensalidades disponíveis de acordo com o cargo do usuário.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                             |\r\n| --------------------------- | ---------------------------------------------------- |\r\n| Administração da Plataforma | Visualiza todas as mensalidades.                     |\r\n| Administração da Associação | Visualiza apenas mensalidades da própria associação. |\r\n| Administração da Horta      | Visualiza mensalidades de usuários da própria horta. |\r\n| Canteirista                 | Visualiza apenas suas próprias mensalidades.         |\r\n| Dependente                  | Visualiza apenas suas próprias mensalidades.         |"
 					},
 					"response": [
 						{
@@ -9641,7 +9641,7 @@
 								"{{uuid_de_uma_mensalidade_associacao}}"
 							]
 						},
-						"description": "Busca uma mensalidade específica pelo UUID."
+						"description": "Busca uma mensalidade específica pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                             |\r\n| --------------------------- | ---------------------------------------------------- |\r\n| Administração da Plataforma | Visualiza todas as mensalidades.                     |\r\n| Administração da Associação | Visualiza apenas mensalidades da própria associação. |\r\n| Administração da Horta      | Visualiza mensalidades de usuários da própria horta. |\r\n| Canteirista                 | Visualiza apenas suas próprias mensalidades.         |\r\n| Dependente                  | Visualiza apenas suas próprias mensalidades.         |"
 					},
 					"response": [
 						{
@@ -9727,7 +9727,7 @@
 								"{{uuid_user_em_mensalidade_associacao}}"
 							]
 						},
-						"description": "Lista mensalidades filtradas por usuário."
+						"description": "Lista mensalidades filtradas por usuário.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                             |\r\n| --------------------------- | ---------------------------------------------------- |\r\n| Administração da Plataforma | Visualiza todas as mensalidades.                     |\r\n| Administração da Associação | Visualiza apenas mensalidades da própria associação. |\r\n| Administração da Horta      | Visualiza mensalidades de usuários da própria horta. |\r\n| Canteirista                 | Visualiza apenas suas próprias mensalidades.         |\r\n| Dependente                  | Visualiza apenas suas próprias mensalidades.         |"
 					},
 					"response": [
 						{
@@ -9814,7 +9814,7 @@
 								"{{uuid_associacao_em_mensalidade_associacao}}"
 							]
 						},
-						"description": "Lista mensalidades filtradas por associação."
+						"description": "Lista mensalidades filtradas por associação.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                             |\r\n| --------------------------- | ---------------------------------------------------- |\r\n| Administração da Plataforma | Visualiza todas as mensalidades.                     |\r\n| Administração da Associação | Visualiza apenas mensalidades da própria associação. |\r\n| Administração da Horta      | Visualiza mensalidades de usuários da própria horta. |\r\n| Canteirista                 | Visualiza apenas suas próprias mensalidades.         |\r\n| Dependente                  | Visualiza apenas suas próprias mensalidades.         |"
 					},
 					"response": [
 						{
@@ -9908,7 +9908,7 @@
 								"mensalidades-da-associacao"
 							]
 						},
-						"description": "Cria uma nova mensalidade."
+						"description": "Cria uma nova mensalidade.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                             |\r\n| --------------------------- | ------------------------------------ |\r\n| Administração da Plataforma | Pode criar para qualquer associação. |\r\n| Administração da Associação | Apenas para própria associação.      |\r\n| Administração da Horta      | Sem permissão.                       |\r\n| Canteirista                 | Sem permissão.                       |\r\n| Dependente                  | Sem permissão.                       |"
 					},
 					"response": [
 						{
@@ -10010,7 +10010,7 @@
 								"{{uuid_de_uma_mensalidade_associacao}}"
 							]
 						},
-						"description": "Atualiza uma mensalidade existente."
+						"description": "Atualiza uma mensalidade existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                   |\r\n| --------------------------- | ------------------------------------------ |\r\n| Administração da Plataforma | Pode atualizar qualquer mensalidade.       |\r\n| Administração da Associação | Apenas mensalidades da própria associação. |\r\n| Administração da Horta      | Sem permissão.                             |\r\n| Canteirista                 | Sem permissão.                             |\r\n| Dependente                  | Sem permissão.                             |"
 					},
 					"response": [
 						{
@@ -10113,7 +10113,7 @@
 								"{{uuid_de_uma_mensalidade_associacao}}"
 							]
 						},
-						"description": "Exclusão lógica de uma mensalidade."
+						"description": "Exclusão lógica de uma mensalidade.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                   |\r\n| --------------------------- | ------------------------------------------ |\r\n| Administração da Plataforma | Pode excluir qualquer mensalidade.         |\r\n| Administração da Associação | Apenas mensalidades da própria associação. |\r\n| Administração da Horta      | Sem permissão.                             |\r\n| Canteirista                 | Sem permissão.                             |\r\n| Dependente                  | Sem permissão.                             |\r"
 					},
 					"response": [
 						{
@@ -10253,7 +10253,7 @@
 								"recursos-do-plano"
 							]
 						},
-						"description": "Retorna todos os recursos ativos cadastrados na plataforma."
+						"description": "Retorna todos os recursos ativos cadastrados na plataforma.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                               |\r\n| --------------------------- | ------------------------------------------------------ |\r\n| Administração da Plataforma | Acesso completo. Visualiza todos os recursos do plano. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                          |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                          |\r\n| Canteirista                 | Sem permissão. Lança exceção.                          |\r\n| Dependente                  | Sem permissão. Lança exceção.                          |"
 					},
 					"response": [
 						{
@@ -10337,7 +10337,7 @@
 								"{{uuid_recursos_de_um_plano}}"
 							]
 						},
-						"description": "Busca um recurso específico pelo UUID."
+						"description": "Busca um recurso específico pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                               |\r\n| --------------------------- | ------------------------------------------------------ |\r\n| Administração da Plataforma | Acesso completo. Visualiza todos os recursos do plano. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                          |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                          |\r\n| Canteirista                 | Sem permissão. Lança exceção.                          |\r\n| Dependente                  | Sem permissão. Lança exceção.                          |"
 					},
 					"response": [
 						{
@@ -10423,7 +10423,7 @@
 								"{{uuid_de_um_plano_com_recursos}}"
 							]
 						},
-						"description": "Consulta todos os recursos associados a um plano específico."
+						"description": "Consulta todos os recursos associados a um plano específico.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                               |\r\n| --------------------------- | ------------------------------------------------------ |\r\n| Administração da Plataforma | Acesso completo. Visualiza todos os recursos do plano. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                          |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                          |\r\n| Canteirista                 | Sem permissão. Lança exceção.                          |\r\n| Dependente                  | Sem permissão. Lança exceção.                          |"
 					},
 					"response": [
 						{
@@ -10517,7 +10517,7 @@
 								"recursos-do-plano"
 							]
 						},
-						"description": "Cria um novo recurso para um plano existente."
+						"description": "Cria um novo recurso para um plano existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                           |\r\n| --------------------------- | -------------------------------------------------- |\r\n| Administração da Plataforma | Pode criar recursos para qualquer plano existente. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                      |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                      |\r\n| Canteirista                 | Sem permissão. Lança exceção.                      |\r\n| Dependente                  | Sem permissão. Lança exceção.                      |"
 					},
 					"response": [
 						{
@@ -10619,7 +10619,7 @@
 								"{{uuid_recursos_de_um_plano}}"
 							]
 						},
-						"description": "Atualiza um recurso existente de um plano."
+						"description": "Atualiza um recurso existente de um plano.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                                    |\r\n| --------------------------- | ----------------------------------------------------------- |\r\n| Administração da Plataforma | Pode atualizar qualquer recurso do plano. Campos opcionais. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                               |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                               |\r\n| Canteirista                 | Sem permissão. Lança exceção.                               |\r\n| Dependente                  | Sem permissão. Lança exceção.                               |"
 					},
 					"response": [
 						{
@@ -10722,7 +10722,7 @@
 								"{{uuid_recursos_de_um_plano}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de um recurso do plano (marca como excluído)."
+						"description": "Realiza exclusão lógica de um recurso do plano (marca como excluído).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                              |\r\n| --------------------------- | ----------------------------------------------------- |\r\n| Administração da Plataforma | Pode excluir (logicamente) qualquer recurso do plano. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                         |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                         |\r\n| Canteirista                 | Sem permissão. Lança exceção.                         |\r\n| Dependente                  | Sem permissão. Lança exceção.                         |\r"
 					},
 					"response": [
 						{
@@ -10852,7 +10852,7 @@
 								"planos"
 							]
 						},
-						"description": "Retorna todos os planos ativos da plataforma."
+						"description": "Retorna todos os planos ativos da plataforma.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza todos os planos. |\r\n| Administração da Associação | Sem permissão. Lança exceção.               |\r\n| Administração da Horta      | Sem permissão. Lança exceção.               |\r\n| Canteirista                 | Sem permissão. Lança exceção.               |\r\n| Dependente                  | Sem permissão. Lança exceção.               |"
 					},
 					"response": [
 						{
@@ -10936,7 +10936,7 @@
 								"{{uuid_de_um_plano}}"
 							]
 						},
-						"description": "Busca um plano específico pelo UUID."
+						"description": "Busca um plano específico pelo UUID.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza todos os planos. |\r\n| Administração da Associação | Sem permissão. Lança exceção.               |\r\n| Administração da Horta      | Sem permissão. Lança exceção.               |\r\n| Canteirista                 | Sem permissão. Lança exceção.               |\r\n| Dependente                  | Sem permissão. Lança exceção.               |"
 					},
 					"response": [
 						{
@@ -11022,7 +11022,7 @@
 								"{{uuid_user_de_uma_mensalidade_plataforma}}"
 							]
 						},
-						"description": "Consulta o plano associado a um usuário específico."
+						"description": "Consulta o plano associado a um usuário específico.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                    |\r\n| --------------------------- | ------------------------------------------- |\r\n| Administração da Plataforma | Acesso completo. Visualiza todos os planos. |\r\n| Administração da Associação | Sem permissão. Lança exceção.               |\r\n| Administração da Horta      | Sem permissão. Lança exceção.               |\r\n| Canteirista                 | Sem permissão. Lança exceção.               |\r\n| Dependente                  | Sem permissão. Lança exceção.               |"
 					},
 					"response": [
 						{
@@ -11117,7 +11117,7 @@
 								"{{uuid_de_um_plano}}"
 							]
 						},
-						"description": "Atualiza um plano existente."
+						"description": "Atualiza um plano existente.\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                         |\r\n| --------------------------- | ------------------------------------------------ |\r\n| Administração da Plataforma | Pode atualizar qualquer plano. Campos opcionais. |\r\n| Administração da Associação | Sem permissão. Lança exceção.                    |\r\n| Administração da Horta      | Sem permissão. Lança exceção.                    |\r\n| Canteirista                 | Sem permissão. Lança exceção.                    |\r\n| Dependente                  | Sem permissão. Lança exceção.                    |"
 					},
 					"response": [
 						{
@@ -11220,7 +11220,7 @@
 								"{{uuid_de_um_plano}}"
 							]
 						},
-						"description": "Realiza exclusão lógica de um plano (marca como excluído)."
+						"description": "Realiza exclusão lógica de um plano (marca como excluído).\n\n**Escopo por cargo:**\n| Cargo                       | Contexto                                   |\r\n| --------------------------- | ------------------------------------------ |\r\n| Administração da Plataforma | Pode excluir (logicamente) qualquer plano. |\r\n| Administração da Associação | Sem permissão. Lança exceção.              |\r\n| Administração da Horta      | Sem permissão. Lança exceção.              |\r\n| Canteirista                 | Sem permissão. Lança exceção.              |\r\n| Dependente                  | Sem permissão. Lança exceção.              |\r"
 					},
 					"response": [
 						{

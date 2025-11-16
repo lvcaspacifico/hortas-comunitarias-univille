@@ -1,6 +1,6 @@
 # 🐳 Guia do Backend
 
-🥑 [Documentação do Banco de Dados🔗](../docs/db/README.md)   
+🥑 [Documentação do Banco de Dados🔗](../docs/db/README.md)
 
 🥑 [Documentação da API REST🔗](../docs/api/README.md)
 

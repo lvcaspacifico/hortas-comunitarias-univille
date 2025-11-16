@@ -1,9 +1,8 @@
 # 🥑 API REST + Regras de Negócio | Documentação
 
 > [!CAUTION]
-> A documentação da API Rest foi transferida para o Github Pages do Projeto, [disponível aqui]().
-> Este arquivo é apenas mantido por questões de histórico para a equipe de desenvolvimento.
-AVISO
+> A documentação da API Rest foi transferida para o Github Pages do projeto, [disponível aqui](https://lvcaspacifico.github.io/hortas-comunitarias-univille/).
+> Este arquivo é apenas mantido por questões históricas de interesse da desenvolvimento.
 
 ## 📑 Sumário
 
