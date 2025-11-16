@@ -43,6 +43,7 @@ jobs:
       - name: Mover para docs/api/
         run: |
           mv api.html docs/api/api.html
+          echo '<meta http-equiv="refresh" content="0; url=api/api.html" />' > docs/index.html
 
       - name: Push
         run: |
