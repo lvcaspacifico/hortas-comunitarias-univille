@@ -1,0 +1,46 @@
+name: Gerar documentação da API
+
+on:
+  push:
+    branches:
+      - feat-collection-org
+    paths:
+      - 'postman/hortas-comunitarias.postman_collection.json'
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Dependências
+        run: |
+          npm install -g postman-to-openapi
+          npm install -g @redocly/cli
+
+      - name: Converter Postman para OpenAPI
+        run: p2o postman/hortas-comunitarias.postman_collection.json -f openapi.yaml
+
+      - name: Gerar doc em HTML
+        run: redocly build-docs openapi.yaml -o api.html
+
+      - name: Mover para docs/api/
+        run: |
+          mv api.html docs/api/api.html
+
+      - name: Commit e push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/api/api.html
+          git diff --staged --quiet || git commit -m "docs: auto-gen de docs da API"
+          git push

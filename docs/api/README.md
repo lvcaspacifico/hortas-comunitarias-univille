@@ -1,5 +1,10 @@
 # 🥑 API REST + Regras de Negócio | Documentação
 
+> [!CAUTION]
+> A documentação da API Rest foi transferida para o Github Pages do Projeto, [disponível aqui]().
+> Este arquivo é apenas mantido por questões de histórico para a equipe de desenvolvimento.
+AVISO
+
 ## 📑 Sumário
 
 - [📗 Introdução](#introducao)
