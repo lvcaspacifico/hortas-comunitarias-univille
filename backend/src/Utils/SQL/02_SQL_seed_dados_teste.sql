@@ -1,3 +1,11 @@
+
+
+-- ========================================
+-- TRANSAÇÃO SE DER ERRO
+-- ========================================
+SET autocommit = 0;
+START TRANSACTION;
+
 -- ================= Usuário Dummy serve para testar condições na camada de aplicação, terá todas as permissões mas não o cargo =================
 -- Precisa atribuir a algum usuário o cargo dummy
 -- Adicionar cargo dummy
@@ -144,3 +152,5 @@ JOIN associacoes a ON a.nome_fantasia = 'Hortas RJ'
 JOIN hortas h ON h.nome_da_horta = 'Horta Comunitária RJ'
 WHERE c.slug = 'dummy'
 LIMIT 1;
+
+COMMIT;
