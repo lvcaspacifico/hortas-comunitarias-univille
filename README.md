@@ -1,3 +1,5 @@
+[![geracao-docs-api](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/api-doc.yml/badge.svg?branch=main)](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/api-doc.yml)
+
 # 🌱 Hortas Comunitárias + Univille
 
 Sistema de gestão de hortas comunitárias desenvolvido na disciplina de Vivências de Extensão V pelos graduandos dos cursos de Engenharia de Software e Sistemas de Informação da Univille.
