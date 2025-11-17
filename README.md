@@ -13,11 +13,11 @@ A documentação do banco de dados está [disponível aqui](https://github.com/l
 + Contexto/valores específicos aceitos de alguns campos
 + Relacionamentos entre entidades
 
-A documentação da API REST está [disponível aqui](https://github.com/lvcaspacifico/hortas-comunitarias-univille/blob/main/docs/api/README.md)🔗
-+ Rndpoints disponíveis
+A documentação da API REST está [disponível aqui](https://lvcaspacifico.github.io/hortas-comunitarias-univille/)🔗
++ Endpoints disponíveis
 + Envio/retorno obrigatório de cada rota
 + Quais os dados retornados de acordo com cada cargo
-+ Coleção de templates do Postman para testes
++ Coleção de templates do Postman para testes automatizados ou manuais [ficam aqui]((../docs/api/README.md))
 
 > ⚠️ Importante: O backend está em estágio de MVP, o que significa que existem possíveis ajustes e correções de bugs necessários. Construa seu client levando isso em consideração e referencie sempre o `README.md` da pasta backend.
 

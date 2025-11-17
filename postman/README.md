@@ -10,4 +10,4 @@ Para geração de documentação estática. Também pode ser importada no GUI do
 
 ## `smoke-tests`
 
-Exclusivamente para testes de CI.
+Estruturada sequencialmente, serve exclusivamente para testes de CI.
