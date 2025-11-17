@@ -25,7 +25,7 @@ Conteúdo entregue/documentado nos links acima:
 + Relacionamentos entre entidades
 + Envio/retorno obrigatório de cada rota
 + Quais os dados retornados de acordo com cada cargo
-+ Coleção de templates do Postman para testes automatizados ou manuais [ficam aqui]((../docs/api/README.md))
++ Coleção de templates do Postman para testes automatizados ou manuais [ficam aqui](postman)
 
     
 #### 🟢 Membros do grupo
