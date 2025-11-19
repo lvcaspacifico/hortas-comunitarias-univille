@@ -26,11 +26,8 @@ class HortaService
 
     public function findAllWhere(array $condition = [], array $payloadUsuarioLogado = []): Collection
     {
-        // TODO: Reativar verificação de permissões em produção
-        // Temporariamente desabilitado para permitir desenvolvimento do frontend
         return $this->hortaRepository->findAllWhere(array_merge(['excluido' => 0], $condition));
         
-        /* CÓDIGO ORIGINAL - Reativar em produção:
         $cargo = $this->getCargoSlug($payloadUsuarioLogado);
         
         switch ($cargo) {
@@ -54,7 +51,6 @@ class HortaService
             default:
                 throw new Exception("Permissão insuficiente | findAllWhere");
         }
-        */
     }
     
     public function findByUuid(string $uuid, array $payloadUsuarioLogado): ?HortaModel
@@ -91,8 +87,7 @@ class HortaService
 
     public function create(array $data, array $payloadUsuarioLogado): HortaModel
     {
-        // TODO: Reativar verificação de permissões em produção
-        /*
+        
         $cargo = $this->getCargoSlug($payloadUsuarioLogado);
 
         switch ($cargo) { 
@@ -110,7 +105,7 @@ class HortaService
             default:
                 throw new Exception("Permissão insuficiente 0,1 | create");
         }
-        */
+        
         
         $guarded = ['uuid', 'usuario_criador_uuid', 'data_de_criacao', 'data_de_ultima_alteracao'];
         foreach ($guarded as $g) unset($data[$g]);
@@ -163,8 +158,7 @@ class HortaService
         }
 
         // Validações opcionais
-        // Validações desabilitadas para desenvolvimento
-        /*
+        
         if (!empty($data['associacao_vinculada_uuid'])){
             try {
                 $this->associacaoService->findByUuid($data['associacao_vinculada_uuid'], $payloadUsuarioLogado);
@@ -182,7 +176,7 @@ class HortaService
                 unset($data['endereco_uuid']);
             }
         }
-        */
+        
 
         $horta = $this->hortaRepository->create($data);
         
@@ -196,8 +190,7 @@ class HortaService
             throw new Exception('Horta não encontrada');
         }
         
-        // TODO: Reativar verificação de permissões em produção
-        /*
+        
         $cargo = $this->getCargoSlug($payloadUsuarioLogado);
         
         switch ($cargo) { 
@@ -222,7 +215,7 @@ class HortaService
             default:
                 throw new Exception("Permissão insuficiente 0,1,2 | update");
         }
-        */
+        
         
         // Mapeamento de campos do frontend para o backend
         if (isset($data['nome']) && !isset($data['nome_da_horta'])) {
@@ -265,8 +258,7 @@ class HortaService
             throw new Exception('Horta não encontrada');
         }
         
-        // TODO: Reativar verificação de permissões em produção
-        /*
+        
         $cargo = $this->getCargoSlug($payloadUsuarioLogado);
         
         switch ($cargo) { 
@@ -291,7 +283,7 @@ class HortaService
             default:
                 throw new Exception("Permissão insuficiente 0,1,2 | delete");
         }
-        */
+        
 
         $data = [
             'excluido' => 1,
