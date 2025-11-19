@@ -177,6 +177,12 @@ class FilaDeUsuarioService
         $guarded = ['uuid', 'usuario_criador_uuid', 'data_de_criacao', 'data_de_ultima_alteracao', 'ordem'];
         foreach ($guarded as $g) unset($data[$g]);
 
+        $ultimaFila = FilaDeUsuarioModel::where('horta_uuid', $data['horta_uuid'])
+            ->where('excluido', 0)
+            ->orderBy('ordem', 'desc')
+            ->first();
+
+        $data['ordem'] = $ultimaFila ? $ultimaFila->ordem + 1 : 0;
         $data['uuid'] = Uuid::uuid1()->toString();
         $data['usuario_criador_uuid'] = $payloadUsuarioLogado['usuario_uuid'];
         $data['usuario_alterador_uuid'] = $payloadUsuarioLogado['usuario_uuid'];

@@ -1,12 +1,11 @@
 {
-    "name": "hortas-comunitarias/backend",
-    "description": "API Backend para Sistema de Hortas Comunitárias",
+    "name": "hortas-comunitarias-univille/backend",
+    "description": "API Backend para Sistema de Gestão de Hortas Comunitárias",
     "type": "project",
     "license": "MIT",
     "authors": [
         {
-            "name": "Equipe Hortas Comunitárias",
-            "email": "contato@hortas.com"
+            "name": "Equipe Hortas Comunitárias Univille"
         }
     ],
     "require": {

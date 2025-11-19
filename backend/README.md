@@ -1,6 +1,6 @@
 # 🐳 Guia do Backend
 
-🥑 [Documentação do Banco de Dados🔗](../docs/db/README.md)   
+🥑 [Documentação do Banco de Dados🔗](../docs/db/README.md)
 
 🥑 [Documentação da API REST🔗](../docs/api/README.md)
 
@@ -85,7 +85,7 @@ API_VERSION=v1
 
 2. Entrar na pasta backend e rodar o comando `php -S localhost:8000 -t public public/index.php `. Isto inicia a API REST do projeto
 
-3. Baixar e exportar os templates da API REST para o Postman disponíveis [aqui 🔗](../docs/api/README.md)
+3. Baixar e exportar os templates da API REST para o Postman disponíveis [aqui 🔗](../postman)
 
 4. Utilizar a API REST conforme documentado na [documentação da API🔗](../docs/api/README.md)
 

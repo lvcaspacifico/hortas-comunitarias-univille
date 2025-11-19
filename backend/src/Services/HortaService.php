@@ -24,7 +24,7 @@ class HortaService
         $this->enderecoService = $enderecoService;
     }
 
-    public function findAllWhere(array $condition = [], array $payloadUsuarioLogado): Collection
+    public function findAllWhere(array $condition = [], array $payloadUsuarioLogado = []): Collection
     {
         // TODO: Reativar verificação de permissões em produção
         // Temporariamente desabilitado para permitir desenvolvimento do frontend
