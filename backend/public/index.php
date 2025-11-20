@@ -3,7 +3,7 @@
 // ================= CORS Headers =================
 // Permitir requisições do frontend
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-$allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+$allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'https://hortas-comunitarias-univille.up.railway.app'];
 if (in_array($origin, $allowedOrigins)) {
     header('Access-Control-Allow-Origin: ' . $origin);
 }
