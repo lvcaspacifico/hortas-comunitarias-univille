@@ -17,6 +17,7 @@
     "bootstrap-vue-3": "^0.5.1",
     "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
+    "serve": "^14.2.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
     "vue3-leaflet": "^1.0.37",
