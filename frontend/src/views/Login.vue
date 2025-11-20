@@ -11,7 +11,7 @@
          </svg>
         </div>
         <h2 class="mb-3">Hortas Comunitárias Univille</h2>
-        <p class="lead">Gerencie seus canteiros comunitários, acompanhe o crescimento das plantas e conecte-se com outros jardineiros</p>
+        <p class="lead w-75">Gerencie seus canteiros comunitários, acompanhe o crescimento das plantas e conecte-se com outros jardineiros</p>
       </div>
     </div>
 
