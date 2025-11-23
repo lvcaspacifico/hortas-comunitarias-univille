@@ -32,7 +32,7 @@ jobs:
 
       - name: Subir serviços
         run: |
-          docker compose up -d mysql redis php nginx
+          docker compose -f docker-compose-linux.yml up -d mysql redis php nginx
 
       - name: Esperar MySQL
         run: |
@@ -111,4 +111,4 @@ jobs:
       - name: Cleanup
         if: always()
         run: |
-          docker compose down -v"
+          docker compose -f docker-compose-linux.yml down -v"
