@@ -16,9 +16,6 @@ on:
 jobs:
   api-tests:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-      checks: write
 
     steps:
       - name: Checkout
@@ -88,15 +85,6 @@ jobs:
             -r htmlextra,json \
             --reporter-htmlextra-export results.html \
             --reporter-json-export results.json
-
-      - name: Comentar resultados no PR
-        if: always()
-        uses: im-open/process-postman-test-results@v2.3.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          results-file: results.json
-          create-status-check: true
-          create-pr-comment: true
 
       - name: Subir HTML
         if: always()
