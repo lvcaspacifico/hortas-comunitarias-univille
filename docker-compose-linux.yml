@@ -6,11 +6,7 @@ services:
       - "8181:80"
       - "443:443"
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/sites/:/etc/nginx/sites-available/
-      - ./docker/nginx/ssl/:/etc/nginx/ssl/
-      - ./backend:/var/www/backend
-      - ./frontend/dist:/var/www/frontend
+      - ./docker/nginx/sites/ci.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
       - mysql

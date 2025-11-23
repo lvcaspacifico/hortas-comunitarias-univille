@@ -6891,7 +6891,7 @@
 	"variable": [
 		{
 			"key": "BASE_URL",
-			"value": "http://localhost:8181/api"
+			"value": ""
 		},
 		{
 			"key": "JWT_ADM_PLT",
