@@ -157,7 +157,10 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"const BASE_URL = pm.environment.get(\"BASE_URL\");\r",
 									"pm.environment.clear();\r",
+									"if (BASE_URL) pm.environment.set(\"BASE_URL\", BASE_URL);\r",
+									"\r",
 									"const EMAIL_ADM = \"hortas_comunitarias@univille.br\";\r",
 									"pm.environment.set(\"EMAIL_ADM\", EMAIL_ADM);\r",
 									"\r",
