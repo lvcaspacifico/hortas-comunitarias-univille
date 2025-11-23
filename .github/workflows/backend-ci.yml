@@ -51,6 +51,18 @@ jobs:
           sleep 5
           docker ps
 
+      - name: Esperar composer install
+        run: |
+          echo "Esperando composer install terminar..."
+          for i in {1..60}; do
+            if docker exec hortas_php test -f /var/www/backend/vendor/autoload.php; then
+              echo "Composer install completo!"
+              break
+            fi
+            echo "Aguardando vendor/autoload.php... ($i/60)"
+            sleep 2
+          done
+
       - name: Run migrations
         run: |
           docker exec hortas_php php /var/www/backend/run-migrations.php
