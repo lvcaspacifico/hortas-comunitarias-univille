@@ -27,12 +27,17 @@ jobs:
         run: |
           cp backend/.env.example backend/.env
 
+      - name: Setup Postman environment with BASE_URL
+        run: |
+          jq '.values += [{"key": "BASE_URL", "value": "http://localhost:8000", "type": "default", "enabled": true}]' \
+            postman/dummy-env.postman_environment.json > postman/dummy-env-ci.json
+
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Subir serviços
         run: |
-          docker compose -f docker-compose-linux.yml up -d mysql redis php nginx
+          docker compose -f docker-compose-linux.yml up -d mysql redis php
 
       - name: Esperar MySQL
         run: |
@@ -86,7 +91,7 @@ jobs:
         continue-on-error: true
         run: |
           newman run "postman/smoke-tests.postman_collection.json" \
-            -e "postman/dummy-env.postman_environment.json" \
+            -e "postman/dummy-env-ci.json" \
             -r htmlextra,json \
             --reporter-htmlextra-export results.html \
             --reporter-json-export results.json
