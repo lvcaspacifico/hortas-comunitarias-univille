@@ -89,7 +89,7 @@ jobs:
             -e "dummy-env.postman_environment.json" \
             -r htmlextra,json \
             --reporter-htmlextra-export results.html \
-            --reporter-json-export results.json > newman-output.txt 2>&1
+            --reporter-json-export results.json
 
       - name: Comentar resultados no PR
         if: always()
