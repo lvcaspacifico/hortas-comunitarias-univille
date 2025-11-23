@@ -8,7 +8,7 @@ on:
       - 'docker/php/**'
       - 'docker/mysql/**'
       - 'docker/nginx/**'
-      - 'docker-compose.yml'
+      - 'docker compose.yml'
       - 'smoke-tests.postman_collection.json'
       - 'dummy-env.postman_environment.json'
       - '.github/workflows/backend-ci.yml'
@@ -33,7 +33,7 @@ jobs:
 
       - name: Subir serviços
         run: |
-          docker-compose up -d mysql redis php nginx
+          docker compose up -d mysql redis php nginx
 
       - name: Esperar MySQL
         run: |
@@ -112,4 +112,4 @@ jobs:
       - name: Cleanup
         if: always()
         run: |
-          docker-compose down -v"
+          docker compose down -v"
