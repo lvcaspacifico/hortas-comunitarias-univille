@@ -1,5 +1,23 @@
 services:
-  # MySQL Database
+  nginx:
+    image: nginx:alpine
+    container_name: hortas_nginx
+    ports:
+      - "8181:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/sites/:/etc/nginx/sites-available/
+      - ./docker/nginx/ssl/:/etc/nginx/ssl/
+      - ./backend:/var/www/backend
+      - ./frontend/dist:/var/www/frontend
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - hortas_network
+    restart: unless-stopped
+
   mysql:
     image: mysql:8.0
     container_name: hortas_mysql
@@ -20,7 +38,6 @@ services:
           cpus: '1.5'
           memory: 1G
 
-  # phpMyAdmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: hortas_phpmyadmin
@@ -40,7 +57,6 @@ services:
           cpus: '0.5'
           memory: 256M
 
-  # PHP para API
   php:
     image: php:8.2-cli
     container_name: hortas_php
@@ -81,8 +97,20 @@ services:
           cpus: '1.0'
           memory: 512M
 
+  redis:
+    image: redis:alpine
+    container_name: hortas_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - hortas_network
+    restart: unless-stopped
+
 volumes:
   mysql_data:
+  redis_data:
 
 networks:
   hortas_network:
