@@ -1,5 +1,19 @@
 services:
-  # MySQL Database
+  nginx:
+    image: nginx:alpine
+    container_name: hortas_nginx
+    ports:
+      - "8181:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/sites/ci.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - hortas_network
+    restart: unless-stopped
+
   mysql:
     image: mysql:8.0
     container_name: hortas_mysql
@@ -7,7 +21,7 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: hortas_dev_db
+      MYSQL_DATABASE: railway
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -20,7 +34,6 @@ services:
           cpus: '1.5'
           memory: 1G
 
-  # phpMyAdmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: hortas_phpmyadmin
@@ -40,7 +53,6 @@ services:
           cpus: '0.5'
           memory: 256M
 
-  # PHP para API
   php:
     image: php:8.2-cli
     container_name: hortas_php
@@ -72,7 +84,7 @@ services:
     restart: unless-stopped
     environment:
       - DB_HOST=mysql
-      - DB_NAME=hortas_dev_db
+      - DB_NAME=railway
       - DB_USER=root
       - DB_PASS=root_password
     deploy:
@@ -81,8 +93,20 @@ services:
           cpus: '1.0'
           memory: 512M
 
+  redis:
+    image: redis:alpine
+    container_name: hortas_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - hortas_network
+    restart: unless-stopped
+
 volumes:
   mysql_data:
+  redis_data:
 
 networks:
   hortas_network:
