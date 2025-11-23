@@ -271,6 +271,9 @@ VALUES
 (UUID(), 8000, 'Manutenção do sistema de irrigação', @categoriaFinanceira, NULL, CURDATE(), @ultimaHorta2, 0, @ultimoUsuario, @ultimoUsuario);
 
 -- ================= FINANCEIRO DA ASSOCIAÇÃO =================
+SET @associacao1 = (SELECT a.uuid FROM associacoes a ORDER BY a.data_de_criacao ASC LIMIT 1);
+SET @associacao2 = (SELECT a.uuid FROM associacoes a ORDER BY a.data_de_criacao DESC LIMIT 1);
+
 INSERT INTO financeiro_da_associacao (uuid, valor_em_centavos, descricao_do_lancamento, categoria_uuid, url_anexo, data_do_lancamento, associacao_uuid, mensalidade_uuid, excluido, usuario_criador_uuid, usuario_alterador_uuid)
 VALUES
 (UUID(), 50000, 'Pagamento de mensalidade associado', @categoriaFinanceira, 'https://example.com/comprovante1.pdf', CURDATE(), @associacao1, NULL, 0, @ultimoUsuario, @ultimoUsuario),
