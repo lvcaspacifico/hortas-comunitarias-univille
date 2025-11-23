@@ -7,7 +7,7 @@ on:
       - 'backend/**'
       - 'docker/mysql/**'
       - 'docker/nginx/**'
-      - 'docker compose.yml'
+      - 'docker-compose.yml'
       - 'smoke-tests.postman_collection.json'
       - 'dummy-env.postman_environment.json'
       - '.github/workflows/backend-ci.yml'
