@@ -7,9 +7,9 @@ on:
       - 'backend/**'
       - 'docker/mysql/**'
       - 'docker/nginx/**'
-      - 'docker-compose.yml'
-      - 'smoke-tests.postman_collection.json'
-      - 'dummy-env.postman_environment.json'
+      - 'docker-compose-linux.yml'
+      - 'postman/smoke-tests.postman_collection.json'
+      - 'postman/dummy-env.postman_environment.json'
       - '.github/workflows/backend-ci.yml'
   workflow_dispatch:
 
@@ -85,8 +85,8 @@ jobs:
         id: newman
         continue-on-error: true
         run: |
-          newman run "smoke-tests.postman_collection.json" \
-            -e "dummy-env.postman_environment.json" \
+          newman run "postman/smoke-tests.postman_collection.json" \
+            -e "postman/dummy-env.postman_environment.json" \
             -r htmlextra,json \
             --reporter-htmlextra-export results.html \
             --reporter-json-export results.json
