@@ -62,3 +62,5 @@ frontend/dist/
 
 docker/php/Dockerfile
 docker/php/php.ini
+
+.claude/

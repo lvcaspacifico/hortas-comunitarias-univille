@@ -87,6 +87,7 @@ jobs:
         run: |
           newman run "postman/smoke-tests.postman_collection.json" \
             -e "postman/dummy-env.postman_environment.json" \
+            --env-var "BASE_URL=http://localhost:8181/api" \
             -r htmlextra,json \
             --reporter-htmlextra-export results.html \
             --reporter-json-export results.json
