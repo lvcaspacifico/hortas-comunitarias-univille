@@ -303,7 +303,7 @@ VALUES
 (UUID(), @planoOuro, 'Usuários Administrativos', 3, 'Quantidade de usuários de cargo administrativo', 0, @ultimoUsuario, @ultimoUsuario);
 
 -- ================= MENSALIDADES DA PLATAFORMA =================
-SET @usuarioResponsavel1 = (SELECT u.uuid FROM usuarios u WHERE u.responsavel_da_conta = 0 ORDER BY u.data_de_criacao DESC LIMIT 1);
+SET @usuarioResponsavel1 = (SELECT u.uuid FROM usuarios u WHERE u.email = 'admin_assoc_2@example.com');
 SET @usuarioResponsavel2 = (SELECT u.uuid FROM usuarios u WHERE u.email = 'admin_assoc_1@example.com');
 
 INSERT INTO mensalidades_da_plataforma (uuid, usuario_uuid, valor_em_centavos, plano_uuid, data_vencimento, data_pagamento, status, dias_atraso, url_anexo, url_recibo, excluido, usuario_criador_uuid, usuario_alterador_uuid)
