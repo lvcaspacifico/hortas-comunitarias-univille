@@ -1,4 +1,4 @@
-[![geracao-docs-api](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/api-doc.yml/badge.svg?branch=main)](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/api-doc.yml)
+[![backend-ci](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/backend-ci.yml) [![geracao-docs-api](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/api-doc.yml/badge.svg?branch=main)](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/api-doc.yml)
 
 # 🌱 Hortas Comunitárias + Univille
 
