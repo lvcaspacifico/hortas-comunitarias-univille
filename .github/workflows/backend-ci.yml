@@ -12,6 +12,7 @@ on:
       - 'smoke-tests.postman_collection.json'
       - 'dummy-env.postman_environment.json'
       - '.github/workflows/backend-ci.yml'
+  workflow_dispatch:
 
 jobs:
   api-tests:
