@@ -21,7 +21,7 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: hortas_dev_db
+      MYSQL_DATABASE: railway
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -84,7 +84,7 @@ services:
     restart: unless-stopped
     environment:
       - DB_HOST=mysql
-      - DB_NAME=hortas_dev_db
+      - DB_NAME=railway
       - DB_USER=root
       - DB_PASS=root_password
     deploy:

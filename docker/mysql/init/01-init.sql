@@ -3,11 +3,11 @@ SET NAMES utf8mb4;
 SET CHARACTER SET utf8mb4;
 
 -- Criar banco de dados se não existir
-CREATE DATABASE IF NOT EXISTS `hortas_dev_db` 
+CREATE DATABASE IF NOT EXISTS `railway` 
     CHARACTER SET utf8mb4 
     COLLATE utf8mb4_unicode_ci;
 
-USE `hortas_dev_db`;
+USE `railway`;
 
 -- Tabela de usuários
 CREATE TABLE IF NOT EXISTS `usuarios` (

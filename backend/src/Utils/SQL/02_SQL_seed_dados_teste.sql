@@ -159,7 +159,7 @@ SET @ultimaHortaUUID = (SELECT h.uuid FROM hortas h ORDER BY h.data_de_criacao D
 
 INSERT
 	INTO
-	hortas_dev_db.chaves
+	railway.chaves
 (uuid,
 	codigo,
 	horta_uuid,
@@ -191,7 +191,7 @@ SET horta_uuid = @ultimaHortaUUID,
     endereco_uuid = (SELECT endereco_uuid FROM hortas WHERE uuid = @ultimaHortaUUID)
 WHERE uuid = @userAdminUUID;
 
-INSERT INTO hortas_dev_db.fila_de_usuarios
+INSERT INTO railway.fila_de_usuarios
 (uuid,
 	usuario_uuid,
 	horta_uuid,

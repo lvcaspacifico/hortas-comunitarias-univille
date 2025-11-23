@@ -27,9 +27,8 @@ $capsule = $container->get(Capsule::class);
 
 // Executar seeds SQL
 $seeds = [
-    'src/Utils/SQL/01_SQL_criar_banco_dev.sql',
-    'src/Utils/SQL/02_SQL_seed_dados_iniciais.sql',
-    'src/Utils/SQL/03_SQL_seed_dados_teste.sql'
+    'src/Utils/SQL/01_SQL_seed_dados_iniciais.sql',
+    'src/Utils/SQL/02_SQL_seed_dados_teste.sql'
 ];
 
 foreach ($seeds as $seedFile) {

@@ -14,7 +14,7 @@ info: ## Mostra informações do ambiente
 	@echo ""
 	@echo "$(YELLOW)🔧 Banco de Dados:$(NC)"
 	@echo "  Host: localhost:8181"
-	@echo "  Database: hortas_dev_db"
+	@echo "  Database: railway"
 	@echo "  User: hortas_user"
 	@echo "  Password: hortas_password"
 	@echo ""
@@ -176,7 +176,7 @@ prod-build: ## Build para produção
 
 backup-db: ## Backup do banco de dados
 	@echo "$(GREEN)💾 Fazendo backup do banco...$(NC)"
-	@docker-compose exec mysql mysqldump -u hortas_user -phortas_password hortas_dev_db > backup_$(shell date +%Y%m%d_%H%M%S).sql
+	@docker-compose exec mysql mysqldump -u hortas_user -phortas_password railway > backup_$(shell date +%Y%m%d_%H%M%S).sql
 
 dev: start ## Alias para start (desenvolvimento)
 
@@ -192,7 +192,7 @@ info: ## Mostra informações do ambiente
 	@echo ""
 	@echo "$(YELLOW)🔧 Banco de Dados:$(NC)"
 	@echo "  Host: localhost:3306"
-	@echo "  Database: hortas_dev_db"
+	@echo "  Database: railway"
 	@echo "  User: hortas_user"
 	@echo "  Password: hortas_password"
 	@echo ""
