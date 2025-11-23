@@ -72,10 +72,6 @@ jobs:
         run: |
           docker exec hortas_php php /var/www/backend/run-migrations.php
 
-      - name: Run seeds
-        run: |
-          docker exec hortas_php php /var/www/backend/run-seeds.php
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
