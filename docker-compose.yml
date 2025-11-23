@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
     environment:
       - DB_HOST=mysql
-      - DB_NAME=hortas_db
+      - DB_NAME=hortas_dev_db
       - DB_USER=hortas_user
       - DB_PASS=hortas_password
 
@@ -54,7 +54,7 @@ services:
       - ./docker/mysql/conf:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: hortas_db
+      MYSQL_DATABASE: hortas_dev_db
       MYSQL_USER: hortas_user
       MYSQL_PASSWORD: hortas_password
     networks:

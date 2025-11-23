@@ -97,7 +97,7 @@ make fresh          # Reinstalação completa
 
 **Banco de dados:**
 - Host: `localhost:3306`
-- Database: `hortas_db`
+- Database: `hortas_dev_db`
 - User: `hortas_user`
 - Password: `hortas_password`
 - Root password: `root_password`
@@ -178,7 +178,7 @@ O banco é inicializado automaticamente com:
 make backup-db
 
 # Restore (manual)
-docker-compose exec mysql mysql -u hortas_user -phortas_password hortas_db < backup.sql
+docker-compose exec mysql mysql -u hortas_user -phortas_password hortas_dev_db < backup.sql
 ```
 
 ## 🧪 Testes

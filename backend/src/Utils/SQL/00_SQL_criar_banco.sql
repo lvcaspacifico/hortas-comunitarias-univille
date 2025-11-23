@@ -1,4 +1,4 @@
--- Script de criação completa do banco hortas_db
+-- Script de criação completa do banco
 -- MySQL 8.0+
 
 -- Usar o banco existente (railway para deploy, hortas_dev_db para dev)

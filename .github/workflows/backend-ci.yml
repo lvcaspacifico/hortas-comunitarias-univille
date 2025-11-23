@@ -11,7 +11,7 @@ on:
       - 'docker-compose.yml'
       - 'smoke-tests.postman_collection.json'
       - 'dummy-env.postman_environment.json'
-      - '.github/workflows/api-ci.yml'
+      - '.github/workflows/backend-ci.yml'
 
 jobs:
   api-tests:
@@ -100,7 +100,7 @@ jobs:
         run: |
           if grep -q '"failed": [1-9]' results.json; then
             echo "::warning::Smoke tests falharam!"
-            echo "::warning::Algo quebrou a API ou essa pipeline."
+            echo "::warning::Algo quebrou o backend ou essa pipeline."
             echo "::warning::Verifique os resultados no artefato gerado acima."
             echo "::warning::Você ainda pode completar o PR via approval manual."
             exit 1
