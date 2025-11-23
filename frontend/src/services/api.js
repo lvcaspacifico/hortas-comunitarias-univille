@@ -1,14 +1,8 @@
 import axios from 'axios'
 
-// URL base da API - ajuste conforme necessário
-// Desenvolvimento local: http://localhost:8181/api/v1
-// Docker: http://localhost:8181/api/v1
 const api = axios.create({
-  baseURL: process.env.VUE_APP_API_URL || 'http://localhost:8181/api/v1',
+  baseURL: process.env.VUE_APP_API_URL || 'http://localhost:8000/api/v1',
   timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json'
-  }
 })
 
 api.interceptors.request.use(

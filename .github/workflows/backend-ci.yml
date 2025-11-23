@@ -1,0 +1,124 @@
+name: backend-ci
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - 'docker/mysql/**'
+      - 'docker/nginx/**'
+      - 'docker-compose-linux.yml'
+      - 'postman/smoke-tests.postman_collection.json'
+      - 'postman/dummy-env.postman_environment.json'
+      - '.github/workflows/backend-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      checks: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .envs
+        run: |
+          cp backend/.env.example backend/.env
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Subir serviços
+        run: |
+          docker compose -f docker-compose-linux.yml up -d mysql redis php nginx
+
+      - name: Esperar MySQL
+        run: |
+          for i in {1..30}; do
+            if docker exec hortas_mysql mysqladmin ping -h localhost -u root -proot_password --silent; then
+              echo "MySQL pronto."
+              break
+            fi
+            echo "Esperando MySQL... ($i/30)"
+            sleep 2
+          done
+
+      - name: Esperar PHP-FPM
+        run: |
+          echo "Esperando PHP-FPM..."
+          sleep 5
+          docker ps
+
+      - name: Esperar composer install
+        run: |
+          echo "Esperando composer install terminar..."
+          for i in {1..60}; do
+            if docker exec hortas_php test -f /var/www/backend/vendor/autoload.php; then
+              echo "Composer install completo!"
+              break
+            fi
+            echo "Aguardando vendor/autoload.php... ($i/60)"
+            sleep 2
+          done
+
+      - name: Run migrations
+        run: |
+          docker exec hortas_php php /var/www/backend/run-migrations.php
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Newman
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
+
+      - name: Rodar testes no Newman
+        id: newman
+        continue-on-error: true
+        run: |
+          newman run "postman/smoke-tests.postman_collection.json" \
+            -e "postman/dummy-env.postman_environment.json" \
+            --env-var "BASE_URL=http://localhost:8181/api" \
+            -r htmlextra,json \
+            --reporter-htmlextra-export results.html \
+            --reporter-json-export results.json
+
+      - name: Comentar resultados no PR
+        if: always()
+        uses: im-open/process-postman-test-results@v2.3.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          results-file: results.json
+          create-status-check: true
+          create-pr-comment: true
+
+      - name: Subir HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-html-report
+          path: results.html
+
+      - name: Checar results
+        if: always()
+        run: |
+          if grep -q '"failed": [1-9]' results.json; then
+            echo "::warning::Smoke tests falharam!"
+            echo "::warning::Algo quebrou o backend ou essa pipeline."
+            echo "::warning::Verifique os resultados no artefato gerado acima."
+            echo "::warning::Você ainda pode completar o PR via approval manual."
+            exit 1
+          else
+            echo "✓ Todos os testes passaram!"
+          fi
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker compose -f docker-compose-linux.yml down -v

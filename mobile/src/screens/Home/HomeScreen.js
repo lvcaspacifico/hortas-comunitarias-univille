@@ -14,7 +14,18 @@ import { COLORS } from '../../constants/colors';
 const HomeScreen = ({ navigation }) => {
   const { user } = useAuth();
 
+  // Verifica se o usuário tem permissão para acessar associações
+  const hasAssociacaoPermission = user?.associacao_uuid;
+
   const menuItems = [
+    // Mostra Associações apenas se o usuário tiver associacao_uuid
+    ...(hasAssociacaoPermission ? [{
+      title: 'Associações',
+      icon: 'business',
+      description: 'Gerenciar associações',
+      color: COLORS.primary,
+      onPress: () => navigation.navigate('AssociacoesTab'),
+    }] : []),
     {
       title: 'Hortas',
       icon: 'leaf',
@@ -31,7 +42,7 @@ const HomeScreen = ({ navigation }) => {
     },
     {
       title: 'Meu Perfil',
-      icon: 'person',
+      icon: 'person-circle',
       description: 'Ver e editar perfil',
       color: COLORS.info,
       onPress: () => navigation.navigate('ProfileTab'),
@@ -41,7 +52,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.greeting}>Olá, {user?.nome?.split(' ')[0] || 'Usuário'}!</Text>
+        <Text style={styles.greeting}>Olá, {user?.nome_completo?.split(' ')[0] || 'Usuário'}!</Text>
         <Text style={styles.subtitle}>Bem-vindo ao sistema de hortas comunitárias</Text>
       </View>
 

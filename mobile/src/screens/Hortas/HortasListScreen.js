@@ -50,7 +50,7 @@ const HortasListScreen = ({ navigation }) => {
   const handleDelete = (horta) => {
     Alert.alert(
       'Confirmar exclusão',
-      `Deseja realmente excluir a horta "${horta.nome}"?`,
+      `Deseja realmente excluir a horta "${horta.nome_da_horta}"?`,
       [
         { text: 'Cancelar', style: 'cancel' },
         {
@@ -77,10 +77,10 @@ const HortasListScreen = ({ navigation }) => {
     >
       <View style={styles.cardHeader}>
         <View style={styles.titleContainer}>
-          <Text style={styles.hortaName}>{item.nome}</Text>
-          {item.cidade && (
+          <Text style={styles.hortaName}>{item.nome_da_horta}</Text>
+          {item.endereco?.cidade && (
             <Text style={styles.hortaLocation}>
-              <Ionicons name="location-outline" size={14} /> {item.cidade}
+              <Ionicons name="location-outline" size={14} /> {item.endereco.cidade}
             </Text>
           )}
         </View>
@@ -99,9 +99,9 @@ const HortasListScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      {item.descricao && (
-        <Text style={styles.description} numberOfLines={2}>
-          {item.descricao}
+      {item.percentual_taxa_associado && (
+        <Text style={styles.description}>
+          Taxa: {item.percentual_taxa_associado}%
         </Text>
       )}
     </Card>

@@ -3,7 +3,7 @@
 # Cores para output
 GREEN=\033[0;32m
 YELLOW=\033[1;33m
-R# Informações úteis
+# Informações úteis
 info: ## Mostra informações do ambiente
 	@echo "$(GREEN)📊 Informações do Ambiente:$(NC)"
 	@echo ""
@@ -14,7 +14,7 @@ info: ## Mostra informações do ambiente
 	@echo ""
 	@echo "$(YELLOW)🔧 Banco de Dados:$(NC)"
 	@echo "  Host: localhost:8181"
-	@echo "  Database: hortas_db"
+	@echo "  Database: railway"
 	@echo "  User: hortas_user"
 	@echo "  Password: hortas_password"
 	@echo ""
@@ -59,7 +59,7 @@ logs-db: ## Mostra logs do banco de dados
 	@docker-compose logs -f mysql
 
 shell-php: ## Acessa o container PHP
-	@docker-compose exec php bash
+	@docker-compose exec php sh
 
 shell-mysql: ## Acessa o container MySQL
 	@docker-compose exec mysql bash
@@ -176,7 +176,7 @@ prod-build: ## Build para produção
 
 backup-db: ## Backup do banco de dados
 	@echo "$(GREEN)💾 Fazendo backup do banco...$(NC)"
-	@docker-compose exec mysql mysqldump -u hortas_user -phortas_password hortas_db > backup_$(shell date +%Y%m%d_%H%M%S).sql
+	@docker-compose exec mysql mysqldump -u hortas_user -phortas_password railway > backup_$(shell date +%Y%m%d_%H%M%S).sql
 
 dev: start ## Alias para start (desenvolvimento)
 
@@ -192,7 +192,7 @@ info: ## Mostra informações do ambiente
 	@echo ""
 	@echo "$(YELLOW)🔧 Banco de Dados:$(NC)"
 	@echo "  Host: localhost:3306"
-	@echo "  Database: hortas_db"
+	@echo "  Database: railway"
 	@echo "  User: hortas_user"
 	@echo "  Password: hortas_password"
 	@echo ""
