@@ -102,21 +102,36 @@ mobile/
 
 ## 🔧 Configuração da API
 
-Por padrão, o app está configurado para acessar a API em `http://localhost:8181/api`.
+### 🌐 Produção (Padrão)
 
-Para alterar:
+O app está **configurado automaticamente** para usar a API de produção no Railway:
 
-1. Edite o arquivo `app.json`:
+```
+https://hortas-comunitarias-univille-production.up.railway.app/api/v1
+```
+
+### 🛠️ Desenvolvimento Local
+
+Para testar com backend local, altere o arquivo [`app.json`](./app.json):
+
 ```json
 "extra": {
-  "apiUrl": "SEU_URL_AQUI/api"
+  "apiUrl": "http://192.168.0.22:8181/api/v1"
 }
 ```
 
-2. Ou crie um arquivo `.env` (recomendado para produção):
+### 📋 Alternativas
+
+1. **Método 1**: Edite [`app.json`](./app.json)
+```json
+"extra": {
+  "apiUrl": "SEU_URL_AQUI/api/v1"
+}
 ```
-API_URL=https://api.hortascomunitarias.com/api
-```
+
+2. **Método 2**: O app detecta automaticamente:
+   - **Desenvolvimento** (`__DEV__ = true`): `http://localhost:8181/api/v1`
+   - **Produção** (`__DEV__ = false`): URL do Railway
 
 ## 📱 Testando no Celular
 

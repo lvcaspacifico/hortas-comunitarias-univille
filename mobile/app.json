@@ -34,7 +34,8 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "apiUrl": "http://192.168.0.22:8181/api/v1",
+      "apiUrl": "https://hortas-comunitarias-univille-production.up.railway.app/api/v1",
+      "apiUrlDev": "http://192.168.0.22:8181/api/v1",
       "mapDefaultLat": -26.2843,
       "mapDefaultLng": -48.8449
     }

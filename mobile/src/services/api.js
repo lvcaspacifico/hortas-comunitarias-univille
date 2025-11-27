@@ -20,7 +20,10 @@ api.interceptors.request.use(
         config.headers.Authorization = `Bearer ${token}`;
       }
     } catch (error) {
-      console.error('Erro ao recuperar token:', error);
+      // Apenas loga em desenvolvimento
+      if (__DEV__) {
+        console.error('Erro ao recuperar token:', error);
+      }
     }
     return config;
   },
