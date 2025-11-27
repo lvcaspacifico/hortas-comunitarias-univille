@@ -88,6 +88,12 @@ npm start
 #### 🟢 Membros do grupo
 
 - José Pedro | [@sejodrope](https://github.com/sejodrope)
+- Artur Bogo | [@bogoartur](https://github.com/bogoartur)
+- Paloma Teixeira | [@Fxxkittxr](https://github.com/Fxxkittxr)
+- Fabiana Pauli | [@FabianaPauli](https://github.com/FabianaPauli)
+- Arthur Francisco | [@arthurrfrancis](https://github.com/arthurrfrancis)
+- Lucas | [@lucasanc20](https://github.com/lucasanc20)
+- Henrique Marcelinho | [@riqueolvr](https://github.com/riqueolvr)
 
 ---
 
