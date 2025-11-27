@@ -7,6 +7,7 @@ import { COLORS } from '../constants/colors';
 import HomeStackNavigator from './HomeStackNavigator';
 import HortasStackNavigator from './HortasStackNavigator';
 import CanteirosStackNavigator from './CanteirosStackNavigator';
+import PagamentosStackNavigator from './PagamentosStackNavigator';
 import ProfileStackNavigator from './ProfileStackNavigator';
 
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,9 @@ const MainTabNavigator = () => {
               break;
             case 'CanteirosTab':
               iconName = focused ? 'grid' : 'grid-outline';
+              break;
+            case 'PagamentosTab':
+              iconName = focused ? 'cash' : 'cash-outline';
               break;
             case 'ProfileTab':
               iconName = focused ? 'person' : 'person-outline';
@@ -60,13 +64,18 @@ const MainTabNavigator = () => {
         component={HortasStackNavigator}
         options={{ tabBarLabel: 'Hortas' }}
       />
-      <Tab.Screen 
-        name="CanteirosTab" 
+      <Tab.Screen
+        name="CanteirosTab"
         component={CanteirosStackNavigator}
         options={{ tabBarLabel: 'Canteiros' }}
       />
-      <Tab.Screen 
-        name="ProfileTab" 
+      <Tab.Screen
+        name="PagamentosTab"
+        component={PagamentosStackNavigator}
+        options={{ tabBarLabel: 'Pagamentos' }}
+      />
+      <Tab.Screen
+        name="ProfileTab"
         component={ProfileStackNavigator}
         options={{ tabBarLabel: 'Perfil' }}
       />
