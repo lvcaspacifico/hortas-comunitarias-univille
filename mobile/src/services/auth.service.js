@@ -3,6 +3,26 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CONFIG } from '../constants/config';
 
 /**
+ * Decodifica JWT para extrair payload (sem validação)
+ */
+const decodeJWT = (token) => {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error('❌ Erro ao decodificar JWT:', error);
+    return null;
+  }
+};
+
+/**
  * Realiza login
  */
 export const login = async (email, senha) => {
@@ -36,8 +56,16 @@ export const login = async (email, senha) => {
     }
 
     // Se não veio, tenta buscar
+    const payload = decodeJWT(token);
+    
+    if (!payload?.usuario_uuid) {
+      const minimalUser = { email };
+      await AsyncStorage.setItem(CONFIG.userKey, JSON.stringify(minimalUser));
+      return { token, usuario: minimalUser };
+    }
+    
     try {
-      const userResponse = await api.get('/usuarios/me');
+      const userResponse = await api.get(`/usuarios/${payload.usuario_uuid}`);
       const fetchedUser = userResponse.data;
 
       await AsyncStorage.setItem(CONFIG.userKey, JSON.stringify(fetchedUser));
@@ -56,6 +84,42 @@ export const login = async (email, senha) => {
 };
 
 /**
+ * Gera um CNPJ único baseado no CPF do usuário
+ * Formato: Usa os 8 primeiros dígitos do CPF + 0001 + dígitos verificadores gerados
+ */
+const gerarCNPJdoCPF = (cpf) => {
+  // Remove formatação do CPF
+  const cpfLimpo = cpf.replace(/[^\d]/g, '');
+  
+  // Usa os primeiros 8 dígitos do CPF como base
+  const base = cpfLimpo.substring(0, 8);
+  
+  // Adiciona 0001 (filial)
+  const cnpjSemDV = base + '0001';
+  
+  // Calcula primeiro dígito verificador
+  let soma = 0;
+  let peso = 5;
+  for (let i = 0; i < 12; i++) {
+    soma += parseInt(cnpjSemDV[i]) * peso;
+    peso = peso === 2 ? 9 : peso - 1;
+  }
+  const dv1 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+  
+  // Calcula segundo dígito verificador
+  const cnpjComDV1 = cnpjSemDV + dv1;
+  soma = 0;
+  peso = 6;
+  for (let i = 0; i < 13; i++) {
+    soma += parseInt(cnpjComDV1[i]) * peso;
+    peso = peso === 2 ? 9 : peso - 1;
+  }
+  const dv2 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+  
+  return cnpjSemDV + dv1 + dv2;
+};
+
+/**
  * Realiza cadastro (cria associação e usuário administrador)
  */
 export const register = async (userData) => {
@@ -67,24 +131,27 @@ export const register = async (userData) => {
       dataFormatada = `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
     }
 
-    // Garante CNPJ válido
-    const cnpjValido = userData.cnpj && userData.cnpj !== '00000000000000'
-      ? userData.cnpj
-      : '00000000000191'; // CNPJ válido como fallback
-
+    // Gera CNPJ único baseado no CPF do usuário
+    const cnpjGerado = gerarCNPJdoCPF(userData.cpf_cnpj);
+    
+    // Gera nome de associação baseado no nome do usuário
+    const primeiroNome = userData.nome.split(' ')[0];
+    const ultimoNome = userData.nome.split(' ').slice(-1)[0];
+    const nomeAssociacao = `Associação ${primeiroNome} ${ultimoNome}`;
+    
     // Monta estrutura esperada pela API
     const payload = {
       associacao: {
-        cnpj: cnpjValido,
-        razao_social: userData.razao_social || userData.nome,
-        nome_fantasia: userData.nome_fantasia || userData.razao_social || userData.nome,
+        cnpj: cnpjGerado,
+        razao_social: nomeAssociacao,
+        nome_fantasia: nomeAssociacao,
       },
       usuario: {
         nome_completo: userData.nome,
         cpf: userData.cpf_cnpj,
         email: userData.email,
         senha: userData.senha,
-        apelido: userData.apelido || userData.nome.split(' ')[0],
+        apelido: userData.apelido || primeiroNome,
         data_de_nascimento: dataFormatada,
       }
     };

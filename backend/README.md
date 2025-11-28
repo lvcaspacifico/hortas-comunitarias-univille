@@ -1,6 +1,6 @@
 # 🐳 Guia do Backend
 
-🥑 [Documentação do Banco de Dados🔗](../docs/db/README.md)   
+🥑 [Documentação do Banco de Dados🔗](../docs/db/README.md)
 
 🥑 [Documentação da API REST🔗](../docs/api/README.md)
 
@@ -45,7 +45,7 @@ docker network create hortas_network
 3. Subir os containers relevantes com as configurações de variáveis relevantes:
 
 ```bash
-docker run -d --name hortas_mysql --network hortas_network -e MYSQL_ROOT_PASSWORD=root_password -e MYSQL_DATABASE=hortas_dev_db -p 3306:3306 mysql:8.0
+docker run -d --name hortas_mysql --network hortas_network -e MYSQL_ROOT_PASSWORD=root_password -e MYSQL_DATABASE=railway -p 3306:3306 mysql:8.0
 docker run -d --name hortas_phpmyadmin --network hortas_network -e PMA_HOST=hortas_mysql -e PMA_PORT=3306 -e PMA_USER=root -e PMA_PASSWORD=root_password -p 8080:80 phpmyadmin/phpmyadmin
 ```
 
@@ -58,7 +58,7 @@ APP_DEBUG=true
 
 # Database
 DB_HOST=127.0.0.1
-DB_NAME=hortas_dev_db
+DB_NAME=railway
 DB_USER=root
 DB_PASS=root_password
 DB_CHARSET=utf8mb4
@@ -85,7 +85,7 @@ API_VERSION=v1
 
 2. Entrar na pasta backend e rodar o comando `php -S localhost:8000 -t public public/index.php `. Isto inicia a API REST do projeto
 
-3. Baixar e exportar os templates da API REST para o Postman disponíveis [aqui 🔗](../docs/api/README.md)
+3. Baixar e exportar os templates da API REST para o Postman disponíveis [aqui 🔗](../postman)
 
 4. Utilizar a API REST conforme documentado na [documentação da API🔗](../docs/api/README.md)
 

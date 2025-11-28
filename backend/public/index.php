@@ -3,7 +3,7 @@
 // ================= CORS Headers =================
 // Permitir requisições do frontend
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-$allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+$allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'https://hortas-comunitarias-univille.up.railway.app'];
 if (in_array($origin, $allowedOrigins)) {
     header('Access-Control-Allow-Origin: ' . $origin);
 }
@@ -32,8 +32,10 @@ use App\Middlewares\JwtMiddleware;
 use App\Middlewares\RoutePermissionMiddleware;
 
 // --------------- Carregando .env
-$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+if (file_exists(__DIR__ . '/../.env')) { // Se existir o .env (em dev) carrega, se não puxa da config do env de deploy
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
+}
 foreach ($_SERVER as $key => $value) {
     if (getenv($key) !== false && !isset($_ENV[$key])) {
         $_ENV[$key] = $value;

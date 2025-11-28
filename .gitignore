@@ -59,3 +59,6 @@ backend/var/
 # Frontend específico  
 frontend/.env.local
 frontend/dist/
+
+docker/php/Dockerfile
+docker/php/php.ini

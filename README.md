@@ -1,52 +1,67 @@
+[![backend-ci](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/backend-ci.yml) [![geracao-docs-api](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/api-doc.yml/badge.svg?branch=main)](https://github.com/lvcaspacifico/hortas-comunitarias-univille/actions/workflows/api-doc.yml)
+
 # 🌱 Hortas Comunitárias + Univille
 
 Sistema de gestão de hortas comunitárias desenvolvido na disciplina de Vivências de Extensão V pelos graduandos dos cursos de Engenharia de Software e Sistemas de Informação da Univille.
 
+Esse fork do [repositório original](https://github.com/thiagohome2/hortas-comunitarias-univille)🔗 constrói e entrega o MVP do backend da aplicação, disponibilizando todo o esquema de banco de dados, regras de negócio mínimas em uma API REST, bem como os frontends para desktop (aplicação web) e para mobile (aplicativo).
+
 > [!CAUTION]
 > Cabe a cada grupo atualizar esse e outros `README.md` relevantes a sua contribuição no projeto. O mesmo vale para as Issues. Não nos responsabilizamos por informações faltantes decorrentes do não preenchimento. A manutenção do repositório é da responsabilidade de todos.
 
-## 🟩 Introdução: Backend MVP
+## 🟩 Backend
 
-Esse fork do [repositório original](https://github.com/thiagohome2/hortas-comunitarias-univille)🔗 constrói e entrega o MVP do backend da aplicação, disponibilizando todo o esquema de banco de dados, regras de negócio mínimas, e uma API REST.
+> **Status**: MVP Completo e Funcional ✅ 
 
-A documentação do banco de dados está [disponível aqui](https://github.com/lvcaspacifico/hortas-comunitarias-univille/blob/main/docs/db/README.md)🔗
+A documentação do banco de dados está [disponível aqui](https://github.com/lvcaspacifico/hortas-comunitarias-univille/blob/main/docs/db/README.md) 🔗.
+
+A  documentação da API REST está [disponível aqui](https://lvcaspacifico.github.io/hortas-comunitarias-univille/) 🔗.
+
+Conteúdo entregue/documentado nos links acima:
+
++ Esquema do banco de dados
++ Endpoints da API REST
 + Contexto/valores específicos aceitos de alguns campos
 + Relacionamentos entre entidades
-
-A documentação da API REST está [disponível aqui](https://github.com/lvcaspacifico/hortas-comunitarias-univille/blob/main/docs/api/README.md)🔗
-+ Rndpoints disponíveis
 + Envio/retorno obrigatório de cada rota
 + Quais os dados retornados de acordo com cada cargo
-+ Coleção de templates do Postman para testes
++ Coleção de templates do Postman para testes automatizados ou manuais [ficam aqui](postman)
 
-> ⚠️ Importante: O backend está em estágio de MVP, o que significa que existem possíveis ajustes e correções de bugs necessários. Construa seu client levando isso em consideração e referencie sempre o `README.md` da pasta backend.
-
-Quanto ao frontend desktop e frontend mobile, atualmente estão em desenvolvimento. Consulte a [Issue #1 - [Roadmap]](https://github.com/lvcaspacifico/hortas-comunitarias-univille/issues/1)🔗 para mais informações do andamento do projeto.
     
-#### 🟢 Backend MVP | Membros do grupo
+#### 🟢 Membros do grupo
 
 - Lucas Pacífico | [@lvcaspacifico](https://github.com/lvcaspacifico)
 - João Alencar | [@j-alencar](https://github.com/j-alencar)
 - Marcelo Fiedler | [@MarceloAFiedler](https://github.com/MarceloAFiedler)
 - Felipe Mourão | [@thekogami](https://github.com/thekogami)
 - Marcos Will | [@Marcoswill0101](https://github.com/Marcoswill0101)
+
+---
+
+## 🟩 Frontend Desktop
+
+#### 🟢 Membros do grupo
+
 - Nathan Bergmann | [@NathanBergmann](https://github.com/NathanBergmann)
+- Vitor Luis Cagneti | [@vitorluiscagneti](https://github.com/vitorluiscagneti)
 
-## 🟩 Introdução: Frontend 
+Colaborações de outros grupos:
 
-#### 🟢 Frontend Desktop MVP | Membros do grupo
+- Felipe Mourão | [@thekogami](https://github.com/thekogami)
 
-- ⛓️‍💥
+## 🟩 Integração com Gateway de Pagamentos
 
-## 🟩 Introdução: Integração com Gateway de Pagamentos
+> **Status**: NDA ❌
 
-#### 🟢 Integração com Gateway de Pagamentos | Membros do grupo
+#### 🟢 Membros do grupo
 
-- ⛓️‍💥
+- ⛓️‍💥 NDA
 
-## 🟩 Introdução: Mobile
+---
 
-**Status**: ✅ **MVP Completo e Funcional**
+## 🟩 Frontend Mobile
+
+> **Status**: MVP Completo e Funcional ✅ 
 
 O aplicativo mobile foi desenvolvido em **React Native com Expo** e está 100% funcional, oferecendo:
 
@@ -70,45 +85,46 @@ npm start
 📖 **Documentação completa**: [`mobile/README.md`](mobile/README.md)  
 ⚡ **Guia rápido**: [`mobile/QUICKSTART.md`](mobile/QUICKSTART.md)
 
-#### 🟢 Frontend Mobile MVP | Membros do grupo
+#### 🟢 Membros do grupo
 
 - José Pedro | [@sejodrope](https://github.com/sejodrope)
+- Artur Bogo | [@bogoartur](https://github.com/bogoartur)
+- Paloma Teixeira | [@Fxxkittxr](https://github.com/Fxxkittxr)
+- Fabiana Pauli | [@FabianaPauli](https://github.com/FabianaPauli)
+- Arthur Francisco | [@arthurrfrancis](https://github.com/arthurrfrancis)
+- Lucas | [@lucasanc20](https://github.com/lucasanc20)
+- Henrique Marcelinho | [@riqueolvr](https://github.com/riqueolvr)
 
 ---
 
-## 🟩 Introdução: Frontend Desktop
+## 🌱 Detalhes técnicos do projeto
 
-#### 🟢 Frontend Desktop MVP | Membros do grupo
-
-Tecnologias utilizadas:
-
-### Backend
+**Backend**
 - **PHP 8.2** com **Slim Framework 4**
 - **MySQL 8.0** para banco de dados
 - **JWT** para autenticação
 - **Nginx** como servidor web
 - **Redis** para cache e sessões
 
-### Frontend Desktop
+**Frontend Desktop**
 - **Vue.js 3** com Composition API
 - **Vue Router 4** para roteamento
 - **Vuex 4** para gerenciamento de estado
 - **Bootstrap 5** para UI
 - **Leaflet** para mapas
 
-### Frontend Mobile ✅
+**Frontend Mobile**
 - **React Native** 0.72.6
 - **Expo** ~49.0.0 para desenvolvimento
 - **React Navigation** 6.x para navegação
 - **Axios** para requisições HTTP
 - **AsyncStorage** para persistência local
 
-### DevOps
+**DevOps**
 - **Docker** e **Docker Compose**
 - **Nginx** como proxy reverso
 - **phpMyAdmin** para administração do banco
 
-## 🟩 Estrutura do Projeto
 
 ```
 hortas-comunitarias-univille/
@@ -121,11 +137,7 @@ hortas-comunitarias-univille/
 └── DEVELOPMENT.md         # Guia detalhado de desenvolvimento
 ```
 
-## 🟩 Configuração Rápida: Setup local
-
-Não esqueça de deixar o Docker Desktop rodando, ele será necessário para executar os containers.
-
-> ⚠️ Importante: Esses comandos deixarão todos os containers da aplicação configurados e rodando em sua máquina. Para containers e configurações específicas de backend ou frontends, consulte o arquivo `README.md` interno de cada pasta do projeto.
+## 🤔 Como rodar
 
 ```bash
 # Clone o repositório
@@ -158,4 +170,4 @@ make install        # Instalar dependências
 make clean          # Limpar ambiente
 ```
 
-Para mais detalhes, consulte o [DEVELOPMENT.md](DEVELOPMENT.md).
+Para mais detalhes, consulte o [DEVELOPMENT.md](DEVELOPMENT.md) ou o `README.md` de cada pasta do projeto.
