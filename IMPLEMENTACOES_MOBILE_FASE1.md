@@ -221,20 +221,20 @@ npx eas build --platform android --profile production
 
 ## 🔜 Próximas Fases (Roadmap)
 
-### Fase 2: Dependentes (3-4 dias)
+### Fase 2: Dependentes 
 - [ ] DependentesListScreen com resumo
 - [ ] DependenteFormScreen
 - [ ] Avatar component com iniciais
 - [ ] Máscara de CPF
 - [ ] Checkbox/Switch component
 
-### Fase 3: Notificações (2-3 dias)
+### Fase 3: Notificações 
 - [ ] NotificacoesListScreen (dupla view Canteirista/Admin)
 - [ ] NotificacaoFormScreen
 - [ ] Lógica condicional por cargo
 - [ ] Badges de prioridade
 
-### Fase 4: Melhorias UX (2 dias)
+### Fase 4: Melhorias UX 
 - [ ] DatePicker nativo
 - [ ] Máscaras de input (telefone, CPF)
 - [ ] Toast/Snackbar para feedback
