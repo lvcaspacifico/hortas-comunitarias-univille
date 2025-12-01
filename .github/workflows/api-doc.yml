@@ -1,0 +1,58 @@
+name: geracao-docs-api
+
+on:
+  push:
+    branches:
+      - feat-collection-org
+    paths:
+      - 'postman/hortas-comunitarias.postman_collection.json'
+  workflow_dispatch:
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: |
+          npm install postman-to-openapi
+          npm install -g @redocly/cli
+
+      - name: Postman -> OpenAPI
+        run: |
+          node -e "
+          const postmanToOpenApi = require('postman-to-openapi');
+          postmanToOpenApi('postman/hortas-comunitarias.postman_collection.json', 'openapi.yaml')
+            .then(() => console.log('Conversion complete'))
+            .catch(err => { console.error(err); process.exit(1); });
+          "
+
+      - name: Gerar HTML
+        run: redocly build-docs openapi.yaml -o index.html
+
+      - name: Adicionar meta tags de cache
+        run: |
+          sed -i '/<head>/a\    <meta http-equiv="cache-control" content="no-cache">\n    <meta http-equiv="expires" content="0">\n    <meta http-equiv="pragma" content="no-cache">' index.html
+
+      - name: Mover para docs/
+        run: |
+          mv index.html docs/index.html
+          touch docs/.nojekyll
+
+      - name: Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/index.html docs/.nojekyll
+          git diff --staged --quiet || git commit -m "docs: auto-gen de documentação da API"
+          git push

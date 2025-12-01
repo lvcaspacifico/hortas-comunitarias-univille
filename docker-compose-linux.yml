@@ -1,0 +1,113 @@
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: hortas_nginx
+    ports:
+      - "8181:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/sites/ci.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - hortas_network
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    container_name: hortas_mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: railway
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - hortas_network
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 1G
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: hortas_phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    depends_on:
+      - mysql
+    networks:
+      - hortas_network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+  php:
+    image: php:8.2-cli
+    container_name: hortas_php
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/var/www/backend
+    working_dir: /var/www/backend
+    command: bash -c "
+      apt-get update && apt-get install -y 
+        libzip-dev 
+        libxml2-dev 
+        zip 
+        unzip 
+        git &&
+      docker-php-ext-install 
+        pdo 
+        pdo_mysql 
+        mysqli 
+        zip &&
+      curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer &&
+      composer install --no-interaction --optimize-autoloader &&
+      php -S 0.0.0.0:8000 -t public public/index.php
+      "
+    depends_on:
+      - mysql
+    networks:
+      - hortas_network
+    restart: unless-stopped
+    environment:
+      - DB_HOST=mysql
+      - DB_NAME=railway
+      - DB_USER=root
+      - DB_PASS=root_password
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+  redis:
+    image: redis:alpine
+    container_name: hortas_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - hortas_network
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  hortas_network:
+    driver: bridge

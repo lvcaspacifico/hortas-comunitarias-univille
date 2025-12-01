@@ -1,84 +1,79 @@
 <?php
 
-use App\Application\Handlers\HttpErrorHandler;
-use App\Application\Handlers\ShutdownHandler;
-use App\Application\ResponseEmitter\ResponseEmitter;
-use App\Application\Settings\SettingsInterface;
-use DI\ContainerBuilder;
-use Slim\Factory\AppFactory;
-use Slim\Factory\ServerRequestCreatorFactory;
+// ================= CORS Headers =================
+// Permitir requisições do frontend
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'https://hortas-comunitarias-univille.up.railway.app'];
+if (in_array($origin, $allowedOrigins)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+}
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Access-Control-Allow-Credentials: true');
+
+// Responder requisições OPTIONS (preflight)
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+// ================================================
 
 require __DIR__ . '/../vendor/autoload.php';
 
-// Caregar variáveis de ambiente
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+use DI\ContainerBuilder;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Dotenv\Dotenv;
+use Slim\Factory\AppFactory;
+use Illuminate\Database\Capsule\Manager as Capsule;
+use App\Middlewares\FormatadorDeErrosMiddleware;
+use App\Middlewares\ForcarJsonMiddleware;
+use App\Middlewares\JwtMiddleware;
+use App\Middlewares\RoutePermissionMiddleware;
 
-// Instantiate PHP-DI ContainerBuilder
-$containerBuilder = new ContainerBuilder();
-
-if (false) { // Should be set to true in production
-    $containerBuilder->enableCompilation(__DIR__ . '/../var/cache');
+// --------------- Carregando .env
+if (file_exists(__DIR__ . '/../.env')) { // Se existir o .env (em dev) carrega, se não puxa da config do env de deploy
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
+}
+foreach ($_SERVER as $key => $value) {
+    if (getenv($key) !== false && !isset($_ENV[$key])) {
+        $_ENV[$key] = $value;
+    }
 }
 
-// Set up settings
-$settings = require __DIR__ . '/../app/settings.php';
-$settings($containerBuilder);
-
-// Set up dependencies
-$dependencies = require __DIR__ . '/../app/dependencies.php';
+// --------------- Criando containder e adicionado registro de como criar dependências
+$containerBuilder = new ContainerBuilder();
+if (false) { // Setar true em prod
+    $containerBuilder->enableCompilation(__DIR__ . '/../var/cache');
+}
+$dependencies = require __DIR__ . '/../config/dependencies.php';
 $dependencies($containerBuilder);
 
-// Set up repositories
-$repositories = require __DIR__ . '/../app/repositories.php';
-$repositories($containerBuilder);
+$authDependencies = require __DIR__ . '/../config/auth.php';
+$authDependencies($containerBuilder);
 
-// Build PHP-DI Container instance
 $container = $containerBuilder->build();
+$container->get(Capsule::class);
 
-// Instantiate the app
+// --------------- Criando app Slim
 AppFactory::setContainer($container);
 $app = AppFactory::create();
-$callableResolver = $app->getCallableResolver();
 
-// Register middleware
-$middleware = require __DIR__ . '/../app/middleware.php';
-$middleware($app);
-
-// Register routes
-$routes = require __DIR__ . '/../app/routes.php';
+// --------------- Carregando rotas da API
+$routes = require __DIR__ . '/../src/Routes/IndexRoutes.php';
 $routes($app);
 
-/** @var SettingsInterface $settings */
-$settings = $container->get(SettingsInterface::class);
-
-$displayErrorDetails = $settings->get('displayErrorDetails');
-$logError = $settings->get('logError');
-$logErrorDetails = $settings->get('logErrorDetails');
-
-// Create Request object from globals
-$serverRequestCreator = ServerRequestCreatorFactory::create();
-$request = $serverRequestCreator->createServerRequestFromGlobals();
-
-// Create Error Handler
-$responseFactory = $app->getResponseFactory();
-$errorHandler = new HttpErrorHandler($callableResolver, $responseFactory);
-
-// Create Shutdown Handler
-$shutdownHandler = new ShutdownHandler($request, $errorHandler, $displayErrorDetails);
-register_shutdown_function($shutdownHandler);
-
-// Add Routing Middleware
-$app->addRoutingMiddleware();
-
-// Add Body Parsing Middleware
+// --------------- Middlewares
+// Nota: Middlewares são executados em ordem INVERSA (LIFO - Last In, First Out)
+// Por isso, JwtMiddleware vem por último aqui (será executado primeiro)
 $app->addBodyParsingMiddleware();
+$app->addErrorMiddleware(true, true, true);
+$app->add(ForcarJsonMiddleware::class);
+$app->add(FormatadorDeErrosMiddleware::class);
+// $app->add(RoutePermissionMiddleware::class); // ← Desabilitado temporariamente (sistema de permissões)
+$app->add(JwtMiddleware::class); // JWT executado PRIMEIRO (adicionado por último)
 
-// Add Error Middleware
-$errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, $logError, $logErrorDetails);
-$errorMiddleware->setDefaultErrorHandler($errorHandler);
-
-// Run App & Emit Response
-$response = $app->handle($request);
-$responseEmitter = new ResponseEmitter();
-$responseEmitter->emit($response);
+// --------------- Rodando app
+$app->run();
+?>

@@ -1,4 +1,5 @@
-version: '3.8'
+# Docker Compose para Hortas Comunitárias
+# Versão do compose file não é mais necessária a partir do Docker Compose v2
 
 services:
   # Nginx - Servidor Web
@@ -37,7 +38,7 @@ services:
     restart: unless-stopped
     environment:
       - DB_HOST=mysql
-      - DB_NAME=hortas_db
+      - DB_NAME=railway
       - DB_USER=hortas_user
       - DB_PASS=hortas_password
 
@@ -53,7 +54,7 @@ services:
       - ./docker/mysql/conf:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: hortas_db
+      MYSQL_DATABASE: railway
       MYSQL_USER: hortas_user
       MYSQL_PASSWORD: hortas_password
     networks:
